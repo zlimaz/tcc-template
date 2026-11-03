@@ -1,55 +1,72 @@
-# Template TCC FGA-UnB
+# Trabalho de Conclusão de Curso (TCC) — Engenharia de Software / UnB-FGA
 
-Template para Trabalhos de Conclusão de Cursos (TCC) na Faculdade do
-Gama (FGA) em Latex.
+Repositório oficial para desenvolvimento da monografia de Trabalho de Conclusão de Curso (TCC) do curso de Engenharia de Software da **Universidade de Brasília (UnB)** — Faculdade UnB Gama (FGA).
 
-Licenciado em Creative Commons Atribuição 3.0:
-http://creativecommons.org/licenses/by/3.0/
+---
 
-Desenvolvido e adaptado pelo professor Edson Alves <edsomjr@gmail.com>.
+## 📌 Identificação
 
-## Dependências
-Para utilizar, certifique-se de ter instalados no seu ambiente o [Docker](https://docs.docker.com/engine/install/) e o [Docker-compose](https://docs.docker.com/compose/install/).
+* **Discente:** Miguel Arthur Oliveira de Lima
+* **Orientador:** Prof. Dr. Hilmer Rodrigues Neri
+* **Instituição:** Universidade de Brasília (UnB) — Faculdade UnB Gama (FGA)
+* **Curso:** Bacharelado em Engenharia de Software
+* **Área:** Engenharia de Software Experimental & Segurança da Informação
 
-## Construindo imagem
-Construa a imagem Docker que será utilizada com o comando:
+---
+
+## 🎯 Tema e Escopo da Pesquisa
+
+**Problema de Pesquisa:**
+> A infraestrutura de desenvolvimento e homologação de plataformas digitais governamentais federais carece de monitoramento de segurança centralizado em tempo de execução, contrariando as exigências do Controle 8 do PPSI 2.0 e da NC 21 do GSI-PR, conforme evidenciado no Acórdão nº 2.387/2024 – TCU. Essa lacuna expõe um vetor crítico na cadeia de suprimentos de software governamental que permanece sem uma avaliação do seu grau de conformidade em tempo de execução.
+
+**Questão de Pesquisa (GQM):**
+> *Como avaliar o grau de conformidade da infraestrutura de monitoramento de segurança cibernética em tempo de execução de sistemas digitais da Administração Pública Federal conforme o Controle 8 do PPSI 2.0 e os requisitos da NC 21 do GSI-PR?*
+
+**Metodologia:**
+* **Estudo de Caso Único Incorporado (*Embedded Single-Case Study*)**, fundamentado nas diretrizes de Runeson e Höst (2009) e Yin (2015).
+* **Revisão Estruturada da Literatura**, orientada pelo protocolo de Kitchenham e Charters (2007) e modelo PIO.
+
+---
+
+## 📂 Estrutura do Repositório
+
+```text
+├── docker-compose.yml           # Configuração de build e compilação do LaTeX em container
+├── Dockerfile                   # Imagem Docker com TeX Live e pacotes abnTeX2
+├── README.md                    # Documentação do repositório
+├── OFICIAL/                     # Insumos normativos, diretrizes e matrizes de dados oficiais
+│   ├── 19-SLR-guidelines.pdf    # Diretrizes de RSL (Kitchenham & Charters)
+│   ├── Runeson e Host...pdf     # Diretrizes de Estudo de Caso em Engenharia de Software
+│   ├── data_extraction(1).xls   # Matriz estruturada de extração dos 29 estudos primários
+│   └── ...                      # Marcos regulatórios (PPSI 2.0, CIS Control 8, NC 21)
+└── latex/                       # Código-fonte da monografia em LaTeX (abnTeX2)
+    ├── Makefile                 # Automação de compilação (make, make clean)
+    ├── tcc.tex                  # Arquivo principal do documento
+    ├── bibliografia.bib         # Base de dados bibliográfica (.bib)
+    ├── figuras/                 # Diagramas, fluxos e ilustrações vetoriais (.eps)
+    ├── fixos/                   # Configurações institucionais da FGA/UnB e abnTeX2
+    └── editaveis/               # Capítulos e seções editáveis do trabalho
+        ├── introducao.tex            # Capítulo 1: Introdução, GQM, Metodologia e Cronograma
+        ├── referencial_teorico.tex   # Capítulo 2: Fundamentação Teórico-Normativa
+        └── revisao_estruturada.tex   # Capítulo 3: Revisão Estruturada da Literatura
 ```
-docker-compose build latex
-```
 
-## Edição do template
-Os arquivos para edição do template de TCC estão localizados na pasta `latex`. Depois de alterá-los utilizando um editor de texto, basta compilar os arquivos.
+---
 
-## Compilando o template de TCC e gerando o PDF
-Execute o comando:
-```
-docker-compose up
-```
+## 🛠️ Como Compilar o Documento
 
-Pronto! o PDF do seu projeto estará disponível em `latex/tcc.pdf`.
+### Pré-requisitos
+* [Docker](https://docs.docker.com/engine/install/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
 
+### Compilação e Geração do PDF
+Execute na raiz do projeto:
+```bash
+docker compose up
+```
+O documento compilado e formatado nos padrões ABNT/UnB estará disponível em:
+📂 `latex/tcc.pdf`
 
-## Limpando 
-Para limpar os arquivos gerados pelo latex:
-```
-docker-compose run latex bash -c 'make clean'
-```
-### FAQ
-
-Caso você encontre algum erro na execução dos comandos acima, siga as instruções abaixo:
-
-1. Adicione o grupo `docker` ao seu usuário com o comando
-```
-sudo usermod -a -G docker $USER
-```
-
-1. Altere as permissões do arquivo `/var/run/docker.sock` com o comando:
-```
-sudo chown $USER /var/run/docker.sock
-```
-
-1. Caso o Docker não esteja rodando, inicie o serviço (e agende o início automático no _boot_) com os comandos:
-```
-sudo systemctl enable docker
-sudo systemctl start docker
+### Limpeza de Arquivos Temporários
+```bash
+docker compose run --rm latex bash -c 'make clean'
 ```
