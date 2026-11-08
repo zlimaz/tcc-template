@@ -1,0 +1,19 @@
+Avançando nas leituras do Yin e nas diretrizes de Runeson e Höst, cheguei a um delineamento metodológico mais maduro para o nosso TCC, guiando-me pelo fluxograma de taxonomia que o senhor nos passou.
+
+    Concluí que a nossa pesquisa se enquadra na metodologia de Case Study (Bloco 6), configurando-se especificamente, na taxonomia de Yin, como um Estudo de Caso Único Incorporado (Embedded Single-Case Study).
+
+    O Caso (holístico) é a infraestrutura de orquestração de contêineres do laboratório de software da UnB (LabLivre/LAPPIS), atuando como um ambiente representativo e operante da Administração Pública Federal.
+
+    O que o torna Incorporado (Embedded) é que não daremos apenas uma "nota geral" para o cluster. Teremos como Unidades de Análise as 12 medidas individuais do Controle 8 do PPSI 2.0 (Medidas 8.1 a 8.12), avaliadas de forma desmembrada.
+
+Seguindo o fluxo do diagrama para os métodos operacionais, a coleta de dados (Bloco 7) utilizará abordagens empíricas e documentais:
+
+    Archival Analysis: para a extração do arcabouço documental (requisitos da NC 21/GSI-PR, PPSI 2.0) e para a extração de artefatos sistêmicos (análise dos manifests do Kubernetes e políticas de auditoria ativas).
+
+    Observation (Indireta/Instrumentada): para a execução do diagnóstico no cluster (baseline no TCC 1) e a posterior medição contínua e automatizada (logs, métricas do módulo SCA) gerada pela arquitetura de monitoramento do Wazuh (TCC 2).
+
+Por fim, no processamento dos resultados (Bloco 8), utilizaremos:
+
+    Content Analysis: para mapear e atestar qualitativamente se as configurações do cluster cumprem os requisitos forenses da NC 21/GSI-PR através do framework GQM.
+
+    Statistical Analysis (Descritiva): para a tabulação, o cálculo matemático e o comparativo dos indicadores de maturidade (NIM e NAC).
