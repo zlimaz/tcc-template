@@ -1,9 +1,210 @@
-\chapter*[Introdução]{Introdução}
-\addcontentsline{toc}{chapter}{Introdução}
+\chapter{Introdução}
+\label{cap:introducao}
 
-Este documento apresenta considerações gerais e preliminares relacionadas 
-à redação de relatórios de Projeto de Graduação da Faculdade UnB Gama 
-(FGA). São abordados os diferentes aspectos sobre a estrutura do trabalho, 
-uso de programas de auxilio a edição, tiragem de cópias, encadernação, etc.
+Este capítulo apresenta os fundamentos contextuais, normativos e metodológicos que estruturam esta monografia. Inicialmente, expõem-se a evolução dos serviços públicos digitais no Brasil, a arquitetura tecnológica das infraestruturas governamentais investigadas e o arcabouço regulatório federal de segurança da informação e gestão de registros de auditoria. Na sequência, delimitam-se o problema técnico de pesquisa e a modelagem do objetivo conceitual, da questão de pesquisa principal e das métricas operacionais sob o paradigma \textit{Goal Question Metric} (GQM). Em seguida, estabelecem-se os objetivos geral e específicos e detalha-se a metodologia da pesquisa, fundamentada em um estudo de caso único incorporado apoiado por uma revisão estruturada da literatura. Por fim, descrevem-se a organização dos capítulos da monografia e o fluxo de atividades distribuído entre as duas etapas do Trabalho de Conclusão de Curso.
 
-Este template é uma adaptação do ABNTeX2\footnote{\url{https://github.com/abntex/abntex2/}}.
+\section{Contexto}
+\label{sec:intro_contexto}
+
+A transformação digital do Estado brasileiro consolidou as plataformas computacionais como o canal primário de mediação entre o poder público e a sociedade civil. Impulsionada pelas diretrizes de eficiência e governo digital instituídas pela Lei nº 14.129/2021 \cite{lei14129_2021}, a oferta centralizada de serviços digitais na Administração Pública Federal expandiu o alcance das políticas públicas e a transparência governamental. Entretanto, conforme evidenciado pelo Tribunal de Contas da União em auditoria operacional sobre a exposição da população a fraudes e incidentes cibernéticos \cite{tcu_golpes2025}, a digitalização massiva de processos governamentais e a concentração de dados pessoais sob custódia estatal ampliaram de forma proporcional a superfície de ataque cibernético das instituições públicas, exigindo controles rigorosos de proteção de dados nos termos da Lei Geral de Proteção de Dados Pessoais, Lei nº 13.709/2018 \cite{lgpd2018}.
+
+No domínio da Engenharia de Software, a capacidade de proteger informações e assegurar a continuidade operacional deixou de ser tratada como requisito secundário para constituir um atributo essencial de qualidade de produto e de processo. Desde os modelos hierárquicos pioneiros de \citeonline{mccall1977} e \citeonline{boehm1978}, que relacionavam a integridade do software ao controle de acesso e à auditoria de operações, a evolução normativa culminou na norma internacional ISO/IEC 25010 \cite{iso25010_2023}, na qual a segurança figura como característica primária de qualidade do produto, decomposta nas subcaracterísticas de confidencialidade, integridade, não repúdio, responsabilização e autenticidade. Complementarmente, a norma ISO/IEC 27001 \cite{iso27001_2022} estabelece os requisitos para Sistemas de Gestão da Segurança da Informação, ao passo que a transição da indústria para ciclos ágeis de integração e entrega contínuas e para a cultura DevSecOps impôs a necessidade de automatizar a verificação de segurança e a observabilidade ao longo de todo o ciclo de vida do software \cite{fitzgerald2017,rajapakse2022}.
+
+Nesse ecossistema de modernização do Estado, as plataformas digitais da Administração Pública Federal são progressivamente desenvolvidas e sustentadas em regimes de cooperação técnica entre ministérios, empresas públicas de tecnologia da informação e laboratórios acadêmicos de pesquisa e inovação em software. Do ponto de vista arquitetural, a infraestrutura de desenvolvimento, homologação e produção que suporta esses sistemas governamentais federais e a sua cadeia de suprimentos de software adota o paradigma nativo em nuvem baseado em microsserviços e contêineres. A orquestração das cargas de trabalho ocorre sobre \textit{clusters} Kubernetes fundamentados em distribuições voltadas a ambientes críticos de governo, a exemplo do \textit{Rancher Kubernetes Engine 2} (RKE2) \cite{rke2_2025}. Além das aplicações finalísticas, essa infraestrutura integra serviços estruturantes de controle, autenticação, gestão de segredos, entrega contínua e orquestração de dados, compreendendo a interface de programação da plataforma Kubernetes (Kubernetes API), o gerenciador de identidades Casdoor, o cofre criptográfico OpenBao, o motor declarativo GitOps ArgoCD e o orquestrador de fluxos Apache Airflow.
+
+Para disciplinar a governança cibernética e mitigar riscos sistêmicos nos órgãos e entidades integrantes do Sistema de Administração dos Recursos de Tecnologia da Informação (SISP) do Poder Executivo Federal, a Secretaria de Governo Digital do Ministério da Gestão e da Inovação em Serviços Públicos (SGD/MGI) instituiu o Programa de Privacidade e Segurança da Informação, originalmente estabelecido pela Portaria SGD/MGI nº 852/2023 \cite{portaria852_2023} e atualizado para sua versão PPSI 2.0 por meio da Portaria SGD/MGI nº 9.511, de 28 de outubro de 2025 \cite{portaria9511_2025}. O Guia do Framework do PPSI 2.0 \cite{ppsi2026} estrutura seus controles técnicos de segurança da informação em alinhamento direto com o catálogo internacional \textit{CIS Critical Security Controls} na versão 8.1 \cite{cis2024}, estabelecendo um ciclo contínuo composto pelas etapas de diagnóstico, análise de lacunas, planejamento e implementação.
+
+No interior do segmento de segurança da informação do PPSI 2.0, o Controle 8 trata especificamente da Gestão de Registros de Auditoria, subdividindo-se em doze medidas técnicas e organizacionais identificadas de 8.1 a 8.12 \cite{ppsi2026}. O propósito central desse controle consiste em coletar, alertar, analisar e reter registros de eventos que permitam detectar ataques cibernéticos, compreender sua extensão e viabilizar a recuperação operacional e a responsabilização forense. A Instrução Normativa SGD/MGI nº 4, de 14 de janeiro de 2026 \cite{in4_2026}, ao regulamentar o ciclo de implementação de 2026 do PPSI 2.0, classificou as medidas 8.5, referente à coleta detalhada de registros de auditoria, 8.9, relativa à centralização de registros, e 8.12, voltada à coleta de registros de provedores de serviço e aplicações, no rol de medidas prioritárias obrigatórias, mantendo as medidas 8.1, 8.2, 8.3, 8.4, 8.6 e 8.10 sob regime de gestão contínua.
+
+As medidas do Controle 8 do PPSI 2.0 articulam-se diretamente com a Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}, expedida pelo Gabinete de Segurança Institucional da Presidência da República para reger o registro, a coleta e a preservação de evidências de incidentes de segurança em redes computacionais da Administração Pública Federal. O item 6.1 da referida norma determina a sincronização obrigatória do relógio interno dos ativos de informação com a Hora Legal Brasileira assegurada pelo Observatório Nacional. Adicionalmente, os itens 6.2 e 6.3 exigem que todos os eventos de autenticação, acessos a recursos privilegiados e alterações nos próprios registros de auditoria contenham metadados forenses estritos: identificação inequívoca do usuário, natureza do evento, carimbo de data e hora com fuso horário, endereço de protocolo de rede de origem e identificador do ativo computacional. Quanto à guarda probatória, a norma preconiza a centralização remota dos registros em seu item 6.8 e o armazenamento íntegro pelo prazo normativo mínimo estabelecido no item 6.7 \cite{nc21_2014}, o qual converge com as exigências de retenção de doze meses aplicáveis a trilhas de auditoria no âmbito do Marco Civil da Internet, Lei nº 12.965/2014 \cite{marcocivil2014}.
+
+A operacionalização desses requisitos em infraestruturas governamentais distribuídas exige ainda a observância do modelo de responsabilidade compartilhada disciplinado pela Instrução Normativa GSI/PR nº 5/2021 \cite{ingsi5_2021} e detalhado no Guia Complementar de Segurança da Informação para Computação em Nuvem do PPSI 2.0 \cite{guianuvem2025}. Conforme estabelece a Seção 4.8 do referido guia complementar, ainda que o provedor de serviços em nuvem forneça a infraestrutura física e de virtualização subjacente, recai sobre a organização pública gestora da solução, nos modelos de implantação privado, Infraestrutura como Serviço (IaaS) e Plataforma como Serviço (PaaS), a responsabilidade direta pela configuração, manutenção, monitoramento, centralização e análise dos registros de auditoria concernentes aos sistemas operacionais, malhas de orquestração de contêineres, ferramentas de desenvolvimento e aplicações \cite{guianuvem2025}.
+
+\section{Problema}
+\label{sec:intro_problema}
+
+Apesar da obrigatoriedade do arcabouço normativo federal, auditorias de controle externo evidenciam um déficit sistêmico na implementação de controles técnicos de segurança cibernética no Poder Executivo Federal. No Acórdão nº 2.387/2024 do Plenário do Tribunal de Contas da União \cite{tcu2387_2024}, que auditou 253 organizações integrantes do SISP, constatou-se baixa maturidade operacional e expediu-se ciência formal a 101 entidades federais que sequer haviam apresentado diagnósticos e planos de ação do PPSI. No plano técnico das infraestruturas de desenvolvimento e homologação de sistemas governamentais baseadas em Kubernetes e RKE2, esse hiato é agravado pelas configurações padrão de mercado, que mantêm mecanismos de auditoria estendida desativados nos nós e no plano de controle para economizar processamento e operações de entrada e saída de disco \cite{albuquerque2024,velasquez2025}.
+
+Essa configuração conservadora impõe quatro vulnerabilidades estruturais perante o Controle 8 do PPSI 2.0 \cite{ppsi2026} e a NC nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}: a ausência de políticas de auditoria granulares no componente \texttt{kube-apiserver} (medidas 8.2, 8.5 e 8.12); a falta de telemetria em consultas internas de nomes e em requisições de saída quando geridas localmente (medidas 8.6 e 8.7); a cegueira operacional no nível do núcleo do sistema operacional quanto à execução de linhas de comando e chamadas de sistema \texttt{execve} (medida 8.8); e a volatilidade dos registros locais em contêineres efêmeros, cuja destruição ou recriação extingue evidências antes da centralização remota e da retenção normativa (medidas 8.3, 8.9 e 8.10) \cite{jin2025,zhang2025}. Tais falhas ocultam incidentes na cadeia de suprimentos de software, inviabilizam a custódia probatória exigida pelos órgãos de controle externo \cite{tcu2387_2024,lgpd2018} e somam-se à lacuna constatada na Revisão Estruturada da Literatura (Capítulo~\ref{cap:revisao_sistematica}), segundo a qual a maioria dos estudos da área não avalia o grau de conformidade inicial antes de intervir na infraestrutura.
+
+Diante desse cenário técnico e regulatório, o problema de pesquisa que motiva esta investigação é formalmente enunciado nos seguintes termos: \textbf{A infraestrutura de desenvolvimento e homologação de plataformas digitais governamentais federais carece de monitoramento de segurança centralizado em tempo de execução, contrariando as exigências do Controle 8 do PPSI 2.0 e da NC 21 do GSI-PR, conforme evidenciado no Acórdão nº 2.387/2024 -- TCU. Essa lacuna expõe um vetor crítico na cadeia de suprimentos de software governamental que permanece sem uma avaliação do seu grau de conformidade em tempo de execução.}
+
+\section{Questão de Pesquisa}
+\label{sec:intro_questao_pesquisa}
+
+\subsection{GQM Adaptado}
+\label{subsec:intro_gqm}
+
+Para conectar o problema de pesquisa a critérios quantitativos e auditáveis de avaliação \cite{wohlin2024,runeson2009}, adotou-se o paradigma \textit{Goal Question Metric} (GQM), proposto por \citeonline{basili1994}. Essa abordagem estrutura o programa de medição de forma descendente em três níveis integrados: o nível conceitual, que especifica o objetivo de medição em função do objeto de estudo, do propósito, do foco de qualidade, do ponto de vista e do contexto; o nível operacional, composto pela questão de pesquisa que deriva do objetivo e caracteriza o objeto sob investigação; e o nível quantitativo, constituído pelas métricas associadas para responder à questão de forma objetiva \cite{basili1994}, conforme ilustrado na Figura~\ref{fig:intro_gqm}.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Estrutura hierárquica da abordagem GQM}
+    \label{fig:intro_gqm}
+    \includegraphics[width=0.68\textwidth]{figuras/gqm.eps}
+    \fonte{Adaptado de \citeonline{basili1994}.}
+\end{figure}
+
+Em conformidade com as cinco dimensões formais preconizadas por \citeonline{basili1994}, o objetivo conceitual desta pesquisa consiste em: \textbf{Analisar a infraestrutura de monitoramento de segurança cibernética em tempo de execução de sistemas digitais da Administração Pública Federal, com o propósito de avaliar o grau de conformidade perante o normativo nacional com respeito ao grau de aderência técnica às 12 medidas do Controle 8 do PPSI 2.0 e aos requisitos da NC 21 do GSI-PR, sob o ponto de vista do pesquisador, no contexto da infraestrutura de desenvolvimento e homologação Kubernetes de plataformas digitais da Administração Pública Federal sujeitas às diretrizes de conformidade do PPSI 2.0.} A decomposição estruturada dessas cinco dimensões é apresentada na Tabela~\ref{tab:intro_gqm_objetivo}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Definição do objetivo conceitual de medição segundo o paradigma GQM}
+    \label{tab:intro_gqm_objetivo}
+    \small
+    \begin{tabular}{p{4.6cm}p{9.8cm}}
+        \hline
+        \textbf{Parâmetro GQM} & \textbf{Definição no Estudo} \\ \hline
+        \textbf{Analisar} (\textit{Object of Study}) & A infraestrutura de monitoramento de segurança cibernética em tempo de execução de sistemas digitais da Administração Pública Federal. \\ \hline
+        \textbf{Com o propósito de} (\textit{Purpose}) & Avaliar o grau de conformidade perante o normativo nacional. \\ \hline
+        \textbf{Com respeito ao} (\textit{Focus}) & Grau de aderência técnica às 12 medidas do Controle 8 do PPSI 2.0 e aos requisitos da NC 21 do GSI-PR. \\ \hline
+        \textbf{Do ponto de vista do} (\textit{Point of View}) & Pesquisador. \\ \hline
+        \textbf{No contexto do} (\textit{Context}) & Infraestrutura de desenvolvimento e homologação Kubernetes de plataformas digitais da Administração Pública Federal sujeitas às diretrizes de conformidade do PPSI 2.0. \\ \hline
+    \end{tabular}
+    \fonte{Adaptado de \citeonline{basili1994}.}
+\end{table}
+
+
+No nível operacional, a estrutura conceitual definida no GQM é diretamente transformada na questão de pesquisa principal que norteia este trabalho:
+\begin{quote}
+\textbf{Como avaliar o grau de conformidade da infraestrutura de monitoramento de segurança cibernética em tempo de execução de sistemas digitais da Administração Pública Federal conforme o Controle 8 do PPSI 2.0 e os requisitos da NC 21 do GSI-PR?}
+\end{quote}
+Para responder a essa questão norteadora com rigor metodológico, a pesquisa desdobra-se em dois estudos empíricos complementares: uma Revisão Estruturada da Literatura, orientada por doze questões secundárias específicas para investigar como a literatura científica realiza a coleta de telemetria em \textit{runtime} e a avaliação de conformidade normativa, e um Estudo de Caso, voltado a diagnosticar e avaliar empiricamente a infraestrutura governamental investigada.
+
+
+No nível quantitativo, a operacionalização da avaliação adota os critérios oficiais estabelecidos pela Instrução Normativa SGD/MGI nº 4/2026. A pesquisa utiliza o Nível de Implementação da Medida (NIM) para avaliar o atendimento individual de cada salvaguarda do Controle 8 em uma escala nominal de zero a cinco, e o Nível de Adoção do Controle (NAC), que expressa a maturidade global do ambiente por meio da média aritmética dos índices aplicáveis aferidos.
+
+\newpage
+\section{Objetivos}
+\label{sec:intro_objetivos}
+
+Os objetivos desta monografia foram delineados em alinhamento direto com o objetivo conceitual do modelo GQM e com a questão de pesquisa estabelecida, dividindo-se em objetivo geral e objetivos específicos.
+
+\subsection{Objetivo Geral}
+\label{subsec:intro_objetivo_geral}
+\label{subsec:intro_obj_geral}
+
+O objetivo geral desta pesquisa consiste em executar a avaliação formal descrita no nível conceitual do GQM (Seção~\ref{subsec:intro_gqm}), aferindo o grau de conformidade técnica da infraestrutura estudada perante o Controle 8 do PPSI 2.0 e a NC 21 do GSI-PR.
+
+\subsection{Objetivos Específicos}
+\label{subsec:intro_objetivos_especificos}
+\label{subsec:intro_obj_especificos}
+
+Para alcançar o objetivo geral proposto, foram definidos os seguintes objetivos específicos:
+\begin{itemize}
+    \item Fundamentar os conceitos de Engenharia de Software Experimental, qualidade e segurança de software, orquestração de contêineres em Kubernetes, plataformas SIEM, HIDS e XDR e o arcabouço normativo federal composto pelo PPSI 2.0, CIS Control 8, IN SGD/MGI nº 4/2026 e NC nº 21/IN01/DSIC/GSI-PR;
+    \item Conduzir uma Revisão Estruturada da Literatura, baseada no protocolo de \citeonline{kitchenham2007}, sobre soluções de monitoramento de segurança em \textit{runtime}, gestão centralizada de \textit{logs} de auditoria e avaliação de conformidade normativa em ambientes distribuídos e em nuvem;
+    \item Estruturar uma matriz de evidências técnicas para operacionalizar as métricas de Nível de Implementação da Medida (NIM), Nível de Adoção do Controle (NAC) e Cobertura de Logs de Serviços (CLS), em conformidade com os critérios da IN SGD/MGI nº 4/2026;
+    \item Planejar um estudo de caso único incorporado segundo as diretrizes de \citeonline{runeson2009} e \citeonline{yin2015}, delimitando o contexto da infraestrutura Kubernetes RKE2, as unidades de análise e os procedimentos de coleta e análise de dados;
+    \item Planejar e estabelecer os critérios para o diagnóstico inicial (\textit{baseline}) de conformidade da infraestrutura, bem como projetar a arquitetura de telemetria baseada no SIEM Wazuh a ser implementada na segunda etapa da pesquisa.
+\end{itemize}
+
+\section{Metodologia}
+\label{sec:intro_metodologia}
+
+O delineamento metodológico desta investigação foi estruturado a partir da taxonomia de pesquisa em Engenharia de Software Experimental \cite{wohlin2024,runeson2009,yin2015}, organizando-se nas fases estratégica, tática e operacional, conforme representado na Figura~\ref{fig:intro_metodologia_fluxo}.
+
+Na \textbf{fase estratégica} (\textit{Strategy Phase}), que parte da questão de pesquisa formulada, a investigação classifica-se quanto ao seu resultado (\textit{Research Outcome}) como uma \textbf{Pesquisa Aplicada} (\textit{Applied Research}), uma vez que visa solucionar um problema concreto de aferição de conformidade normativa e visibilidade de segurança cibernética em infraestruturas governamentais reais. Quanto à lógica de investigação (\textit{Research Logic}), adota-se uma abordagem \textbf{Dedutiva-Indutiva}: parte-se dedutivamente de premissas normativas formais (PPSI 2.0, Controle 8 do CIS e NC nº 21/GSI-PR) e do modelo GQM para avaliar uma instância tecnológica específica, combinando-se à análise indutiva das evidências empíricas levantadas na literatura e no ambiente operacional. Quanto ao propósito (\textit{Research Purpose}), o estudo apresenta natureza \textbf{Exploratória, Descritiva e Avaliativa} (\textit{Exploratory, Descriptive and Evaluation}), visto que explora o estado da arte em telemetria de segurança em \textit{runtime}, descreve a arquitetura e as lacunas de auditoria da infraestrutura sob estudo e avalia objetivamente o seu grau de aderência regulatória \cite{runeson2009}. Quanto ao paradigma (\textit{Research Paradigm}), a pesquisa alinha-se à perspectiva \textbf{Positivista} (\textit{Positivist}), fundamentando-se em proposições estruturadas, critérios de evidência previamente definidos e medições independentes de subjetividade do observador \cite{runeson2009}.
+
+Na \textbf{fase tática} (\textit{Tactical Phase}), o processo de pesquisa (\textit{Research Process}) adota uma \textbf{Abordagem Mista} (\textit{Mixed Approach}), articulando dados qualitativos -- provenientes da análise de artefatos arquiteturais, manifestos de configuração e requisitos forenses -- e dados quantitativos, expressos pelos indicadores NIM, NAC e CLS \cite{runeson2009}. Como metodologia central (\textit{Research Methodology}), a pesquisa enquadra-se em um \textbf{Estudo de Caso} (\textit{Case Study}), planejado segundo as diretrizes de \citeonline{runeson2009} e configurado, na taxonomia de \citeonline{yin2015}, como um \textbf{Estudo de Caso Único Incorporado} (\textit{Embedded Single-Case Study}). Nessa configuração, o \textbf{Caso} (em nível holístico) corresponde à infraestrutura de orquestração de contêineres Kubernetes RKE2 do laboratório de pesquisa e inovação em software da Universidade de Brasília (LabLivre/LAPPIS), que atua como ambiente representativo e operante de desenvolvimento e homologação de plataformas digitais da Administração Pública Federal. O caráter \textbf{Incorporado} (\textit{Embedded}) decorre do fato de a avaliação não se limitar a atribuir uma nota global única ao \textit{cluster}, desmembrando a investigação em múltiplas \textbf{Unidades de Análise} correspondentes às 12 medidas individuais do Controle 8 do PPSI 2.0 (Medidas 8.1 a 8.12), avaliadas de maneira individualizada, bem como aos cinco serviços estruturantes da cadeia de suprimentos de software.
+
+Na \textbf{fase operacional} (\textit{Operational Phase}), os métodos de pesquisa e coleta de dados (\textit{Research Methods}) combinam três procedimentos complementares:
+\begin{itemize}
+    \item \textbf{Estudo Estruturado da Literatura} (\textit{Systematic Literature Study}): conduzido na primeira etapa mediante o protocolo de revisão sistemática de \citeonline{kitchenham2007}, com o objetivo de mapear o estado da arte em ferramentas de monitoramento em \textit{runtime}, técnicas de coleta de \textit{logs} e modelos de avaliação de conformidade;
+    \item \textbf{Análise Documental e de Artefatos} (\textit{Archival Analysis}): empregada para a extração dos requisitos regulatórios (NC nº 21/GSI-PR, PPSI 2.0 e IN SGD/MGI nº 4/2026) e para a inspeção estática de artefatos sistêmicos do ambiente, abrangendo os manifestos declarativos do Kubernetes, configurações dos nós e políticas de auditoria ativas; e
+    \item \textbf{Observação Indireta e Instrumentada} (\textit{Observation}): utilizada para a execução do diagnóstico inicial no \textit{cluster} (\textit{baseline} na primeira etapa) e para a posterior medição contínua e automatizada de eventos de segurança e métricas de conformidade (incluindo trilhas de auditoria e o módulo \textit{Security Configuration Assessment} -- SCA) gerada pela arquitetura de monitoramento do Wazuh na segunda etapa \cite{runeson2009,wazuh2025}.
+\end{itemize}
+
+Por fim, no processamento e interpretação dos resultados (\textit{Data Analysis Methods}), aplicam-se dois métodos analíticos:
+\begin{itemize}
+    \item \textbf{Análise de Conteúdo} (\textit{Content Analysis}): utilizada para mapear e atestar qualitativamente se as configurações do \textit{cluster} e os registros de eventos cumprem os requisitos forenses da NC nº 21/GSI-PR e os critérios técnicos do Controle 8 estruturados por meio do paradigma GQM; e
+    \item \textbf{Análise Estatística Descritiva} (\textit{Statistical Analysis}): empregada para a tabulação, o cálculo matemático e a comparação dos indicadores quantitativos de maturidade e cobertura (NIM, NAC e CLS).
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Taxonomia e delineamento metodológico da pesquisa}
+    \label{fig:intro_metodologia_fluxo}
+    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o diagrama de taxonomia metodológica instanciado a partir de \texttt{fluxo.png}]}\vspace{1.2cm}}}
+    % \includegraphics[width=0.92\textwidth]{figuras/fluxo_metodologia.eps}
+    \fonte{Adaptado pelo autor.}
+\end{figure}
+
+\section{Organização do Trabalho}
+\label{sec:intro_organizacao}
+
+A estrutura desta monografia foi organizada de forma a refletir o encadeamento lógico da metodologia científica adotada, distribuindo-se nos seguintes capítulos:
+\begin{itemize}
+    \item \textbf{Capítulo 1 -- Introdução:} apresenta a contextualização tecnológica e normativa da pesquisa, a definição do problema, a modelagem GQM e a questão de pesquisa principal, os objetivos geral e específicos, o delineamento metodológico, a organização do documento e o cronograma de atividades;
+    \item \textbf{Capítulo 2 -- Referencial Teórico:} fundamenta os pilares conceituais e regulatórios do trabalho, abrangendo a Engenharia de Software Experimental com ênfase em Estudos de Caso, qualidade e segurança de software, arquiteturas nativas em nuvem e Kubernetes, monitoramento de segurança em \textit{runtime} via plataformas SIEM/HIDS/XDR e o detalhamento do PPSI 2.0, do Controle 8 do CIS, da IN SGD/MGI nº 4/2026 e da NC nº 21/GSI-PR;
+    \item \textbf{Capítulo 3 -- Revisão Estruturada da Literatura:} documenta o protocolo de revisão fundamentado em \citeonline{kitchenham2007}, a estratégia de busca sob o modelo PIO, a triagem PRISMA, a síntese analítica dos estudos selecionados perante as doze questões secundárias de pesquisa, as lacunas identificadas na literatura e as ameaças à validade;
+    \item \textbf{Capítulo 4 -- Estudo de Caso:} formaliza o planejamento do estudo de caso único incorporado segundo as diretrizes de \citeonline{runeson2009} e \citeonline{yin2015}, caracteriza a infraestrutura Kubernetes RKE2 investigada, define as unidades de análise e a operacionalização das métricas NIM, NAC e CLS, e relata o diagnóstico inicial de linha de base (\textit{baseline}) de conformidade; e
+    \item \textbf{Capítulo 5 -- Considerações Finais e Planejamento da Segunda Etapa:} sintetiza os resultados alcançados na primeira etapa da pesquisa e especifica o plano de intervenção técnica e validação empírica com a plataforma Wazuh para a segunda etapa do trabalho.
+\end{itemize}
+
+\section{Cronograma e Fluxo de Atividades}
+\label{sec:intro_cronograma}
+
+O desenvolvimento completo desta pesquisa divide-se em duas etapas semestrais consecutivas, correspondentes às disciplinas de Trabalho de Conclusão de Curso 1 e Trabalho de Conclusão de Curso 2 da Faculdade UnB Gama. Nas subseções a seguir, discriminam-se o fluxo de atividades e o cronograma de cada etapa.
+
+\subsection{Atividades da Primeira Etapa}
+\label{subsec:intro_primeira_etapa}
+\label{subsec:intro_etapa1}
+
+Esta subseção discrimina as atividades executadas na primeira etapa da monografia, apresentando o encadeamento metodológico na Figura~\ref{fig:intro_fluxo_etapa1} e a distribuição cronológica na Figura~\ref{fig:intro_cronograma_etapa1}:
+\begin{itemize}
+    \item \textbf{Contextualização em Engenharia de Software Experimental e Normativos Federais:} estudo dos métodos empíricos de revisão de literatura e estudo de caso \cite{wohlin2024,runeson2009,yin2015} e levantamento das exigências do PPSI 2.0, do Controle 8 do CIS, da IN SGD/MGI nº 4/2026, da NC nº 21/GSI-PR e do Acórdão nº 2.387/2024 -- TCU;
+    \item \textbf{Definição do Problema, Objetivos e Modelo GQM:} formulação do problema técnico de pesquisa, construção do objetivo conceitual GQM \cite{basili1994}, derivação da questão de pesquisa principal e operacionalização das métricas NIM, NAC e CLS;
+    \item \textbf{Elaboração e Execução da Revisão Estruturada da Literatura:} definição do protocolo baseado em \citeonline{kitchenham2007}, estruturação do modelo PIO e das doze questões secundárias, calibração da \textit{string} de busca na base Scopus, triagem PRISMA na plataforma \textit{Evidentia} e extração de dados dos estudos selecionados;
+    \item \textbf{Planejamento do Estudo de Caso e Diagnóstico Inicial (\textit{Baseline}):} delineamento formal do estudo de caso único incorporado segundo \citeonline{runeson2009} e \citeonline{yin2015}, mapeamento de aplicabilidade das doze medidas do Controle 8 na infraestrutura Kubernetes RKE2 e aferição de linha de base; e
+    \item \textbf{Escrita, Revisão e Defesa da Primeira Etapa:} redação dos capítulos da monografia, revisões metodológicas junto ao orientador e apresentação do trabalho perante a banca examinadora.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Fluxo de atividades da primeira etapa}
+    \label{fig:intro_fluxo_etapa1}
+    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o fluxograma de atividades da primeira etapa]}\vspace{1.2cm}}}
+    % \includegraphics[width=0.90\textwidth]{figuras/fluxo_etapa1.eps}
+    \fonte{Elaborado pelo autor.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Cronograma da primeira etapa}
+    \label{fig:intro_cronograma_etapa1}
+    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o cronograma da primeira etapa]}\vspace{1.2cm}}}
+    % \includegraphics[width=0.90\textwidth]{figuras/cronograma_etapa1.eps}
+    \fonte{Elaborado pelo autor.}
+\end{figure}
+
+\subsection{Atividades da Segunda Etapa}
+\label{subsec:intro_segunda_etapa}
+\label{subsec:intro_etapa2}
+
+Esta subseção apresenta as atividades planejadas para a segunda etapa da pesquisa (TCC 2), cujo fluxo de execução e cronograma previsto encontram-se representados na Figura~\ref{fig:intro_fluxo_etapa2} e na Figura~\ref{fig:intro_cronograma_etapa2}, respectivamente:
+\begin{itemize}
+    \item \textbf{Refinamento do Projeto:} incorporação dos ajustes e recomendações apontados pela banca examinadora na defesa da primeira etapa;
+    \item \textbf{Implantação da Arquitetura Wazuh no Cluster RKE2:} provisionamento dos componentes Wazuh Manager, Indexer e Dashboard e distribuição automatizada dos coletores Wazuh Agent nos nós do \textit{cluster} Kubernetes por meio de objetos \textit{DaemonSet} \cite{wazuh2025};
+    \item \textbf{Instrumentação de Auditoria e Integração dos Serviços Críticos:} ativação de políticas de auditoria (\textit{AuditPolicy}) no \texttt{kube-apiserver}, configuração de monitoramento de chamadas de sistema e desenvolvimento de decodificadores e regras para ingestão ativa dos serviços Kubernetes API, Casdoor, OpenBao, ArgoCD e Airflow, atendendo aos metadados forenses da NC nº 21/GSI-PR;
+    \item \textbf{Coleta de Dados em \textit{Runtime} e Avaliação de Conformidade:} operação assistida da arquitetura de telemetria, verificação das políticas de retenção, apuração pós-intervenção das métricas NIM, NAC e CLS e análise comparativa frente à linha de base (\textit{baseline}); e
+    \item \textbf{Redação dos Resultados, Conclusão e Defesa Final:} documentação empírica dos resultados e ameaças à validade, revisão final da monografia com o orientador e defesa pública do Trabalho de Conclusão de Curso 2.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Fluxo de atividades da segunda etapa}
+    \label{fig:intro_fluxo_etapa2}
+    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o fluxograma de atividades da segunda etapa]}\vspace{1.2cm}}}
+    % \includegraphics[width=0.90\textwidth]{figuras/fluxo_etapa2.eps}
+    \fonte{Elaborado pelo autor.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Cronograma da segunda etapa}
+    \label{fig:intro_cronograma_etapa2}
+    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o cronograma da segunda etapa]}\vspace{1.2cm}}}
+    % \includegraphics[width=0.90\textwidth]{figuras/cronograma_etapa2.eps}
+    \fonte{Elaborado pelo autor.}
+\end{figure}
