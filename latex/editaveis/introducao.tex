@@ -37,7 +37,7 @@ Diante desse cenário técnico e regulatório, o problema de pesquisa que motiva
 
 Para conectar o problema de pesquisa a critérios quantitativos e auditáveis de avaliação \cite{wohlin2024,runeson2009}, adotou-se o paradigma \textit{Goal Question Metric} (GQM), proposto por \citeonline{basili1994}. Essa abordagem estrutura o programa de medição de forma descendente em três níveis integrados: o nível conceitual, que especifica o objetivo de medição em função do objeto de estudo, do propósito, do foco de qualidade, do ponto de vista e do contexto; o nível operacional, composto pela questão de pesquisa que deriva do objetivo e caracteriza o objeto sob investigação; e o nível quantitativo, constituído pelas métricas associadas para responder à questão de forma objetiva \cite{basili1994}, conforme ilustrado na Figura~\ref{fig:intro_gqm}.
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \caption{Estrutura hierárquica da abordagem GQM}
     \label{fig:intro_gqm}
@@ -61,7 +61,7 @@ Em conformidade com as cinco dimensões formais preconizadas por \citeonline{bas
         \textbf{Do ponto de vista do} (\textit{Point of View}) & Pesquisador. \\ \hline
         \textbf{No contexto do} (\textit{Context}) & Infraestrutura de desenvolvimento e homologação Kubernetes de plataformas digitais da Administração Pública Federal sujeitas às diretrizes de conformidade do PPSI 2.0. \\ \hline
     \end{tabular}
-    \fonte{Adaptado de \citeonline{basili1994}.}
+    \fonte{Elaborado pelo Autor}
 \end{table}
 
 
@@ -71,10 +71,8 @@ No nível operacional, a estrutura conceitual definida no GQM é diretamente tra
 \end{quote}
 Para responder a essa questão norteadora com rigor metodológico, a pesquisa desdobra-se em dois estudos empíricos complementares: uma Revisão Estruturada da Literatura, orientada por doze questões secundárias específicas para investigar como a literatura científica realiza a coleta de telemetria em \textit{runtime} e a avaliação de conformidade normativa, e um Estudo de Caso, voltado a diagnosticar e avaliar empiricamente a infraestrutura governamental investigada.
 
-
 No nível quantitativo, a operacionalização da avaliação adota os critérios oficiais estabelecidos pela Instrução Normativa SGD/MGI nº 4/2026. A pesquisa utiliza o Nível de Implementação da Medida (NIM) para avaliar o atendimento individual de cada salvaguarda do Controle 8 em uma escala nominal de zero a cinco, e o Nível de Adoção do Controle (NAC), que expressa a maturidade global do ambiente por meio da média aritmética dos índices aplicáveis aferidos.
 
-\newpage
 \section{Objetivos}
 \label{sec:intro_objetivos}
 
@@ -86,6 +84,7 @@ Os objetivos desta monografia foram delineados em alinhamento direto com o objet
 
 O objetivo geral desta pesquisa consiste em executar a avaliação formal descrita no nível conceitual do GQM (Seção~\ref{subsec:intro_gqm}), aferindo o grau de conformidade técnica da infraestrutura estudada perante o Controle 8 do PPSI 2.0 e a NC 21 do GSI-PR.
 
+\newpage
 \subsection{Objetivos Específicos}
 \label{subsec:intro_objetivos_especificos}
 \label{subsec:intro_obj_especificos}
@@ -94,7 +93,7 @@ Para alcançar o objetivo geral proposto, foram definidos os seguintes objetivos
 \begin{itemize}
     \item Fundamentar os conceitos de Engenharia de Software Experimental, qualidade e segurança de software, orquestração de contêineres em Kubernetes, plataformas SIEM, HIDS e XDR e o arcabouço normativo federal composto pelo PPSI 2.0, CIS Control 8, IN SGD/MGI nº 4/2026 e NC nº 21/IN01/DSIC/GSI-PR;
     \item Conduzir uma Revisão Estruturada da Literatura, baseada no protocolo de \citeonline{kitchenham2007}, sobre soluções de monitoramento de segurança em \textit{runtime}, gestão centralizada de \textit{logs} de auditoria e avaliação de conformidade normativa em ambientes distribuídos e em nuvem;
-    \item Estruturar uma matriz de evidências técnicas para operacionalizar as métricas de Nível de Implementação da Medida (NIM), Nível de Adoção do Controle (NAC) e Cobertura de Logs de Serviços (CLS), em conformidade com os critérios da IN SGD/MGI nº 4/2026;
+    \item Estruturar uma matriz de evidências técnicas para operacionalizar as métricas de Nível de Implementação da Medida (NIM), Nível de Adoção do Controle (NAC), em conformidade com os critérios da IN SGD/MGI nº 4/2026;
     \item Planejar um estudo de caso único incorporado segundo as diretrizes de \citeonline{runeson2009} e \citeonline{yin2015}, delimitando o contexto da infraestrutura Kubernetes RKE2, as unidades de análise e os procedimentos de coleta e análise de dados;
     \item Planejar e estabelecer os critérios para o diagnóstico inicial (\textit{baseline}) de conformidade da infraestrutura; e
     \item Propor uma arquitetura de observabilidade e telemetria baseada no pareamento de configurações ativas de auditoria no plano de controle do Kubernetes com a implantação centralizada do SIEM Wazuh, com vistas a elevar o Nível de Adoção do Controle 8 (NAC) do ambiente, a ser implementada na segunda etapa da pesquisa.
@@ -103,7 +102,7 @@ Para alcançar o objetivo geral proposto, foram definidos os seguintes objetivos
 \section{Metodologia}
 \label{sec:intro_metodologia}
 
-O delineamento metodológico desta investigação foi estruturado a partir da taxonomia de pesquisa em Engenharia de Software Experimental \cite{wohlin2024,runeson2009,yin2015}, organizando-se nas fases estratégica, tática e operacional, conforme representado na Figura~\ref{fig:intro_metodologia_fluxo}.
+O delineamento metodológico desta investigação fundamenta-se na taxonomia de pesquisa em Engenharia de Software Experimental \cite{wohlin2024} e nas diretrizes específicas para condução de Estudos de Caso nessa área \cite{runeson2009,yin2015}, organizando-se nas fases estratégica, tática e operacional, conforme representado na Figura~\ref{fig:intro_metodologia_fluxo}.
 
 Na \textbf{fase estratégica} (\textit{Strategy Phase}), que parte da questão de pesquisa formulada, a investigação classifica-se quanto ao seu resultado (\textit{Research Outcome}) como uma \textbf{Pesquisa Aplicada} (\textit{Applied Research}), uma vez que visa solucionar um problema concreto de aferição de conformidade normativa e visibilidade de segurança cibernética em infraestruturas governamentais reais. Quanto à lógica de investigação (\textit{Research Logic}), adota-se uma abordagem \textbf{Dedutiva-Indutiva}: parte-se dedutivamente de premissas normativas formais (PPSI 2.0, Controle 8 do CIS e NC nº 21/GSI-PR) e do modelo GQM para avaliar uma instância tecnológica específica, combinando-se à análise indutiva das evidências empíricas levantadas na literatura e no ambiente operacional. Quanto ao propósito (\textit{Research Purpose}), o estudo apresenta natureza \textbf{Exploratória, Descritiva e Avaliativa} (\textit{Exploratory, Descriptive and Evaluation}), visto que explora o estado da arte em telemetria de segurança em \textit{runtime}, descreve a arquitetura e as lacunas de auditoria da infraestrutura sob estudo e avalia objetivamente o seu grau de aderência regulatória \cite{runeson2009}. Quanto ao paradigma (\textit{Research Paradigm}), a pesquisa alinha-se à perspectiva \textbf{Positivista} (\textit{Positivist}), fundamentando-se em proposições estruturadas, critérios de evidência previamente definidos e medições independentes de subjetividade do observador \cite{runeson2009}.
 
@@ -125,11 +124,11 @@ Por fim, no processamento e interpretação dos resultados (\textit{Data Analysi
     \centering
     \caption{Taxonomia e delineamento metodológico da pesquisa}
     \label{fig:intro_metodologia_fluxo}
-    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o diagrama de taxonomia metodológica instanciado a partir de \texttt{fluxo.png}]}\vspace{1.2cm}}}
-    % \includegraphics[width=0.92\textwidth]{figuras/fluxo_metodologia.eps}
+    \includegraphics[width=0.98\textwidth]{figuras/fluxo_metodologia.eps}
     \fonte{Adaptado pelo autor.}
 \end{figure}
 
+\newpage
 \section{Organização do Trabalho}
 \label{sec:intro_organizacao}
 
@@ -138,7 +137,7 @@ A estrutura desta monografia foi organizada de forma a refletir o encadeamento l
     \item \textbf{Capítulo 1 -- Introdução:} apresenta a contextualização tecnológica e normativa da pesquisa, a definição do problema, a modelagem GQM e a questão de pesquisa principal, os objetivos geral e específicos, o delineamento metodológico, a organização do documento e o cronograma de atividades;
     \item \textbf{Capítulo 2 -- Referencial Teórico:} fundamenta os pilares conceituais e regulatórios do trabalho, abrangendo a Engenharia de Software Experimental com ênfase em Estudos de Caso, qualidade e segurança de software, arquiteturas nativas em nuvem e Kubernetes, monitoramento de segurança em \textit{runtime} via plataformas SIEM/HIDS/XDR e o detalhamento do PPSI 2.0, do Controle 8 do CIS, da IN SGD/MGI nº 4/2026 e da NC nº 21/GSI-PR;
     \item \textbf{Capítulo 3 -- Revisão Estruturada da Literatura:} documenta o protocolo de revisão fundamentado em \citeonline{kitchenham2007}, a estratégia de busca sob o modelo PIO, a triagem PRISMA, a síntese analítica dos estudos selecionados perante as doze questões secundárias de pesquisa, as lacunas identificadas na literatura e as ameaças à validade;
-    \item \textbf{Capítulo 4 -- Estudo de Caso:} formaliza o planejamento do estudo de caso único incorporado segundo as diretrizes de \citeonline{runeson2009} e \citeonline{yin2015}, caracteriza a infraestrutura Kubernetes RKE2 investigada, define as unidades de análise e a operacionalização das métricas NIM, NAC e CLS, e relata o diagnóstico inicial de linha de base (\textit{baseline}) de conformidade; e
+    \item \textbf{Capítulo 4 -- Estudo de Caso:} formaliza o planejamento do estudo de caso único incorporado segundo as diretrizes de \citeonline{runeson2009} e \citeonline{yin2015}, caracteriza a infraestrutura Kubernetes RKE2 investigada, define as unidades de análise e a operacionalização das métricas NIM, NAC e relata o diagnóstico inicial de linha de base (\textit{baseline}) de conformidade; e
     \item \textbf{Capítulo 5 -- Considerações Finais e Planejamento da Segunda Etapa:} sintetiza os resultados alcançados na primeira etapa da pesquisa e especifica o plano de intervenção técnica e validação empírica com a plataforma Wazuh para a segunda etapa do trabalho.
 \end{itemize}
 
@@ -153,19 +152,21 @@ O desenvolvimento completo desta pesquisa divide-se em duas etapas semestrais co
 
 Esta subseção discrimina as atividades executadas na primeira etapa da monografia, apresentando o encadeamento metodológico na Figura~\ref{fig:intro_fluxo_etapa1} e a distribuição cronológica na Figura~\ref{fig:intro_cronograma_etapa1}:
 \begin{itemize}
-    \item \textbf{Contextualização em Engenharia de Software Experimental e Normativos Federais:} estudo dos métodos empíricos de revisão de literatura e estudo de caso \cite{wohlin2024,runeson2009,yin2015} e levantamento das exigências do PPSI 2.0, do Controle 8 do CIS, da IN SGD/MGI nº 4/2026, da NC nº 21/GSI-PR e do Acórdão nº 2.387/2024 -- TCU;
-    \item \textbf{Definição do Problema, Objetivos e Modelo GQM:} formulação do problema técnico de pesquisa, construção do objetivo conceitual GQM \cite{basili1994}, derivação da questão de pesquisa principal e operacionalização das métricas NIM, NAC e CLS;
-    \item \textbf{Elaboração e Execução da Revisão Estruturada da Literatura:} definição do protocolo baseado em \citeonline{kitchenham2007}, estruturação do modelo PIO e das doze questões secundárias, calibração da \textit{string} de busca na base Scopus, triagem PRISMA na plataforma \textit{Evidentia} e extração de dados dos estudos selecionados;
-    \item \textbf{Planejamento do Estudo de Caso e Diagnóstico Inicial (\textit{Baseline}):} delineamento formal do estudo de caso único incorporado segundo \citeonline{runeson2009} e \citeonline{yin2015}, mapeamento de aplicabilidade das doze medidas do Controle 8 na infraestrutura Kubernetes RKE2 e aferição de linha de base; e
-    \item \textbf{Escrita, Revisão e Defesa da Primeira Etapa:} redação dos capítulos da monografia, revisões metodológicas junto ao orientador e apresentação do trabalho perante a banca examinadora.
+    \item \textbf{Contextualização em ES Experimental:} estudo dos métodos empíricos de pesquisa em Engenharia de Software, abrangendo revisões sistemáticas e estudos de caso \cite{wohlin2024,runeson2009,yin2015};
+    \item \textbf{Levantamento Normativo (PPSI 2.0 e NC 21):} análise das exigências regulatórias do PPSI 2.0, do Controle 8 do CIS, da IN SGD/MGI nº 4/2026, da NC nº 21/GSI-PR e do Acórdão nº 2.387/2024 -- TCU;
+    \item \textbf{Definição do Problema e Modelo GQM:} formulação do problema técnico de pesquisa, construção do objetivo conceitual segundo o paradigma GQM \cite{basili1994}, derivação da questão de pesquisa principal e definição das métricas NIM e NAC;
+    \item \textbf{Elaboração do Protocolo de Revisão:} definição do protocolo da Revisão Estruturada da Literatura baseado em \citeonline{kitchenham2007}, estruturação do modelo PIO, formulação das doze questões secundárias e calibração da \textit{string} de busca na base Scopus;
+    \item \textbf{Triagem e Seleção dos Artigos:} execução da busca automatizada e condução do processo de filtragem auditável segundo o fluxo PRISMA na plataforma \textit{Evidentia}, mediante aplicação dos critérios de inclusão e exclusão;
+    \item \textbf{Extração e Análise da Literatura:} leitura integral dos estudos primários aprovados, preenchimento da matriz de extração de dados e síntese analítica das respostas às questões secundárias e das lacunas do estado da arte;
+    \item \textbf{Planejamento do Caso e Baseline:} delineamento formal do estudo de caso único incorporado segundo \citeonline{runeson2009} e \citeonline{yin2015}, definição das unidades de análise e critérios para o diagnóstico inicial (\textit{baseline}) e concepção da proposta arquitetural; e
+    \item \textbf{Redação, Revisão e Defesa (TCC 1):} escrita dos capítulos da primeira etapa da monografia, revisões metodológicas junto ao orientador e apresentação do trabalho perante a banca examinadora.
 \end{itemize}
 
 \begin{figure}[htbp]
     \centering
     \caption{Fluxo de atividades da primeira etapa}
     \label{fig:intro_fluxo_etapa1}
-    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o fluxograma de atividades da primeira etapa]}\vspace{1.2cm}}}
-    % \includegraphics[width=0.90\textwidth]{figuras/fluxo_etapa1.eps}
+    \includegraphics[width=0.94\textwidth]{figuras/fluxo_etapa1.eps}
     \fonte{Elaborado pelo autor.}
 \end{figure}
 
@@ -173,30 +174,31 @@ Esta subseção discrimina as atividades executadas na primeira etapa da monogra
     \centering
     \caption{Cronograma da primeira etapa}
     \label{fig:intro_cronograma_etapa1}
-    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o cronograma da primeira etapa]}\vspace{1.2cm}}}
-    % \includegraphics[width=0.90\textwidth]{figuras/cronograma_etapa1.eps}
+    \includegraphics[width=0.94\textwidth]{figuras/cronograma_etapa1.eps}
     \fonte{Elaborado pelo autor.}
 \end{figure}
 
+\newpage
 \subsection{Atividades da Segunda Etapa}
 \label{subsec:intro_segunda_etapa}
 \label{subsec:intro_etapa2}
 
 Esta subseção apresenta as atividades planejadas para a segunda etapa da pesquisa (TCC 2), cujo fluxo de execução e cronograma previsto encontram-se representados na Figura~\ref{fig:intro_fluxo_etapa2} e na Figura~\ref{fig:intro_cronograma_etapa2}, respectivamente:
 \begin{itemize}
-    \item \textbf{Refinamento do Projeto:} incorporação dos ajustes e recomendações apontados pela banca examinadora na defesa da primeira etapa;
-    \item \textbf{Implantação da Arquitetura Wazuh no Cluster RKE2:} provisionamento dos componentes Wazuh Manager, Indexer e Dashboard e distribuição automatizada dos coletores Wazuh Agent nos nós do \textit{cluster} Kubernetes por meio de objetos \textit{DaemonSet} \cite{wazuh2025};
-    \item \textbf{Instrumentação de Auditoria e Integração dos Serviços Críticos:} ativação de políticas de auditoria (\textit{AuditPolicy}) no \texttt{kube-apiserver}, configuração de monitoramento de chamadas de sistema e desenvolvimento de decodificadores e regras para ingestão ativa dos serviços Kubernetes API, Casdoor, OpenBao, ArgoCD e Airflow, atendendo aos metadados forenses da NC nº 21/GSI-PR;
-    \item \textbf{Coleta de Dados em \textit{Runtime} e Avaliação de Conformidade:} operação assistida da arquitetura de telemetria, verificação das políticas de retenção, apuração pós-intervenção das métricas NIM, NAC e CLS e análise comparativa frente à linha de base (\textit{baseline}); e
-    \item \textbf{Redação dos Resultados, Conclusão e Defesa Final:} documentação empírica dos resultados e ameaças à validade, revisão final da monografia com o orientador e defesa pública do Trabalho de Conclusão de Curso 2.
+    \item \textbf{Refinamento Pós-Banca:} incorporação dos ajustes metodológicos e recomendações técnicas apontados pela banca examinadora na defesa da primeira etapa;
+    \item \textbf{Implantação do SIEM Wazuh:} provisionamento dos componentes centrais da plataforma Wazuh e distribuição automatizada dos coletores nos nós do \textit{cluster} Kubernetes \cite{wazuh2025};
+    \item \textbf{Auditoria no Plano de Controle K8s:} ativação e configuração de políticas de auditoria nativas (\textit{AuditPolicy}) no plano de controle do Kubernetes e de rastreamento de eventos nos nós hospedeiros;
+    \item \textbf{Pareamento e Ingestão de Serviços:} integração entre os registros nativos do plano de controle e dos serviços estruturantes com decodificadores e regras customizadas no SIEM, atendendo aos metadados forenses da NC nº 21/GSI-PR;
+    \item \textbf{Coleta em \textit{Runtime} e Aferição (NIM/NAC):} extração dos artefatos e registros sistêmicos em tempo de execução e apuração quantitativa determinística dos indicadores NIM e NAC conforme a IN SGD/MGI nº 4/2026;
+    \item \textbf{Análise Comparativa (Baseline vs. Final):} cotejamento entre o grau de conformidade inicial (\textit{baseline}) e o estado pós-intervenção para mensurar a evolução do Nível de Adoção do Controle 8 e discutir ameaças à validade; e
+    \item \textbf{Redação, Revisão e Defesa Final:} consolidação dos capítulos de resultados e conclusões da monografia, revisão final junto ao orientador e defesa pública do Trabalho de Conclusão de Curso 2.
 \end{itemize}
 
 \begin{figure}[htbp]
     \centering
     \caption{Fluxo de atividades da segunda etapa}
     \label{fig:intro_fluxo_etapa2}
-    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o fluxograma de atividades da segunda etapa]}\vspace{1.2cm}}}
-    % \includegraphics[width=0.90\textwidth]{figuras/fluxo_etapa2.eps}
+    \includegraphics[width=0.94\textwidth]{figuras/fluxo_etapa2.eps}
     \fonte{Elaborado pelo autor.}
 \end{figure}
 
@@ -204,7 +206,6 @@ Esta subseção apresenta as atividades planejadas para a segunda etapa da pesqu
     \centering
     \caption{Cronograma da segunda etapa}
     \label{fig:intro_cronograma_etapa2}
-    \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.2cm}\textit{[Espaço reservado para o cronograma da segunda etapa]}\vspace{1.2cm}}}
-    % \includegraphics[width=0.90\textwidth]{figuras/cronograma_etapa2.eps}
+    \includegraphics[width=0.94\textwidth]{figuras/cronograma_etapa2.eps}
     \fonte{Elaborado pelo autor.}
 \end{figure}
