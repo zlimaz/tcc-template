@@ -101,23 +101,58 @@ A adoção de ciclos de integração e entrega contínuas alterou a forma de tra
 \section{Arquiteturas Cloud-Native e Orquestração de Contêineres}
 \label{sec:ref_cloud_native}
 
+A modernização de plataformas digitais apoia-se em arquiteturas nativas em nuvem (\textit{cloud-native}), definidas pela \textit{Cloud Native Computing Foundation} como abordagens que permitem construir e executar aplicações escaláveis em ambientes dinâmicos a partir de contêineres, microsserviços, malhas de serviços e APIs declarativas \cite{cncf2024}. Esta seção descreve os fundamentos de microsserviços, contêineres e orquestração com Kubernetes necessários para compreender a geração e a perda de registros de auditoria nesses ambientes.
+
 \subsection{Microsserviços e Contêineres}
 \label{subsec:ref_microsservicos_conteineres}
+
+Na arquitetura de microsserviços, uma aplicação é decomposta em serviços autônomos e fracamente acoplados, implantáveis de forma independente e modelados em torno de domínios de negócio que se comunicam por rede \cite{newman2021}. Ao distribuir funcionalidades antes concentradas em um sistema monolítico — como autenticação, gestão de segredos e processamento assíncrono — entre múltiplos processos independentes, essa decomposição fragmenta também a geração de registros de eventos, exigindo mecanismos coordenados de coleta para reconstruir o fluxo de uma operação \cite{newman2021,albuquerque2024}.
+
+Os contêineres fornecem a unidade padrão de empacotamento e execução para microsserviços \cite{cncf2024}. Diferentemente das máquinas virtuais tradicionais, que emulam hardware e executam sistemas operacionais convidados completos sobre um hipervisor, os contêineres compartilham o mesmo núcleo (\textit{kernel}) do sistema operacional hospedeiro e isolam processos por meio de mecanismos nativos do Linux, como espaços de nomes (\textit{namespaces}) para visibilidade de recursos e grupos de controle (\textit{cgroups}) para limitação de consumo \cite{nist800_190}. Conforme documenta o guia NIST SP 800-190 \cite{nist800_190}, esse compartilhamento de \textit{kernel} e a natureza efêmera e imutável das instâncias — criadas, escaladas e destruídas dinamicamente em segundos ou minutos — introduzem desafios próprios de segurança e auditoria: qualquer registro armazenado apenas no sistema de arquivos local do contêiner desaparece com o encerramento da instância, inviabilizando a investigação forense caso não tenha sido exportado em tempo de execução para um repositório externo \cite{nist800_190,jin2025,zhang2025}.
 
 \subsection{Orquestração de Contêineres com Kubernetes}
 \label{subsec:ref_kubernetes}
 
+O Kubernetes automatiza a implantação, o dimensionamento e a recuperação de aplicações em contêineres agrupadas em unidades lógicas denominadas \textit{Pods}, que compartilham armazenamento e pilha de rede \cite{kubernetes2025}. Arquiteturalmente, um \textit{cluster} Kubernetes divide-se em dois planos: o plano de controle (\textit{Control Plane}) e os nós de trabalho (\textit{Worker Nodes}) \cite{kubernetes2025}. No plano de controle, o servidor de API (\texttt{kube-apiserver}) atua como ponto central de comunicação e validação de todas as operações declarativas do \textit{cluster}; o \texttt{etcd} armazena de forma consistente o estado e os objetos de configuração; o \texttt{kube-scheduler} aloca novos \textit{Pods} aos nós disponíveis; e o \texttt{kube-controller-manager} executa laços de reconciliação contínua \cite{kubernetes2025}. Nos nós de trabalho, o agente \texttt{kubelet} gerencia o ciclo de vida dos \textit{Pods} junto ao motor de execução de contêineres (\textit{container runtime}, como o \texttt{containerd}), enquanto o \texttt{kube-proxy} mantém as regras de roteamento de rede \cite{kubernetes2025}.
+
+Para assegurar a rastreabilidade das ações administrativas e operacionais, o Kubernetes dispõe de um subsistema nativo de auditoria (\textit{Kubernetes Auditing}) integrado ao \texttt{kube-apiserver} \cite{kubernetes2025}. Cada requisição recebida pela API percorre estágios do ciclo de processamento — como recepção (\texttt{RequestReceived}), conclusão da resposta (\texttt{ResponseComplete}) ou falha crítica (\texttt{Panic}) — e gera eventos cronológicos em formato estruturado JSON conforme regras declaradas em uma política de auditoria (\texttt{AuditPolicy}) \cite{kubernetes2025}. Essa política define o nível de detalhamento registrado para cada recurso ou grupo de usuários entre quatro patamares: \texttt{None} (nenhum registro), \texttt{Metadata} (apenas metadados como usuário, carimbo de tempo, recurso e verbo da ação), \texttt{Request} (metadados e corpo da requisição) e \texttt{RequestResponse} (metadados, requisição e resposta completas) \cite{kubernetes2025}.
+
+Em ambientes governamentais e corporativos sujeitos a requisitos estritos de conformidade, empregam-se distribuições Kubernetes endurecidas (\textit{hardened}), entre as quais se destaca o RKE2 (\textit{Rancher Kubernetes Engine 2}) \cite{rke2_2025}. O RKE2 incorpora o \texttt{containerd} como motor de execução padrão, habilita criptografia compatível com padrões federais e disponibiliza perfis nativos alinhados ao \textit{CIS Kubernetes Benchmark}, nos quais o provisionamento de políticas de auditoria no \texttt{kube-apiserver} e a restrição de privilégios de execução constituem controles essenciais \cite{rke2_2025}.
+
 \section{Monitoramento em Tempo de Execução e Gestão de Logs}
 \label{sec:ref_monitoramento_logs}
+
+A operação de sistemas distribuídos exige que os eventos gerados pelo plano de controle, pelos nós hospedeiros e pelos serviços em contêineres sejam coletados e analisados antes que a volatilidade do ambiente elimine os vestígios de execução. Esta seção fundamenta o ciclo de vida da gestão de registros de auditoria, a taxonomia dos sistemas de detecção e gerenciamento de eventos e a arquitetura da plataforma Wazuh.
 
 \subsection{Gestão de Logs de Auditoria e Telemetria em \textit{Runtime}}
 \label{subsec:ref_gestao_logs}
 
+Um registro de auditoria (\textit{log}) é a inscrição cronológica de eventos ocorridos em um sistema ou rede, composta por entradas individuais que documentam ações associadas à segurança, ao funcionamento operacional ou ao comportamento de aplicações \cite{nist800_92}. No guia NIST SP 800-92, \citeonline{nist800_92} distinguem os registros voltados à depuração e ao desempenho operacional dos registros de segurança e auditoria, os quais abrangem eventos de autenticação, alterações de configuração, elevações de privilégio e acessos a recursos críticos. Em arquiteturas em contêineres, a telemetria de segurança em tempo de execução (\textit{runtime}) complementa esses registros ao capturar chamadas de sistema, processos executados e fluxos de comunicação enquanto as cargas de trabalho estão ativas \cite{nist800_190}.
+
+Para evitar a perda ou a adulteração local das evidências, \citeonline{nist800_92} estruturam a infraestrutura de gestão de registros em três camadas funcionais: geração, transmissão e armazenamento com análise. Na camada de geração, os hospedeiros e aplicações produzem as entradas brutas com relógios sincronizados; na camada de transmissão, agentes coletores ou protocolos seguros encaminham os eventos para fora do nó de origem; e, na camada de armazenamento e análise, servidores centralizados realizam a análise sintática (\textit{parsing}), a normalização de campos heterogêneos, a correlação de eventos, a emissão de alertas e a retenção íntegra pelo período exigido pelas políticas de conformidade \cite{nist800_92}.
+
 \subsection{Sistemas SIEM, HIDS e XDR}
 \label{subsec:ref_siem_hids_xdr}
 
+A operacionalização das camadas de coleta, detecção e análise apoia-se em três categorias convergentes de plataformas de segurança: sistemas de detecção de intrusão baseados em hospedeiro (HIDS), sistemas de gerenciamento de informações e eventos de segurança (SIEM) e plataformas de detecção e resposta estendidas (XDR). Segundo o guia NIST SP 800-94 \cite{nist800_94}, um HIDS monitora as características internas de um único hospedeiro e os eventos que nele ocorrem, incluindo a verificação de integridade de arquivos críticos (\textit{File Integrity Monitoring} -- FIM), a inspeção de registros locais do sistema operacional e o acompanhamento de processos em execução para identificar desvios ou assinaturas de ataque.
+
+Os sistemas SIEM, por sua vez, atuam na camada centralizada: agregam registros provenientes de múltiplos hospedeiros, ativos de rede, orquestradores e aplicações, normalizam formatos distintos (como Syslog e JSON) em um esquema comum e aplicam regras de correlação para detectar incidentes distribuídos, além de prover painéis de visualização e retenção para auditoria regulatória \cite{nist800_92,nist800_94}. A evolução recente para arquiteturas XDR integra as capacidades de telemetria profunda de ponto final típicas do HIDS diretamente ao motor de correlação e busca analítica do SIEM, unificando a visibilidade dos nós hospedeiros, dos contêineres e das camadas de controle em uma única plataforma \cite{wazuh2025}.
+
 \subsection{Plataforma Wazuh}
 \label{subsec:ref_wazuh}
+
+O Wazuh é uma plataforma de segurança de código aberto que unifica as funções de SIEM e XDR para proteção de cargas de trabalho em servidores físicos, máquinas virtuais, ambientes em nuvem e contêineres \cite{wazuh2025}. Conforme a documentação oficial da plataforma \cite{wazuh2025}, sua arquitetura é composta por um agente multiplataforma (\textit{Wazuh Agent}), implantado nos ativos monitorados, e por três componentes centrais: o servidor de análise (\textit{Wazuh Server} ou \textit{Manager}), o indexador (\textit{Wazuh Indexer}) e o painel de visualização (\textit{Wazuh Dashboard}). A Figura~\ref{fig:ref_arq_telemetria} representa o fluxo conceitual de integração desses componentes com um ambiente orquestrado Kubernetes.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Fluxo arquitetural conceitual de coleta e centralização de telemetria em Kubernetes com o SIEM Wazuh}
+    \label{fig:ref_arq_telemetria}
+    \includegraphics[width=0.95\textwidth]{figuras/arquitetura_telemetria_k8s_wazuh.eps}
+    \fonte{Elaborado pelo autor a partir de \citeonline{kubernetes2025} e \citeonline{wazuh2025}.}
+\end{figure}
+
+No fluxo ilustrado na Figura~\ref{fig:ref_arq_telemetria}, o \textit{Wazuh Agent} executa nos nós do \textit{cluster} para coletar registros locais do sistema operacional, eventos de contêineres, verificações de integridade de arquivos e trilhas JSON geradas pela \texttt{AuditPolicy} do \texttt{kube-apiserver}, transmitindo-os por canal criptografado ao \textit{Wazuh Server} \cite{wazuh2025,kubernetes2025}. No servidor central, o motor de análise (\textit{analysis engine}) processa o fluxo recebido em duas etapas: primeiro, aplica decodificadores (\textit{decoders}) que identificam o formato da fonte e extraem campos estruturados (como usuário, endereço IP de origem, ação e recurso); em seguida, confronta esses campos com regras (\textit{rules}) para classificar a severidade do evento, detectar anomalias e verificar aderência a controles normativos \cite{wazuh2025}. Os alertas e eventos processados são então encaminhados em tempo real pelo serviço \textit{Filebeat} ao \textit{Wazuh Indexer} — motor distribuído de busca textual e armazenamento que garante a indexação e a retenção centralizada — e disponibilizados para consulta, correlação visual e auditoria de conformidade no \textit{Wazuh Dashboard} \cite{wazuh2025}.
+
 
 \section{Conformidade Regulatória e Frameworks de Segurança}
 \label{sec:ref_conformidade_normativa}
