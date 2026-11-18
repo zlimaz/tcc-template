@@ -157,11 +157,64 @@ No fluxo ilustrado na Figura~\ref{fig:ref_arq_telemetria}, o \textit{Wazuh Agent
 \section{Conformidade Regulatória e Frameworks de Segurança}
 \label{sec:ref_conformidade_normativa}
 
+A avaliação empírica de mecanismos de auditoria em ambientes governamentais exige traduzir requisitos jurídicos e modelos internacionais de controle em critérios verificáveis. A Figura~\ref{fig:ref_linha_tempo_normativa} sintetiza a evolução cronológica e a articulação dos principais marcos que disciplinam o registro e a custódia de evidências na Administração Pública Federal, detalhados nas subseções a seguir.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Evolução cronológica e interconexão do arcabouço normativo federal de registros de auditoria}
+    \label{fig:ref_linha_tempo_normativa}
+    \includegraphics[width=0.96\textwidth]{figuras/linha_tempo_normativa.eps}
+    \fonte{Elaborado pelo autor a partir de \citeonline{nc21_2014}, \citeonline{portaria9511_2025} e \citeonline{in4_2026}.}
+\end{figure}
+
 \subsection{CIS Critical Security Controls e o Controle 8}
 \label{subsec:ref_cis_controls}
+
+O \textit{CIS Critical Security Controls} (versão 8.1) constitui um catálogo prescritivo e priorizado de boas práticas de segurança cibernética mantido pelo \textit{Center for Internet Security} \cite{cis2024}. O catálogo estrutura-se em 18 controles de segurança e 153 salvaguardas distribuídas progressivamente em três Grupos de Implementação (GI): o GI1 (56 medidas de higiene cibernética essencial para instituições com menor capacidade técnica), o GI2 (que acrescenta 74 medidas voltadas a organizações com equipes dedicadas à proteção da infraestrutura) e o GI3 (que adiciona 23 medidas avançadas para ambientes sujeitos a ameaças sofisticadas) \cite{cis2024,ppsi2026}.
+
+No interior desse catálogo, o Controle 8 (\textit{Audit Log Management}) tem como propósito coletar, alertar, analisar e reter registros de eventos capazes de detectar ataques cibernéticos, esclarecer sua extensão e apoiar a recuperação operacional \cite{cis2024,ppsi2026}. Como o Programa de Privacidade e Segurança da Informação (PPSI 2.0) internaliza integralmente esse controle com adaptações terminológicas e correlações normativas nacionais, as doze medidas de 8.1 a 8.12 são detalhadas diretamente sob o framework brasileiro na subseção seguinte.
 
 \subsection{PPSI 2.0, Computação em Nuvem e IN SGD/MGI nº 4/2026}
 \label{subsec:ref_ppsi}
 
+Instituído originalmente pela Portaria SGD/MGI nº 852/2023 \cite{portaria852_2023}, o PPSI estabeleceu a estratégia de governança e elevação da maturidade cibernética dos órgãos integrantes do Sistema de Administração dos Recursos de Tecnologia da Informação (SISP). Contudo, auditoria operacional conduzida pelo Tribunal de Contas da União no Acórdão nº 2.387/2024 -- TCU -- Plenário sobre 253 organizações do SISP revelou baixa aderência prática e constatou 101 entidades omissas quanto ao envio do diagnóstico e do plano de ação, recomendando à Secretaria de Governo Digital (SGD) o aperfeiçoamento do programa \cite{tcu2387_2024}. Em resposta, a Portaria SGD/MGI nº 9.511, de 28 de outubro de 2025, revogou o normativo anterior e instituiu o PPSI 2.0 com vigência a partir de janeiro de 2026, estruturando o ciclo contínuo em quatro etapas: diagnóstico, análise de lacunas, planejamento e implementação (Art. 15) \cite{portaria9511_2025}.
+
+Conforme o Guia do Framework do PPSI 2.0 \cite{ppsi2026}, a estrutura de controles divide-se em três segmentos: o segmento Base (Controle 0, voltado à governança e aos instrumentos fundamentais), o segmento de Segurança da Informação (Controles 1 a 18, derivados do \textit{CIS Controls} v8.1 e correlacionados às normas federais) e o segmento de Privacidade (Controles 19 a 25, baseados na Lei Geral de Proteção de Dados Pessoais, Lei nº 13.709/2018 \cite{lgpd2018}). Em ambientes em nuvem, a Instrução Normativa GSI/PR nº 5/2021 (Art. 13, incisos IV a VI) \cite{ingsi5_2021} e a Seção 4.8 do Guia Complementar de Computação em Nuvem do PPSI 2.0 \cite{guianuvem2025} delimitam a responsabilidade compartilhada: nos modelos privado (\textit{on-premises}), IaaS e PaaS, compete ao órgão gestor configurar, centralizar, reter e analisar os registros de auditoria das cargas de trabalho, sistemas operacionais e plataformas sob seu controle, ressalvada em PaaS a não aplicabilidade da medida 8.4 quando gerenciada pelo provedor.
+
+Para operacionalizar o ciclo de 2026, a Instrução Normativa SGD/MGI nº 4, de 14 de janeiro de 2026 \cite{in4_2026}, classificou o rol de medidas aplicáveis e formalizou o cálculo da conformidade por meio de dois indicadores. O Nível de Implementação da Medida (NIM) avalia gradualmente cada salvaguarda aplicável na escala de 0 a 5, correspondendo às pontuações de 0,00 (nível 1 -- não adota), 0,25 (nível 2 -- inicial, abaixo de 40\% do propósito), 0,50 (nível 3 -- intermediário, de 40\% a 80\%), 0,75 (nível 4 -- completo, acima de 80\%) e 1,00 (nível 5 -- aprimorado, acima de 80\% com monitoramento e revisão sistemáticos baseados em métricas quantitativas), admitindo a indicação justificada de ``Não se aplica'' (nível 0) nos termos do § 2º do Art. 6º \cite{in4_2026}. Já o Nível de Adoção do Controle (NAC) resulta da média aritmética das pontuações das medidas aplicáveis e enquadra o controle em cinco faixas operacionais: nível 1 -- não adota ($\mathrm{NAC} = 0{,}00$); nível 2 -- inicial ($0{,}00 < \mathrm{NAC} < 0{,}25$); nível 3 -- intermediário ($0{,}25 \le \mathrm{NAC} < 0{,}50$); nível 4 -- completo ($0{,}50 \le \mathrm{NAC} < 0{,}75$); e nível 5 -- aprimorado ($0{,}75 \le \mathrm{NAC} \le 1{,}00$) \cite{in4_2026}.
+
+A Tabela~\ref{tab:ref_controle8_ppsi} consolida as doze medidas do Controle 8 do PPSI 2.0, indicando seu grupo de implementação, o regime atribuído no Anexo I da IN SGD/MGI nº 4/2026 — que priorizou as medidas 8.5, 8.9 e 8.12, manteve seis medidas em gestão contínua e facultou a adoção complementar de 8.7, 8.8 e 8.11 nos termos do parágrafo único do Art. 4º \cite{in4_2026} — e a correlação normativa no marco brasileiro.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Medidas do Controle 8 do PPSI 2.0, regime na IN SGD/MGI nº 4/2026 e normas correlatas}
+    \label{tab:ref_controle8_ppsi}
+    \footnotesize
+    \begin{tabular}{>{\centering\arraybackslash}p{0.8cm}>{\raggedright\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{0.9cm}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{3.2cm}}
+        \hline
+        \textbf{ID} & \textbf{Medida no PPSI 2.0} & \textbf{GI} & \textbf{Regime (IN 4/2026)} & \textbf{Correlação Normativa} \\ \hline
+        8.1 & Estabelecer e manter processo de gestão de \textit{logs} de auditoria & GI1 & Gestão contínua & NC 21 (geral); IN GSI 5/21 \\ \hline
+        8.2 & Coletar \textit{logs} de auditoria nos ativos e soluções & GI1 & Gestão contínua & NC 21 (6.2); IN GSI 5/21 \\ \hline
+        8.3 & Armazenar \textit{logs} com segurança e integridade & GI1 & Gestão contínua & IN GSI 5/21, art. 13 \\ \hline
+        8.4 & Padronizar a sincronização de tempo ($\ge 2$ fontes) & GI2 & Gestão contínua & NC 21 (item 6.1) \\ \hline
+        8.5 & Coletar \textit{logs} de auditoria detalhados para ativos críticos & GI2 & Prioritária (2026) & NC 21 (item 6.3) \\ \hline
+        8.6 & Coletar \textit{logs} de consulta DNS & GI2 & Gestão contínua & --- \\ \hline
+        8.7 & Coletar \textit{logs} de requisição de URL & GI2 & Opcional (Art. 4º, p.u.) & --- \\ \hline
+        8.8 & Coletar \textit{logs} de linha de comando (\textit{shell}) & GI2 & Opcional (Art. 4º, p.u.) & --- \\ \hline
+        8.9 & Centralizar coleta e retenção de \textit{logs} de auditoria & GI2 & Prioritária (2026) & NC 21 (item 6.8) \\ \hline
+        8.10 & Reter \textit{logs} de auditoria pelo período estabelecido & GI2 & Gestão contínua & NC 21 (6.7); IN GSI 5/21 \\ \hline
+        8.11 & Conduzir revisões periódicas (semanais ou menores) & GI2 & Opcional (Art. 4º, p.u.) & --- \\ \hline
+        8.12 & Coletar \textit{logs} de provedores de serviços e aplicações & GI3 & Prioritária (2026) & IN GSI 5/21, art. 13 \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor a partir de \citeonline{ppsi2026} e \citeonline{in4_2026}.}
+\end{table}
+
 \subsection{Diretrizes Forenses de Registros: NC nº 21/IN01/DSIC/GSI-PR}
 \label{subsec:ref_nc21}
+
+Enquanto o PPSI 2.0 e a IN SGD/MGI nº 4/2026 estruturam a governança e a mensuração da maturidade, a Norma Complementar nº 21/IN01/DSIC/GSI-PR estabelece os requisitos técnicos e forenses para o registro, a coleta e a preservação de evidências de incidentes de segurança em redes computacionais da Administração Pública Federal \cite{nc21_2014}. Em sua Seção 6, a norma exige a sincronização de data, hora e fuso horário dos ativos com a Hora Legal Brasileira mantida pelo Observatório Nacional (item 6.1), bem como o registro obrigatório de eventos de autenticação bem-sucedidos e malsucedidos, acessos a recursos e dados privilegiados e acessos ou alterações nos próprios registros de auditoria (item 6.2) \cite{nc21_2014}.
+
+Adicionalmente, o item 6.3 determina que cada entrada contenha quatro metadados mínimos: identificação inequívoca do usuário, natureza do evento, carimbo de data, hora e fuso horário sincronizado, e endereço IP ou identificador de origem do ativo \cite{nc21_2014}. O item 6.5 estende o monitoramento ao uso de perfis privilegiados, alteração de políticas de senha, inicialização ou suspensão de serviços e modificação de arquivos críticos \cite{nc21_2014}. Quanto à custódia e durabilidade, o item 6.7 fixa o armazenamento pelo período mínimo de seis meses — sem prejuízo de prazos previstos em legislações específicas, como a guarda de registros prevista no Marco Civil da Internet (Lei nº 12.965/2014) \cite{marcocivil2014} e os deveres de responsabilização da LGPD \cite{lgpd2018} —, ao passo que o item 6.8 recomenda a replicação remota dos registros e o item 7.5 impõe a geração de resumos criptográficos (\textit{hashes}) para preservar a integridade das evidências coletadas \cite{nc21_2014}.
+
+Os fundamentos conceituais e normativos reunidos neste capítulo delimitam o referencial necessário para situar o problema no estado da arte científico, objeto da Revisão Estruturada da Literatura apresentada no Capítulo~\ref{cap:revisao_sistematica}.
+
