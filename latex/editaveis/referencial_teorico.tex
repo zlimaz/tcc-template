@@ -99,7 +99,7 @@ Os sistemas SIEM, por sua vez, atuam na camada centralizada: agregam registros p
 \subsection{Plataforma Wazuh}
 \label{subsec:ref_wazuh}
 
-O Wazuh é uma plataforma de segurança de código aberto que unifica as funções de SIEM e XDR para proteção de cargas de trabalho em servidores físicos, máquinas virtuais, ambientes em nuvem e contêineres \cite{wazuh2025}. Conforme a documentação oficial da plataforma \cite{wazuh2025}, sua arquitetura é composta por um agente multiplataforma (\textit{Wazuh Agent}), implantado nos ativos monitorados, e por três componentes centrais: o servidor de análise (\textit{Wazuh Server} ou \textit{Manager}), o indexador (\textit{Wazuh Indexer}) e o painel de visualização (\textit{Wazuh Dashboard}). A Figura~\ref{fig:ref_arq_telemetria} representa o fluxo conceitual de integração desses componentes com um ambiente orquestrado Kubernetes.
+O Wazuh é uma plataforma de segurança de código aberto que unifica as funções de HIDS e SIEM para proteção de cargas de trabalho em servidores físicos, máquinas virtuais, ambientes em nuvem e contêineres \cite{wazuh2025}. Conforme a documentação oficial da plataforma \cite{wazuh2025}, sua arquitetura é composta por um agente multiplataforma (\textit{Wazuh Agent}), implantado nos ativos monitorados, e por três componentes centrais: o servidor de análise (\textit{Wazuh Server} ou \textit{Manager}), o indexador (\textit{Wazuh Indexer}) e o painel de visualização (\textit{Wazuh Dashboard}). A Figura~\ref{fig:ref_arq_telemetria} representa o fluxo conceitual de integração desses componentes com um ambiente orquestrado Kubernetes.
 
 \begin{figure}[htbp]
     \centering
