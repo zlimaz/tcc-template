@@ -8,14 +8,14 @@ O capítulo estrutura-se em cinco seções: o protocolo da revisão na Seção~\
 \section{Protocolo da Revisão}
 \label{sec:rsl_protocolo}
 
-O protocolo foi estabelecido segundo o modelo formal proposto por \citeonline{kitchenham2007}, cujo propósito consiste em mitigar o viés de seleção do pesquisador e assegurar que outros investigadores, partindo dos mesmos parâmetros de busca e critérios de julgamento, alcancem resultados equivalentes, garantindo a auditabilidade e a replicabilidade do estudo secundário.
+O protocolo desta revisão estruturada da literatura foi estabelecido segundo o modelo formal de revisão sistemática proposto por \citeonline{kitchenham2007}, cujo propósito consiste em mitigar o viés de seleção do pesquisador e assegurar que outros investigadores, partindo dos mesmos parâmetros de busca e critérios de julgamento, alcancem resultados equivalentes, garantindo a auditabilidade e a replicabilidade do estudo secundário.
 
 \subsection{Questões Secundárias de Pesquisa}
 \label{subsec:rsl_questoes_secundarias}
 
-As doze questões secundárias, codificadas de QS01 a QS12 e dispostas na Tabela~\ref{tab:rsl_questoes_secundarias}, foram organizadas em cinco eixos temáticos: os três primeiros derivam diretamente das facetas de população, intervenção e resultados da estrutura PICO adaptada, enquanto os dois últimos abordam transversalmente o rigor metodológico de validação empírica e as lacunas da literatura.
+As doze questões secundárias, codificadas de QS01 a QS12 e dispostas na Tabela~\ref{tab:rsl_questoes_secundarias}, foram derivadas diretamente da Questão Principal de Pesquisa formulada na Seção~\ref{subsec:intro_gqm}, decompondo-a em cinco eixos analíticos para investigar como a literatura fundamenta cada dimensão do problema: os três primeiros derivam das facetas de população, intervenção e resultados da estrutura PICO adaptada, enquanto os dois últimos abordam transversalmente o rigor metodológico de validação empírica e as lacunas da literatura.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Questões secundárias de pesquisa organizadas por eixo temático.}
     \label{tab:rsl_questoes_secundarias}
@@ -38,6 +38,7 @@ As doze questões secundárias, codificadas de QS01 a QS12 e dispostas na Tabela
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
+\FloatBarrier
 
 \subsection{PICO Adaptado e String de Busca}
 \label{subsec:rsl_string_busca}
@@ -46,7 +47,7 @@ A busca em bases de dados acadêmicas requer o uso de um protocolo formal, pois 
 
 Por essa razão, utilizou-se a estrutura de formulação de questões baseada nos critérios PICO e PICOC recomendados por \citeonline{kitchenham2007} e \citeonline{pai2004} para guiar a construção da \textit{string} de busca. Originalmente proposto na medicina baseada em evidências, o acrônimo PICO refere-se à população estudada, à intervenção aplicada, à comparação de controle e ao resultado mensurado, podendo ser representado visualmente como um diagrama de Venn, conforme ilustrado na Figura~\ref{fig:rsl_pico} \cite{pai2004}.
 
-\begin{figure}[htb]
+\begin{figure}[!htbp]
     \centering
     \caption{Representação Visual do Protocolo PICO.}
     \label{fig:rsl_pico}
@@ -54,14 +55,14 @@ Por essa razão, utilizou-se a estrutura de formulação de questões baseada no
     \fonte{Adaptado de \citeonline{pai2004}.}
 \end{figure}
 
-Para sua aplicação na Engenharia de Software, o protocolo precisou ser adaptado, visto que nem todos os seus elementos originais se transpõem diretamente ao domínio computacional \cite{kitchenham2007}. Na adaptação realizada, o elemento População passou a representar os sistemas de software e as infraestruturas digitais em nuvem; a Intervenção referiu-se às tecnologias de monitoramento e gestão de \textit{logs} de segurança em tempo de execução; e os Resultados mantiveram o foco nos efeitos observados quanto à conformidade regulatória e à maturidade cibernética, no contexto de arquiteturas distribuídas e containerizadas. O elemento de Comparação foi omitido da \textit{string} booleana para não restringir artificialmente a busca exploratória a um único grupo de controle, o que resultou na estrutura \textbf{PIO} apresentada na Tabela~\ref{tab:rsl_protocolo_pio}.
+Para sua aplicação na Engenharia de Software, o protocolo foi adaptado à estrutura \textbf{PIO} em substituição ao formato PICOC completo \cite{kitchenham2007}. Nessa adaptação, a faceta Comparação foi omitida por não existir um grupo de controle único na busca exploratória, ao passo que a faceta Contexto, referente a sistemas distribuídos, microsserviços e infraestruturas em nuvem, foi incorporada diretamente à faceta População para evitar restrição booleana excessiva sobre a consulta. Desse modo, o elemento População representa os sistemas de software e as infraestruturas digitais distribuídas e em nuvem; a Intervenção compreende as tecnologias de monitoramento e gestão de \textit{logs} de segurança em tempo de execução; e os Resultados englobam os efeitos observados quanto à conformidade regulatória e à maturidade cibernética, conforme detalhado na Tabela~\ref{tab:rsl_protocolo_pio}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{PICO adaptado (estrutura PIO).}
     \label{tab:rsl_protocolo_pio}
     \small
-    \begin{tabular}{p{2.4cm}p{3.4cm}p{9.0cm}}
+    \begin{tabular}{p{2.4cm}p{3.4cm}p{8.7cm}}
         \hline
         \textbf{Elemento} & \textbf{Termo Central} & \textbf{Sinônimos e Termos Relacionados} \\ \hline
         \textbf{População (P)} & \textit{Software systems and digital infrastructure} & ``software system*'', ``software application*'', ``cloud infrastructure'', ``cloud platform*'', ``microservice*'', ``containerized environment*'', ``distributed system*'', ``web application*'', ``information system*'', ``IT infrastructure'' \\ \hline
@@ -79,32 +80,32 @@ A \textit{string} foi construída com o operador lógico \texttt{OR} entre os te
 \texttt{TITLE-ABS-KEY ( ( "software system*" OR "software application*" OR "cloud infrastructure" OR "cloud platform*" OR "microservice*" OR "containerized environment*" OR "distributed system*" OR "web application*" OR "information system*" OR "IT infrastructure" ) AND ( "log management" OR "audit log*" OR "audit logging" OR "security monitoring" OR "runtime security monitoring" OR "security telemetry" OR "SIEM" OR "security information and event management" OR "XDR" OR "HIDS" OR "host-based intrusion detection" OR "intrusion detection system" OR "intrusion detection" OR "security audit" OR "Wazuh" OR "event correlation" OR "threat detection" OR "security operation center" OR "SOC" OR "incident response" OR "MITRE ATT\&CK" ) AND ( "regulatory compliance" OR "security compliance" OR "compliance evaluation" OR "CIS Control*" OR "security maturity" OR "security maturity model" OR "security posture" OR "security governance" OR "audit compliance" OR "security assessment" OR "NIST" OR "security framework*" OR "compliance framework*" ) )}
 \end{quote}
 
-Conforme recomendam \citeonline{kitchenham2007} acerca da calibração iterativa de buscas preliminares, a \textit{string} foi refinada em versões sucessivas, resumidas na Tabela~\ref{tab:rsl_versoes_string}. A versão v.3, que aplica o recorte temporal de 2015 a 2026 sobre a versão v.2, foi adotada como consulta definitiva da revisão.
+Conforme recomendam \citeonline{kitchenham2007} acerca da calibração iterativa de buscas preliminares, a consulta passou por etapas de refinamento sintático documentadas na Tabela~\ref{tab:rsl_versoes_string}. Partiu-se de uma versão inicial restrita que retornou 25 registros, evoluiu-se para a versão expandida adotada com 391 registros antes dos filtros de delimitação e testou-se uma consulta alternativa descartada que reduziu a cobertura para 215 registros.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
-    \caption{Evolução da \textit{string} de busca na base Scopus.}
+    \caption{Calibração da \textit{string} de busca na base Scopus.}
     \label{tab:rsl_versoes_string}
     \small
-    \begin{tabular}{p{1.6cm}p{9.8cm}p{2.4cm}}
+    \begin{tabular}{p{3.2cm}p{8.4cm}p{2.2cm}}
         \hline
-        \textbf{Versão} & \textbf{Alteração} & \textbf{Resultados} \\ \hline
-        v.1 & Versão inicial, com conjunto reduzido de termos em cada elemento do PIO. & 25 \\ \hline
-        v.2 & Inclusão de ``web application*'', ``information system*'' e ``IT infrastructure'' em P; de termos de detecção de intrusão, ``Wazuh'', ``SOC'', ``incident response'' e ``MITRE ATT\&CK'' em I; e de ``NIST'', ``security framework*'' e ``compliance framework*'' em O. & 391 \\ \hline
-        v.3 & Aplicação do filtro temporal de 2015 a 2026 sobre a v.2, consolidada como \textbf{versão adotada}. & 358 \\ \hline
-        Variante & Consulta alternativa sem ``information system*'' e ``IT infrastructure'', descartada por perda de cobertura. & 215 \\ \hline
+        \textbf{Etapa da Consulta} & \textbf{Composição e Ajuste Terminológico} & \textbf{Resultados} \\ \hline
+        Versão inicial & Conjunto preliminar reduzido de descritores em cada elemento da estrutura PIO. & 25 \\ \hline
+        Versão expandida & Inclusão de ``web application*'', ``information system*'' e ``IT infrastructure'' em P; de termos de detecção de intrusão, ``Wazuh'', ``SOC'', ``incident response'' e ``MITRE ATT\&CK'' em I; e de ``NIST'', ``security framework*'' e ``compliance framework*'' em O, consolidada como consulta adotada. & 391 \\ \hline
+        Consulta alternativa descartada & Remoção experimental de ``information system*'' e ``IT infrastructure'', descartada por perda de cobertura de estudos relevantes. & 215 \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
+\FloatBarrier
 
 \subsection{Critérios de Inclusão e Exclusão}
 \label{subsec:rsl_criterios}
 
 Foram estabelecidos critérios de inclusão, apresentados na Tabela~\ref{tab:rsl_criterios_inclusao}, e critérios de exclusão, dispostos na Tabela~\ref{tab:rsl_criterios_exclusao}, para selecionar apenas os estudos primários que fornecem evidências diretas às questões secundárias de pesquisa \cite{kitchenham2007}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
-    \caption{Critérios de inclusão (CI) da revisão sistemática.}
+    \caption{Critérios de inclusão (CI) da revisão estruturada da literatura.}
     \label{tab:rsl_criterios_inclusao}
     \small
     \begin{tabular}{p{1.5cm}p{12.9cm}}
@@ -119,9 +120,9 @@ Foram estabelecidos critérios de inclusão, apresentados na Tabela~\ref{tab:rsl
 
 Na versão preliminar do protocolo constava ainda o critério CI04, que exigia validação empírica da solução proposta. Em alinhamento às recomendações de \citeonline{kitchenham2007} sobre evitar restrições prematuras de desenho experimental em áreas da Engenharia de Software com número limitado de estudos empíricos, esse critério foi arquivado por orientação acadêmica, de modo que o método de validação deixou de ser condição de elegibilidade e permaneceu como variável analítica da questão QS10, tratada na Seção~\ref{subsec:rsl_qs10}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
-    \caption{Critérios de exclusão (CE) da revisão sistemática.}
+    \caption{Critérios de exclusão (CE) da revisão estruturada da literatura.}
     \label{tab:rsl_criterios_exclusao}
     \small
     \begin{tabular}{p{1.5cm}p{12.9cm}}
@@ -136,16 +137,35 @@ Na versão preliminar do protocolo constava ainda o critério CI04, que exigia v
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
+\FloatBarrier
+
+\subsection{Recorte Temporal e Idiomático}
+\label{subsec:rsl_recorte}
+
+Complementando os critérios de elegibilidade, o protocolo estabeleceu parâmetros formais de delimitação temporal e idiomática sobre a versão expandida da \textit{string} de busca, sintetizados na Tabela~\ref{tab:rsl_recorte_temporal_idiomatico}. O recorte temporal foi fixado no intervalo de 2015 a 2026, o que refinou o universo retornado na base Scopus de 391 para 358 registros. A escolha do marco inicial de 2015 justifica-se cientificamente pela consolidação das arquiteturas nativas em nuvem, do estilo arquitetural de microsserviços e dos padrões modernos de empacotamento e orquestração de contêineres na Engenharia de Software, período a partir do qual os desafios de observabilidade e auditoria de cargas efêmeras adquiriram a configuração técnica investigada nesta monografia. Quanto ao recorte idiomático, admitiram-se publicações redigidas em inglês, língua franca da literatura científica indexada na área, e em português, contemplando eventuais investigações aplicadas ao contexto regulatório nacional.
+
+\begin{table}[!htbp]
+    \centering
+    \caption{Parâmetros de recorte temporal e idiomático da revisão estruturada da literatura.}
+    \label{tab:rsl_recorte_temporal_idiomatico}
+    \small
+    \begin{tabular}{p{3.6cm}p{3.0cm}p{7.4cm}}
+        \hline
+        \textbf{Parâmetro} & \textbf{Delimitação} & \textbf{Justificativa Metodológica e Impacto na Busca} \\ \hline
+        Recorte temporal & 2015 a 2026 & Consolidação das arquiteturas nativas em nuvem, microsserviços e orquestração de contêineres; refinou a consulta expandida de 391 para 358 registros. \\ \hline
+        Recorte idiomático & Inglês e português & Cobertura das principais bibliotecas digitais internacionais de Computação e de pesquisas correlatas no âmbito nacional (critério CE01). \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
+\end{table}
+\FloatBarrier
 
 \subsection{Procedimento de Triagem e Extração}
 \label{subsec:rsl_procedimento}
 
-A seleção dos estudos e o gerenciamento bibliográfico foram conduzidos na plataforma \textit{Evidentia}, que operacionaliza o fluxo de triagem em múltiplos estágios segundo a declaração PRISMA e mantém o registro auditável das decisões de inclusão, exclusão e extração de dados \cite{kitchenham2007}. Na primeira fase de seleção, foram inspecionados o título, o resumo e as palavras-chave de todos os registros importados, descartando-se aqueles que violavam qualquer um dos critérios de exclusão de CE01 a CE06. Na segunda fase, buscou-se a recuperação dos textos completos via acesso institucional da Universidade de Brasília ao Portal de Periódicos da CAPES para leitura integral, avaliação de qualidade metodológica e extração estruturada dos dados nos 17 campos do formulário apresentado na Tabela~\ref{tab:rsl_formulario}.
+A seleção dos estudos e o gerenciamento bibliográfico foram conduzidos na plataforma \textit{Evidentia}, que operacionaliza o fluxo de triagem em múltiplos estágios segundo a declaração PRISMA e mantém o registro auditável das decisões de inclusão, exclusão e extração de dados \cite{kitchenham2007}. Na primeira fase de seleção, foram inspecionados o título, o resumo e as palavras-chave de todos os registros importados, descartando-se aqueles que incorriam em qualquer um dos critérios de exclusão de CE01 a CE06. Na segunda fase, realizou-se a recuperação dos textos completos via acesso institucional da Universidade de Brasília ao Portal de Periódicos da CAPES para leitura integral, avaliação de qualidade metodológica e extração estruturada das evidências nos 16 campos do formulário apresentado na Tabela~\ref{tab:rsl_formulario}.
 
-No instrumento de coleta, o campo 04 estratifica cada estudo quanto à relevância e aderência temática ao escopo do trabalho em três níveis: Grupo A, de alta relevância, abrangendo estudos que implementam diretamente o ecossistema Wazuh, coletores SIEM em contêineres ou auditoria direta em \textit{runtime}; Grupo B, de média relevância, reunindo trabalhos de suporte metodológico, arquitetural ou forense; e Grupo C, de baixa relevância direta para a implementação local, focado em postura macro de nuvem pública. O campo 13 registra por meio dos marcadores \texttt{[SIM]} ou \texttt{[NÃO]} a existência de diagnóstico prévio de conformidade antes da intervenção, acompanhado da descrição do método empregado. Os campos 14 e 17 documentam a classificação do desenho empírico de avaliação e a justificativa metodológica dos autores, servindo como instrumento de avaliação de qualidade e força de evidência dos estudos incluídos, conforme preconizado na Seção 6.3 do guia de \citeonline{kitchenham2007}.
-
-\begin{longtable}{p{1.0cm}p{9.0cm}p{3.6cm}}
-    \caption{Formulário de extração de dados (17 campos).}\label{tab:rsl_formulario}\\
+\begin{longtable}{p{1.5cm}p{8.5cm}p{3.6cm}}
+    \caption{Formulário de extração de dados (16 campos).}\label{tab:rsl_formulario}\\
     \hline
     \textbf{Campo} & \textbf{Descrição} & \textbf{Questão / Função} \\ \hline
     \endfirsthead
@@ -160,22 +180,22 @@ No instrumento de coleta, o campo 04 estratifica cada estudo quanto à relevânc
     01 & Título do artigo & Metadados \\ \hline
     02 & Autores & Metadados \\ \hline
     03 & Ano e veículo de publicação & Metadados \\ \hline
-    04 & Relevância para o TCC (Grupos A, B e C) & Triagem / Qualidade \\ \hline
-    05 & Ambiente de infraestrutura & QS01 \\ \hline
-    06 & Domínio de aplicação & QS02 \\ \hline
-    07 & Tecnologias de telemetria em \textit{runtime} & QS03 \\ \hline
-    08 & \textit{Pipeline} de gestão de \textit{logs} & QS04 \\ \hline
-    09 & Ferramental empregado & QS05 \\ \hline
-    10 & \textit{Frameworks} normativos de referência & QS06 \\ \hline
-    11 & Abordagem da gestão de \textit{logs} e auditoria & QS07 \\ \hline
-    12 & Métricas e escalas de maturidade & QS08 \\ \hline
-    13 & Diagnóstico inicial (\textit{baseline}) & QS09 \\ \hline
-    14 & Método de validação empírica & QS10 / Qualidade \\ \hline
-    15 & Desafios e gargalos operacionais & QS11 \\ \hline
-    16 & Lacunas e trabalhos futuros & QS12 \\ \hline
-    17 & Justificativa do método de validação & QS10 / Qualidade \\ \hline
+    04 & Ambiente de infraestrutura & QS01 \\ \hline
+    05 & Domínio de aplicação & QS02 \\ \hline
+    06 & Tecnologias de telemetria em \textit{runtime} & QS03 \\ \hline
+    07 & \textit{Pipeline} de gestão de \textit{logs} & QS04 \\ \hline
+    08 & Ferramental empregado & QS05 \\ \hline
+    09 & \textit{Frameworks} normativos de referência & QS06 \\ \hline
+    10 & Abordagem da gestão de \textit{logs} e auditoria & QS07 \\ \hline
+    11 & Métricas e escalas de maturidade & QS08 \\ \hline
+    12 & Diagnóstico inicial (\textit{baseline}) & QS09 \\ \hline
+    13 & Método de validação empírica & QS10 / Qualidade \\ \hline
+    14 & Desafios e gargalos operacionais & QS11 \\ \hline
+    15 & Lacunas e trabalhos futuros & QS12 \\ \hline
+    16 & Justificativa do método de validação & QS10 / Qualidade \\ \hline
 \end{longtable}
 \fonte{Elaborado pelo autor.}
+\FloatBarrier
 
 \section{Condução da Revisão}
 \label{sec:rsl_conducao}
@@ -183,113 +203,118 @@ No instrumento de coleta, o campo 04 estratifica cada estudo quanto à relevânc
 \subsection{Fluxo de Seleção dos Estudos}
 \label{subsec:rsl_fluxo_prisma}
 
-A execução da \textit{string} de busca v.3 na base Scopus, cobrindo o período de 2015 a 2026 e agregando registros indexados das bases IEEE Xplore, ACM Digital Library, Elsevier ScienceDirect e SpringerLink, retornou 358 documentos. A exportação dos metadados em formato BibTeX e sua subsequente importação para a plataforma \textit{Evidentia} consolidaram 357 registros válidos, número adotado como ponto de partida do diagrama de fluxo PRISMA 2020 ilustrado na Figura~\ref{fig:rsl_prisma}, não havendo remoção prévia por duplicidade.
+A execução da versão expandida da \textit{string} de busca na base Scopus sob o recorte temporal de 2015 a 2026, agregando registros indexados das bases IEEE Xplore, ACM Digital Library, Elsevier ScienceDirect e SpringerLink, retornou 358 documentos. A exportação dos metadados em formato BibTeX e sua importação para a plataforma \textit{Evidentia} consolidaram 357 registros válidos na vertente de bases de dados do diagrama PRISMA 2020 ilustrado na Figura~\ref{fig:rsl_prisma}, sem remoção prévia por duplicidade.
 
-Durante a etapa de triagem por leitura de título, resumo e palavras-chave, 322 dos 357 registros, correspondentes a 90,2\% do total inicial, foram excluídos por não atenderem aos critérios de elegibilidade, registrando-se predomínio do critério CE06 para estudos restritos a internet das coisas, redes industriais SCADA, sistemas automotivos ou saúde clínica sem artefato de engenharia de software, seguido do critério CE03 referente a revisões secundárias, livros e anais gerais de conferências. Os 35 registros aprovados na triagem inicial, equivalentes a 9,8\% do total, avançaram para a fase de recuperação do texto completo por meio da autenticação institucional no Portal de Periódicos da CAPES. Nessa etapa, 6 artigos não puderam ser recuperados em virtude de restrições de acesso fechado em editoras específicas não cobertas pelos contratos vigentes do consórcio CAPES, restando 29 relatórios lidos na íntegra. Todos os 29 estudos avaliados em texto completo confirmaram atendimento aos critérios de inclusão CI01, CI02 e CI03, compondo a amostra final de estudos primários da revisão, o que representa uma taxa de conversão final de 8,1\% sobre os registros triados.
+Durante a etapa de triagem por leitura de título, resumo e palavras-chave, 322 dos 357 registros, correspondentes a 90,2\% do total inicial, foram excluídos por não atenderem aos critérios de elegibilidade, registrando-se predomínio do critério CE06 para estudos restritos a internet das coisas, redes industriais SCADA, sistemas automotivos ou saúde clínica sem artefato de engenharia de software, seguido do critério CE03 referente a revisões secundárias, livros e anais gerais de conferências. Os 35 registros aprovados na triagem inicial, equivalentes a 9,8\% do total, avançaram para a fase de recuperação do texto completo por meio da autenticação institucional no Portal de Periódicos da CAPES. Nessa etapa, 6 artigos não puderam ser recuperados em virtude de restrições de acesso fechado em editoras específicas não cobertas pelos contratos vigentes do consórcio CAPES, restando 29 publicações avaliadas na íntegra. Todos os 29 estudos lidos em texto completo confirmaram atendimento aos critérios de inclusão CI01, CI02 e CI03, compondo a amostra de estudos científicos primários, o que representa uma taxa de conversão de 8,1\% sobre os registros triados.
 
-\begin{figure}[htb]
+Complementarmente, na vertente de identificação por outros métodos representada na Figura~\ref{fig:rsl_prisma}, foram incorporados manualmente 5 documentos normativos e de auditoria federais indispensáveis para fundamentar a modelagem de conformidade no contexto brasileiro: o Guia do Framework do PPSI 2.0 instituído pela Portaria SGD/MGI nº 9.511/2025 \cite{portaria9511_2025,ppsi2026}, a Instrução Normativa SGD/MGI nº 4/2026 \cite{in4_2026}, a Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}, a Instrução Normativa GSI/PR nº 5/2021 \cite{ingsi5_2021} e o Acórdão nº 2.387/2024 -- TCU -- Plenário \cite{tcu2387_2024}. Todos os 5 documentos públicos foram integralmente recuperados e validados, totalizando $n = 29 + 5$ registros incluídos no fluxo PRISMA. Para preservar a consistência estatística e bibliométrica da revisão, todas as sínteses quantitativas e percentuais apresentadas nas Seções~\ref{subsec:rsl_amostra} e~\ref{sec:rsl_resultados} incidem exclusivamente sobre os 29 estudos científicos primários.
+
+\begin{figure}[!htbp]
     \centering
     \caption{Fluxo de seleção dos estudos (PRISMA 2020).}
     \label{fig:rsl_prisma}
     \includegraphics[width=\textwidth]{figuras/prisma.eps}
     \fonte{Elaborado pelo autor.}
 \end{figure}
+\FloatBarrier
 
 \subsection{Caracterização da Amostra}
 \label{subsec:rsl_amostra}
 
-A amostra final de 29 estudos primários, extraída integralmente na planilha de dados da pesquisa, distribui-se pelo campo 04 do formulário em 8 estudos pertencentes ao Grupo A de alta relevância, equivalentes a 27,6\% da amostra e correspondentes aos identificadores S07, S09, S10, S11, S13, S20, S21 e S24; 16 estudos classificados no Grupo B de média relevância, representando 55,2\% da amostra nos identificadores S01, S02, S04, S05, S06, S08, S17, S18, S19, S22, S23, S25, S26, S27, S28 e S29; e 5 estudos alocados no Grupo C de baixa relevância direta, perfazendo 17,2\% nos identificadores S03, S12, S14, S15 e S16. Quanto ao veículo de publicação apurado no campo 03, 7 trabalhos, ou 24,1\%, foram publicados em periódicos científicos (S02, S03, S04, S05, S08, S19 e S24) e 22 trabalhos, ou 75,9\%, em anais de conferências e simpósios internacionais. A distribuição cronológica compreende o intervalo de 2017 a 2026, contabilizando um estudo em 2017 (S22), um em 2018 (S25), um em 2019 (S26), um em 2021 (S05), um em 2023 (S19), três em 2024 (S02, S12 e S17), treze em 2025 (S01, S04, S06, S08, S09, S10, S14, S18, S20, S21, S24, S28 e S29) e oito em 2026 (S03, S07, S11, S13, S15, S16, S23 e S27). Verifica-se que 21 dos 29 estudos, ou 72,4\% da amostra, foram publicados no biênio de 2025 e 2026, demonstrando a atualidade científica da área. A Tabela~\ref{tab:rsl_amostra} sumariza cada estudo primário conforme as diretrizes de síntese descritiva de \citeonline{kitchenham2007}, relacionando seu identificador de S01 a S29, título e referência, grupo de relevância, tipo de veículo, método de validação empírica e presença de diagnóstico inicial.
+A amostra final de 29 estudos científicos primários distribui-se, quanto ao tipo de veículo de publicação, em 7 artigos publicados em periódicos científicos, correspondentes a 24,1\% da amostra \cite{darwesh2024,joshisabhaya2026,jin2025,torkura2021,sasmito2025,coutinho2023,velasquez2025}, e 22 trabalhos publicados em anais de conferências e simpósios internacionais, equivalentes a 75,9\%. A distribuição cronológica compreende o intervalo de 2017 a 2026, contabilizando um estudo em 2017 \cite{giulio2017}, um em 2018 \cite{enaw2018}, um em 2019 \cite{portillo2019}, um em 2021 \cite{torkura2021}, um em 2023 \cite{coutinho2023}, três em 2024 \cite{darwesh2024,ali2024,albuquerque2024}, treze em 2025 \cite{gajra2025,jin2025,devarajulu2025,sasmito2025,sushma2025,acosta2025,upadhyaya2025,zhang2025,setiawan2025,kalafatidis2025,velasquez2025,xu2025,hao2025} e oito em 2026 \cite{joshisabhaya2026,shao2026a,joshisegireddy2026,bungei2026,aftab2026,kumar2026,mahida2026,shao2026b}. Observa-se que 21 dos 29 estudos, ou 72,4\% da amostra, concentram-se no biênio de 2025 e 2026, evidenciando a atualidade científica do tema. A Tabela~\ref{tab:rsl_amostra} sumariza os estudos primários conforme as diretrizes de síntese descritiva de \citeonline{kitchenham2007}, relacionando o identificador catalográfico, o título e a referência bibliográfica, o tipo de veículo e o método de validação empírica classificado segundo a taxonomia de \citeonline{wohlin2024}.
 
 {\small\setlength{\tabcolsep}{4pt}
-\begin{longtable}{p{0.9cm}p{6.6cm}p{1.0cm}p{1.6cm}p{2.3cm}p{1.4cm}}
+\begin{longtable}{p{0.9cm}p{8.0cm}p{2.2cm}p{2.9cm}}
     \caption{Estudos primários selecionados (S01 a S29).}\label{tab:rsl_amostra}\\
     \hline
-    \textbf{ID} & \textbf{Estudo} & \textbf{Grupo} & \textbf{Veículo} & \textbf{Validação} & \textbf{\textit{Baseline}} \\ \hline
+    \textbf{ID} & \textbf{Estudo} & \textbf{Veículo} & \textbf{Validação Empírica} \\ \hline
     \endfirsthead
     \caption[]{Estudos primários selecionados (continuação).}\\
     \hline
-    \textbf{ID} & \textbf{Estudo} & \textbf{Grupo} & \textbf{Veículo} & \textbf{Validação} & \textbf{\textit{Baseline}} \\ \hline
+    \textbf{ID} & \textbf{Estudo} & \textbf{Veículo} & \textbf{Validação Empírica} \\ \hline
     \endhead
-    \hline \multicolumn{6}{r}{\footnotesize Continua na próxima página} \\
+    \hline \multicolumn{4}{r}{\footnotesize Continua na próxima página} \\
     \endfoot
     \hline
     \endlastfoot
-S01 & SheildSentry: Linux Auditing with Gen.AI~\cite{gajra2025} & B & Evento & PoC & Não \\ \hline
-S02 & Enhancing Kubernetes security with machine learning: a proactive approach to anomaly detection~\cite{darwesh2024} & B & Periódico & Testbed & Não \\ \hline
-S03 & Adaptive Behavioral Validation for Cloud Security Posture Management with AI-Driven Alert Prioritization~\cite{joshisabhaya2026} & C & Periódico & Testbed & Não \\ \hline
-S04 & Enhancing DFIR in orchestration Environments: Real-time forensic framework with eBPF for windows~\cite{jin2025} & B & Periódico & Testbed & Não \\ \hline
-S05 & Continuous auditing and threat detection in multi-cloud infrastructure~\cite{torkura2021} & B & Periódico & Testbed & Sim \\ \hline
-S06 & Explainable Anomaly Detection in Cloud-Native Systems via RAG-Enhanced Vector Retrieval~\cite{devarajulu2025} & B & Evento & Testbed & Não \\ \hline
-S07 & Design and Implementation of an Open-Source Security Framework for Cloud Infrastructure~\cite{shao2026a} & A & Evento & Testbed & Não \\ \hline
-S08 & Threat Modeling and Cyber Risk Management for Mitigation of Attacks on Government XYZ Corporate Services Applications~\cite{sasmito2025} & B & Periódico & Estudo de caso & Não \\ \hline
-S09 & Secure Log Ingestion and Visualization Using Dockerized Graylog with Multiple Log Shippers~\cite{sushma2025} & A & Evento & Testbed & Não \\ \hline
-S10 & SentinelJC: An Open-Source Tool for Cyber Incident Management in a Military Institution~\cite{acosta2025} & A & Evento & Estudo de caso & Sim \\ \hline
-S11 & Adaptive Runtime Security for Kubernetes using eBPF Telemetry and Machine Learning~\cite{joshisegireddy2026} & A & Evento & Testbed & Não \\ \hline
-S12 & Cloud Security Posture Management: Automating Risk Detection, Compliance Enforcement, and Vulnerability Remediation in Cloud Infrastructure~\cite{ali2024} & C & Evento & Simulação & Não \\ \hline
-S13 & Securing the Decentralized Edge: An Integrated Approach to Endpoint Security Monitoring and Threat Detection~\cite{bungei2026} & A & Evento & Testbed & Não \\ \hline
-S14 & Posture Management in Zero Trust Container Framework~\cite{upadhyaya2025} & C & Evento & Testbed & Não \\ \hline
-S15 & AI-Augmented Zero Trust Security Framework for Conversational AI Systems: A Behavioral Analytics Approach~\cite{aftab2026} & C & Evento & Estudo de caso & Sim \\ \hline
-S16 & AI-Enhanced Security: Mastering Multi-Cloud Posture Management~\cite{kumar2026} & C & Evento & Testbed & Não \\ \hline
-S17 & Logging design patterns for cloud-native applications~\cite{albuquerque2024} & B & Evento & Conceitual & Não \\ \hline
-S18 & Enhancing Virtualization Security through System Call-based Anomaly Detection in Containers~\cite{zhang2025} & B & Evento & Testbed & Não \\ \hline
-S19 & Integrated cybersecurity methodology and supporting tools for healthcare operational information systems~\cite{coutinho2023} & B & Periódico & Conceitual & Não \\ \hline
-S20 & Integrated Log Management with WAZUH and OPNsense for Mitigating Brute Force Attacks in Cloud Infrastructure~\cite{setiawan2025} & A & Evento & Testbed & Não \\ \hline
-S21 & C-Shield: A Holistic Solution for Secure End-to-End Kubernetes Multi-Cluster Management and Online Threat Mitigation using LLMs~\cite{kalafatidis2025} & A & Evento & Testbed & Não \\ \hline
-S22 & IT Security and Privacy Standards in Comparison: Improving FedRAMP Authorization for Cloud Service Providers~\cite{giulio2017} & B & Evento & Conceitual & Não \\ \hline
-S23 & The Crucial Role of Observability in Enhancing Cloud Infrastructure Security in Financial Technology: A Framework for Proactive Threat Detection and Compliance~\cite{mahida2026} & B & Evento & Simulação & Não \\ \hline
-S24 & SIEM-SC initial assessments: Towards a Sustainable and Compliant proposal for Security Information and Event Management~\cite{velasquez2025} & A & Periódico & Testbed & Não \\ \hline
-S25 & Information Systems Security Audits in Cameroon's Public Administration~\cite{enaw2018} & B & Evento & Estudo de caso & Sim \\ \hline
-S26 & Towards an Efficient Log Data Protection in Software Systems through Data Minimization and Anonymization~\cite{portillo2019} & B & Evento & Testbed & Não \\ \hline
-S27 & Continuous Trust in multi-cloud Environments: An Evidence-Driven Security Assurance Method~\cite{shao2026b} & B & Evento & Testbed & Não \\ \hline
-S28 & Research on Cross-Domain Attack Defense and Endogenous Security Mechanism in Power Dispatching Systems Based on Microservices~\cite{xu2025} & B & Evento & Testbed & Sim \\ \hline
-S29 & ACSP: An Adaptive Cloud-Native Security Platform Oriented to Cyber Resilience~\cite{hao2025} & B & Evento & Testbed & Não \\ \hline
+S01 & SheildSentry: Linux Auditing with Gen.AI~\cite{gajra2025} & Conferência & Avaliação em pequena escala \\ \hline
+S02 & Enhancing Kubernetes security with machine learning: a proactive approach to anomaly detection~\cite{darwesh2024} & Periódico & Experimento \\ \hline
+S03 & Adaptive Behavioral Validation for Cloud Security Posture Management with AI-Driven Alert Prioritization~\cite{joshisabhaya2026} & Periódico & Experimento \\ \hline
+S04 & Enhancing DFIR in orchestration Environments: Real-time forensic framework with eBPF for windows~\cite{jin2025} & Periódico & Experimento \\ \hline
+S05 & Continuous auditing and threat detection in multi-cloud infrastructure~\cite{torkura2021} & Periódico & Experimento \\ \hline
+S06 & Explainable Anomaly Detection in Cloud-Native Systems via RAG-Enhanced Vector Retrieval~\cite{devarajulu2025} & Conferência & Experimento \\ \hline
+S07 & Design and Implementation of an Open-Source Security Framework for Cloud Infrastructure~\cite{shao2026a} & Conferência & Experimento \\ \hline
+S08 & Threat Modeling and Cyber Risk Management for Mitigation of Attacks on Government XYZ Corporate Services Applications~\cite{sasmito2025} & Periódico & Estudo de caso \\ \hline
+S09 & Secure Log Ingestion and Visualization Using Dockerized Graylog with Multiple Log Shippers~\cite{sushma2025} & Conferência & Experimento \\ \hline
+S10 & SentinelJC: An Open-Source Tool for Cyber Incident Management in a Military Institution~\cite{acosta2025} & Conferência & Estudo de caso \\ \hline
+S11 & Adaptive Runtime Security for Kubernetes using eBPF Telemetry and Machine Learning~\cite{joshisegireddy2026} & Conferência & Experimento \\ \hline
+S12 & Cloud Security Posture Management: Automating Risk Detection, Compliance Enforcement, and Vulnerability Remediation in Cloud Infrastructure~\cite{ali2024} & Conferência & Simulação \\ \hline
+S13 & Securing the Decentralized Edge: An Integrated Approach to Endpoint Security Monitoring and Threat Detection~\cite{bungei2026} & Conferência & Experimento \\ \hline
+S14 & Posture Management in Zero Trust Container Framework~\cite{upadhyaya2025} & Conferência & Experimento \\ \hline
+S15 & AI-Augmented Zero Trust Security Framework for Conversational AI Systems: A Behavioral Analytics Approach~\cite{aftab2026} & Conferência & Estudo de caso \\ \hline
+S16 & AI-Enhanced Security: Mastering Multi-Cloud Posture Management~\cite{kumar2026} & Conferência & Experimento \\ \hline
+S17 & Logging design patterns for cloud-native applications~\cite{albuquerque2024} & Conferência & Estudo sistemático da literatura \\ \hline
+S18 & Enhancing Virtualization Security through System Call-based Anomaly Detection in Containers~\cite{zhang2025} & Conferência & Experimento \\ \hline
+S19 & Integrated cybersecurity methodology and supporting tools for healthcare operational information systems~\cite{coutinho2023} & Periódico & Experimento \\ \hline
+S20 & Integrated Log Management with WAZUH and OPNsense for Mitigating Brute Force Attacks in Cloud Infrastructure~\cite{setiawan2025} & Conferência & Experimento \\ \hline
+S21 & C-Shield: A Holistic Solution for Secure End-to-End Kubernetes Multi-Cluster Management and Online Threat Mitigation using LLMs~\cite{kalafatidis2025} & Conferência & Experimento \\ \hline
+S22 & IT Security and Privacy Standards in Comparison: Improving FedRAMP Authorization for Cloud Service Providers~\cite{giulio2017} & Conferência & Análise arquival \\ \hline
+S23 & The Crucial Role of Observability in Enhancing Cloud Infrastructure Security in Financial Technology: A Framework for Proactive Threat Detection and Compliance~\cite{mahida2026} & Conferência & Simulação \\ \hline
+S24 & SIEM-SC initial assessments: Towards a Sustainable and Compliant proposal for Security Information and Event Management~\cite{velasquez2025} & Periódico & Experimento \\ \hline
+S25 & Information Systems Security Audits in Cameroon's Public Administration~\cite{enaw2018} & Conferência & Levantamento \\ \hline
+S26 & Towards an Efficient Log Data Protection in Software Systems through Data Minimization and Anonymization~\cite{portillo2019} & Conferência & Experimento \\ \hline
+S27 & Continuous Trust in multi-cloud Environments: An Evidence-Driven Security Assurance Method~\cite{shao2026b} & Conferência & Experimento \\ \hline
+S28 & Research on Cross-Domain Attack Defense and Endogenous Security Mechanism in Power Dispatching Systems Based on Microservices~\cite{xu2025} & Conferência & Experimento \\ \hline
+S29 & ACSP: An Adaptive Cloud-Native Security Platform Oriented to Cyber Resilience~\cite{hao2025} & Conferência & Experimento \\ \hline
 \end{longtable}}
 \fonte{Elaborado pelo autor.}
+\FloatBarrier
 
 \section{Resultados}
 \label{sec:rsl_resultados}
 
-Após a leitura integral dos 29 estudos primários, os dados foram extraídos segundo o formulário da Tabela~\ref{tab:rsl_formulario} e consolidados na matriz analítica da pesquisa, na qual as linhas correspondem aos estudos S01 a S29 e as colunas aos 17 campos padronizados. Seguindo as recomendações de síntese descritiva e quantitativa de \citeonline{kitchenham2007}, cada subseção a seguir responde de forma analítica e tabulada a uma das doze questões secundárias, obedecendo à ordem definida no protocolo.
+Após a leitura integral dos 29 estudos primários, os dados foram extraídos segundo os 16 campos do formulário da Tabela~\ref{tab:rsl_formulario} e consolidados na matriz analítica da pesquisa. Seguindo as recomendações de síntese descritiva e quantitativa de \citeonline{kitchenham2007}, cada subseção a seguir responde de forma analítica e tabulada a uma das doze questões secundárias, obedecendo à ordem definida no protocolo.
 
 \subsection{Quais tipos de arquiteturas de software e ambientes de infraestrutura são investigados nas soluções de monitoramento de segurança em \textit{runtime}?}
 \label{subsec:rsl_qs01}
 
-A extração do campo 05 da planilha demonstra que 23 dos 29 estudos primários, equivalentes a 79,3\% da amostra, investigam infraestruturas baseadas em computação em nuvem, contêineres ou orquestração de microsserviços, evidenciando a transição das estratégias de monitoramento para arquiteturas distribuídas e efêmeras. De forma específica, 10 estudos, ou 34,5\%, implementam ou emulam diretamente \textit{clusters} Kubernetes; 6 estudos, ou 20,7\%, avaliam contêineres Docker e ambientes containerizados sem orquestração Kubernetes multi-nó; 7 estudos, ou 24,1\%, abordam infraestruturas de nuvem pública ou híbrida e modelos conceituais nativos em nuvem; e os 6 estudos restantes, ou 20,7\%, concentram-se em infraestruturas virtualizadas locais ou servidores tradicionais. A Tabela~\ref{tab:rsl_qs01} sintetiza a distribuição das arquiteturas investigadas na amostra.
+A síntese dos ambientes investigados demonstra que 23 dos 29 estudos primários, equivalentes a 79,3\% da amostra, concentram-se em infraestruturas baseadas em computação em nuvem, contêineres ou orquestração de microsserviços, evidenciando a transição das estratégias de monitoramento para arquiteturas distribuídas e efêmeras. De forma específica, 10 estudos, ou 34,5\%, avaliam \textit{clusters} Kubernetes e malhas de microsserviços; 7 estudos, ou 24,1\%, abordam infraestruturas em nuvem pública, híbrida, \textit{multi-cloud} e modelos \textit{cloud-native}; 6 estudos, ou 20,7\%, examinam contêineres Docker e cargas isoladas em nuvem ou borda; e os 6 estudos restantes, ou 20,7\%, dedicam-se a infraestruturas virtualizadas locais e servidores dedicados. A Tabela~\ref{tab:rsl_qs01} apresenta a distribuição das quatro categorias arquiteturais identificadas na amostra.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Distribuição dos ambientes de infraestrutura investigados nos estudos primários (QS01).}
     \label{tab:rsl_qs01}
     \footnotesize
-    \begin{tabular}{p{4.2cm}p{5.8cm}p{2.2cm}p{1.8cm}}
+    \begin{tabular}{p{4.3cm}p{5.5cm}p{2.2cm}p{2.0cm}}
         \hline
         \textbf{Categoria Arquitetural} & \textbf{Estudos Primários} & \textbf{Frequência} & \textbf{Percentual} \\ \hline
         \textit{Clusters} Kubernetes e malhas de microsserviços & S02, S04, S06, S07, S11, S15, S21, S27, S28, S29 & 10 & 34,5\% \\ \hline
-        Contêineres Docker e cargas isoladas em nuvem/borda & S09, S13, S14, S16, S18, S24 & 6 & 20,7\% \\ \hline
-        Nuvem pública, híbrida, \textit{multi-cloud} e modelos \textit{cloud-native} & S03, S05, S12, S17, S22, S23, S26 & 7 & 24,1\% \\ \hline
+        Infraestruturas em nuvem pública, híbrida, \textit{multi-cloud} e modelos \textit{cloud-native} & S03, S05, S12, S17, S22, S23, S26 & 7 & 24,1\% \\ \hline
+        Contêineres Docker e cargas isoladas em nuvem ou borda & S09, S13, S14, S16, S18, S24 & 6 & 20,7\% \\ \hline
         Infraestruturas virtualizadas locais e servidores dedicados & S01, S08, S10, S19, S20, S25 & 6 & 20,7\% \\ \hline
         \textbf{Total da Amostra} & \textbf{S01 a S29} & \textbf{29} & \textbf{100,0\%} \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
 
-Na categoria de orquestração de contêineres e microsserviços, os \textit{clusters} Kubernetes constituem o núcleo experimental predominante da literatura recente. As investigações abrangem desde ambientes gerenciados em provedores públicos de nuvem, tais como AWS EKS, Azure AKS e Google GKE \cite{joshisegireddy2026,aftab2026}, até implantações privadas de alta densidade que escalam de dezenas de nós físicos até emulações multi-domínio compostas por 1.600 entidades de trabalho \cite{shao2026a,shao2026b,devarajulu2025}. Nesse paradigma arquitetural, a volatilidade dos \textit{pods} e o compartilhamento do núcleo do sistema operacional hospedeiro exigem monitoramento contínuo em nível de nó e de malha de serviços \cite{darwesh2024,hao2025}. Adicionalmente, além de ecossistemas Linux nativos, parte dos trabalhos investiga contêineres Docker isolados para o empacotamento de motores SIEM e coletores de eventos \cite{sushma2025,velasquez2025,zhang2025}, bem como nós de trabalho baseados em Windows Server 2022 e Windows Server Core LTSC 2019 executando o tempo de execução \textit{containerd} sob orquestração Kubernetes para suporte a aplicações corporativas específicas \cite{jin2025}.
+Na categoria de \textit{clusters} Kubernetes e malhas de microsserviços, a orquestração de contêineres constitui o núcleo experimental predominante da literatura recente. As investigações abrangem desde ambientes gerenciados em provedores públicos de nuvem, tais como AWS EKS, Azure AKS e Google GKE \cite{joshisegireddy2026,aftab2026}, até implantações privadas de alta densidade que escalam de dezenas de nós físicos até emulações multi-domínio compostas por 1.600 entidades de trabalho \cite{shao2026a,shao2026b,devarajulu2025}. Nesse paradigma arquitetural, a volatilidade dos \textit{pods} e o compartilhamento do núcleo do sistema operacional hospedeiro exigem monitoramento contínuo em nível de nó e de malha de serviços \cite{darwesh2024,hao2025}. Além de ecossistemas Linux nativos, parte dos trabalhos investiga contêineres Docker e cargas isoladas para o empacotamento de motores SIEM e coletores de eventos \cite{sushma2025,velasquez2025,zhang2025}, bem como nós de trabalho baseados em Windows Server 2022 e Windows Server Core LTSC 2019 executando o tempo de execução \textit{containerd} sob orquestração Kubernetes para suporte a aplicações corporativas específicas \cite{jin2025}.
 
-No eixo de infraestruturas em nuvem híbrida, \textit{multi-cloud} e computação de borda, os estudos voltados à governança de postura avaliam arquiteturas que distribuem recursos simultaneamente entre múltiplos provedores de nuvem pública, monitorando instâncias de computação como Amazon EC2, blocos de armazenamento como Amazon S3 e Google Cloud Storage e políticas de gerenciamento de identidade e acesso \cite{torkura2021,joshisabhaya2026,kumar2026}. Para mitigar restrições de latência e conectividade em ambientes geograficamente dispersos, propostas recentes integram \textit{clusters} Kubernetes distribuídos entre máquinas virtuais em nuvem e dispositivos de borda descentralizada, incluindo nós Raspberry Pi e terminais inteligentes equipados com módulos criptográficos de hardware TPM 2.0, interconectados por redes sobrepostas seguras baseadas nos protocolos WireGuard e Tailscale \cite{kalafatidis2025,bungei2026,xu2025}.
+No eixo de infraestruturas em nuvem pública, híbrida, \textit{multi-cloud} e modelos \textit{cloud-native}, os estudos voltados à governança de postura avaliam arquiteturas que distribuem recursos simultaneamente entre múltiplos provedores de nuvem pública, monitorando instâncias de computação como Amazon EC2, blocos de armazenamento como Amazon S3 e Google Cloud Storage e políticas de gerenciamento de identidade e acesso \cite{torkura2021,joshisabhaya2026,kumar2026}. Para mitigar restrições de latência e conectividade em ambientes geograficamente dispersos, propostas recentes integram \textit{clusters} Kubernetes distribuídos entre máquinas virtuais em nuvem e dispositivos de borda descentralizada, incluindo nós Raspberry Pi e terminais inteligentes equipados com módulos criptográficos de hardware TPM 2.0, interconectados por redes sobrepostas seguras baseadas nos protocolos WireGuard e Tailscale \cite{kalafatidis2025,bungei2026,xu2025}.
 
-Por fim, as infraestruturas tradicionais e virtualizadas locais mantêm relevância em cenários de defesa militar, saúde hospitalar e auditoria de sistemas operacionais Linux e Windows. Nesses contextos, servidores físicos ou máquinas virtuais dedicadas hospedam sistemas críticos legados, servidores de imagens médicas PACS, \textit{firewalls} de borda como o OPNsense e coletores perimetrais de tráfego \cite{acosta2025,coutinho2023,setiawan2025,gajra2025}.
+Por fim, as infraestruturas virtualizadas locais e servidores dedicados mantêm relevância em cenários de defesa militar, saúde hospitalar e auditoria de sistemas operacionais Linux e Windows. Nesses contextos, servidores físicos ou máquinas virtuais dedicadas hospedam sistemas críticos legados, servidores de imagens médicas PACS, \textit{firewalls} de borda como o OPNsense e coletores perimetrais de tráfego \cite{acosta2025,coutinho2023,setiawan2025,gajra2025}.
+\FloatBarrier
 
 \subsection{Quais domínios de aplicação ou setores são abordados nos estudos primários?}
 \label{subsec:rsl_qs02}
 
-A análise do campo 06 evidencia que 23 dos 29 estudos primários, correspondentes a 79,3\% da amostra, enquadram-se no domínio transversal de Tecnologia da Informação corporativa e serviços \textit{cloud-native} de propósito geral. Outros 3 estudos, equivalentes a 10,3\% nos identificadores S08, S10 e S25, têm como objeto principal instituições do setor público e de defesa nacional, enquanto 3 estudos, ou 10,3\%, dedicam-se exclusivamente a setores críticos regulados: saúde hospitalar em S19, tecnologia financeira em S23 e despacho de energia elétrica em S28. A síntese quantitativa por domínio de aplicação é apresentada na Tabela~\ref{tab:rsl_qs02}.
+A distribuição setorial dos estudos primários mostra que 23 dos 29 trabalhos, correspondentes a 79,3\% da amostra, enquadram-se no domínio transversal de Tecnologia da Informação corporativa e serviços \textit{cloud-native} de propósito geral. Outros 3 estudos, equivalentes a 10,3\%, têm como objeto principal instituições do setor público, governo eletrônico e defesa nacional \cite{sasmito2025,acosta2025,enaw2018}, enquanto 3 estudos, ou 10,3\%, dedicam-se exclusivamente a infraestruturas críticas reguladas nos setores de saúde hospitalar \cite{coutinho2023}, tecnologia financeira \cite{mahida2026} e despacho de energia elétrica \cite{xu2025}. A síntese quantitativa por domínio de aplicação é apresentada na Tabela~\ref{tab:rsl_qs02}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Domínios de aplicação e setores econômicos abordados nos estudos primários (QS02).}
     \label{tab:rsl_qs02}
     \footnotesize
-    \begin{tabular}{p{4.4cm}p{5.6cm}p{2.2cm}p{1.8cm}}
+    \begin{tabular}{p{4.3cm}p{5.5cm}p{2.2cm}p{2.0cm}}
         \hline
         \textbf{Domínio / Setor Principal} & \textbf{Estudos Primários} & \textbf{Frequência} & \textbf{Percentual} \\ \hline
         TI Corporativa e Serviços \textit{Cloud-Native} Gerais & S01 a S07, S09, S11 a S18, S20 a S22, S24, S26, S27, S29 & 23 & 79,3\% \\ \hline
@@ -304,14 +329,15 @@ Na vertical de Tecnologia da Informação corporativa e serviços nativos em nuv
 
 No domínio do setor público, governo eletrônico e defesa, \citeonline{sasmito2025} abordam a modelagem de ameaças e a gestão de riscos cibernéticos em aplicações corporativas de um órgão governamental na Indonésia, enquanto \citeonline{enaw2018} investigam auditorias presenciais de segurança da informação conduzidas em múltiplos ministérios, departamentos e agências estatais de Camarões. Complementarmente, mesmo classificado na vertical de provedores de serviços em nuvem, o estudo de \citeonline{giulio2017} examina os requisitos de autorização para agências do governo federal norte-americano sob o programa FedRAMP. Na esfera militar, \citeonline{acosta2025} validam a implantação de um centro integrado de gerenciamento de incidentes cibernéticos na rede do Comando Conjunto das Forças Armadas do Peru, onde a soberania tecnológica e o isolamento de rede constituem premissas operacionais estritas.
 
-Quanto às infraestruturas críticas setoriais e reguladas, o setor financeiro e bancário é investigado diretamente por \citeonline{mahida2026} e utilizado como estudo de caso em ambientes multi-nuvem e corporativos por \citeonline{torkura2021} e \citeonline{aftab2026}, visando à detecção proativa de fraudes, prevenção de vazamentos em nuvem e conformidade contínua em transações de alta frequência. No setor de saúde operacional, \citeonline{coutinho2023} avaliam a proteção de servidores de arquivamento e comunicação de imagens médicas PACS/DICOM e prontuários eletrônicos em um hospital universitário contra ataques de \textit{ransomware} e acessos não autorizados fora do expediente, contexto também contemplado nas validações de \citeonline{devarajulu2025} e \citeonline{aftab2026}. Por sua vez, no setor de energia elétrica, \citeonline{xu2025} aplicam mecanismos de defesa endógena e telemetria de microsserviços sobre plataformas de despacho de carga e mercados regionais de distribuição elétrica.
+Quanto às infraestruturas críticas setoriais e reguladas, o setor financeiro e bancário é investigado diretamente por \citeonline{mahida2026} e utilizado como cenário de validação em ambientes multi-nuvem e corporativos por \citeonline{torkura2021} e \citeonline{aftab2026}, visando à detecção proativa de fraudes, prevenção de vazamentos em nuvem e conformidade contínua em transações de alta frequência. No setor de saúde operacional, \citeonline{coutinho2023} avaliam a proteção de servidores de arquivamento e comunicação de imagens médicas PACS/DICOM e prontuários eletrônicos em um hospital universitário contra ataques de \textit{ransomware} e acessos não autorizados fora do expediente, contexto também contemplado nas validações de \citeonline{devarajulu2025} e \citeonline{aftab2026}. No setor de energia elétrica, \citeonline{xu2025} aplicam mecanismos de defesa endógena e telemetria de microsserviços sobre plataformas de despacho de carga e mercados regionais de distribuição elétrica.
+\FloatBarrier
 
 \subsection{Quais tecnologias e plataformas de telemetria de segurança em \textit{runtime} são propostas ou avaliadas?}
 \label{subsec:rsl_qs03}
 
-A consolidação do campo 07 demonstra que a obtenção de visibilidade profunda em tempo de execução requer a combinação de sensores operando desde o núcleo do sistema operacional até a malha de serviços e o plano de controle em nuvem. A distribuição das tecnologias de telemetria identificadas nos 29 estudos primários é apresentada na Tabela~\ref{tab:rsl_qs03}.
+A obtenção de visibilidade profunda em tempo de execução requer a combinação de sensores operando desde o núcleo do sistema operacional até a malha de serviços e o plano de controle em nuvem. A distribuição das cinco camadas de tecnologias de telemetria identificadas nos 29 estudos primários é apresentada na Tabela~\ref{tab:rsl_qs03}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Categorias de tecnologias de telemetria em \textit{runtime} identificadas na amostra (QS03).}
     \label{tab:rsl_qs03}
@@ -321,25 +347,26 @@ A consolidação do campo 07 demonstra que a obtenção de visibilidade profunda
         \textbf{Camada de Telemetria} & \textbf{Mecanismos Técnicos Principais} & \textbf{Estudos Representativos} \\ \hline
         Instrumentação de \textit{Kernel} via eBPF & \textit{Kprobes}, \textit{tracepoints}, Cilium, Tetragon e \textit{eBPF-for-DFIR} em Linux e Windows (5 estudos; 17,2\%) & S04, S11, S21, S28, S29 \\ \hline
         Sensores de \textit{Syscalls} e Auditoria de Sistema Operacional & Motor CNCF Falco no \textit{kernel} (3 estudos; 10,3\%), subsistema Linux \textit{auditd} e canais do \textit{Windows Event Log} & S01, S07, S09, S14, S18, S20, S24, S27 \\ \hline
-        Agentes HIDS, NIDS, WAF e SIEM/XDR & Monitoramento de integridade de arquivos (FIM/\textit{syscheck}), SCA, Suricata, Zeek e OPNsense & S08, S10, S13, S19, S20 \\ \hline
+        Plataformas SIEM, HIDS, NIDS e WAF & SIEM Wazuh, monitoramento de integridade de arquivos (FIM/\textit{syscheck}), avaliação de configuração (SCA), Suricata, Zeek e OPNsense & S08, S10, S13, S19, S20 \\ \hline
         Malha de Serviços e Observabilidade Distribuída & Proxies \textit{sidecar} Envoy/Istio, OpenTelemetry, Prometheus, Grafana e rastreamento distribuído & S02, S06, S11, S15, S17, S23, S27, S28, S29 \\ \hline
         Trilhas de Auditoria de Plano de Controle em Nuvem & Kubernetes Audit Logs, AWS CloudTrail, Azure Activity Logs, GCP Audit Logs e OpenStack Keystone & S03, S05, S07, S11, S12, S16 \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
 
-Na camada de instrumentação de núcleo do sistema operacional e monitoramento de chamadas de sistema, a tecnologia \textit{Extended Berkeley Packet Filter}, conhecida pela sigla eBPF, consolidou-se como o principal avanço técnico para ambientes containerizados, sendo empregada diretamente na arquitetura proposta em 5 estudos, equivalentes a 17,2\% da amostra: S04, S11, S21, S28 e S29. Por meio de pontos de acoplamento \textit{kprobes}, \textit{tracepoints} e extensões de driver em modo núcleo, o eBPF permite inspecionar chamadas de sistema, operações de entrada e saída de arquivos, criação de processos e fluxos de rede TCP e UDP diretamente no núcleo dos sistemas Linux e Windows, sem modificar os binários das aplicações e sem impor a sobrecarga de contêineres \textit{sidecar} por \textit{pod} \cite{joshisegireddy2026,jin2025,kalafatidis2025,xu2025,hao2025}. Complementarmente, o motor aberto CNCF Falco é adotado como sensor primário de tempo de execução em 3 estudos, ou 10,3\% (S07, S18 e S27), além de figurar como linha de base comparativa em S11 e revisão taxonômica em S14 e S21, detectando comportamentos anômalos como a abertura de terminais interativos ou a leitura de credenciais em contêineres \cite{shao2026a,shao2026b,zhang2025}. Somadas as abordagens baseadas em eBPF e Falco, 8 estudos da amostra, ou 27,6\%, realizam interceptação direta de eventos no nível do \textit{kernel}. Em servidores Linux e Windows convencionais, destacam-se ainda o subsistema nativo \textit{auditd} com gravação em \texttt{audit.log} e os canais de segurança e operação do \textit{Windows Event Log} \cite{gajra2025,velasquez2025,sushma2025,upadhyaya2025}.
+Na camada de instrumentação de núcleo do sistema operacional e monitoramento de chamadas de sistema, a tecnologia \textit{Extended Berkeley Packet Filter}, conhecida pela sigla eBPF, consolidou-se como avanço técnico relevante para ambientes containerizados, sendo empregada diretamente na arquitetura proposta em 5 estudos, equivalentes a 17,2\% da amostra \cite{jin2025,joshisegireddy2026,kalafatidis2025,xu2025,hao2025}. Por meio de pontos de acoplamento \textit{kprobes}, \textit{tracepoints} e extensões de driver em modo núcleo, o eBPF permite inspecionar chamadas de sistema, operações de entrada e saída de arquivos, criação de processos e fluxos de rede TCP e UDP diretamente no núcleo dos sistemas Linux e Windows, sem modificar os binários das aplicações e sem impor a sobrecarga de contêineres \textit{sidecar} por \textit{pod} \cite{joshisegireddy2026,jin2025,kalafatidis2025,xu2025,hao2025}. Complementarmente, o motor aberto CNCF Falco é adotado como sensor primário de tempo de execução em 3 estudos, ou 10,3\% \cite{shao2026a,zhang2025,shao2026b}, além de figurar como linha de base comparativa em \citeonline{joshisegireddy2026} e referência taxonômica em \citeonline{upadhyaya2025} e \citeonline{kalafatidis2025}, detectando comportamentos anômalos como a abertura de terminais interativos ou a leitura de credenciais em contêineres. Somadas as abordagens baseadas em eBPF e Falco, 8 estudos da amostra, ou 27,6\%, realizam interceptação direta de eventos no nível do \textit{kernel}. Em servidores Linux e Windows convencionais, destacam-se ainda o subsistema nativo \textit{auditd} com gravação em \texttt{audit.log} e os canais de segurança e operação do \textit{Windows Event Log} \cite{gajra2025,velasquez2025,sushma2025,upadhyaya2025}.
 
-Na camada de sistemas de detecção de intrusão baseados em hospedeiro e em rede integrados a plataformas SIEM e XDR, os estudos empregam agentes instalados nos nós para executar o monitoramento de integridade de arquivos, a detecção de \textit{rootkits}, a varredura de vulnerabilidades e a avaliação automatizada de configuração de segurança \cite{bungei2026,setiawan2025,acosta2025}. Essa visibilidade de hospedeiro é combinada à inspeção de tráfego de perímetro e rede interna mediante captura de pacotes com Suricata e Zeek na distribuição Security Onion \cite{acosta2025}, imposição de políticas de rede nas camadas de enlace, transporte e aplicação via Cilium \cite{kalafatidis2025} e coleta de registros de bloqueio de \textit{firewalls} de aplicação \textit{web} e OPNsense \cite{sasmito2025,setiawan2025}.
+Na camada que reúne plataformas SIEM, sistemas de detecção de intrusão baseados em hospedeiro (HIDS) e em rede (NIDS) e \textit{firewalls} de aplicação \textit{web} (WAF), com destaque para o SIEM Wazuh, os estudos operam módulos de monitoramento nos nós hospedeiros para executar a verificação de integridade de arquivos, a detecção de \textit{rootkits}, a varredura de vulnerabilidades e a avaliação automatizada de configuração de segurança \cite{bungei2026,setiawan2025,acosta2025}. Essa visibilidade de hospedeiro é combinada à inspeção de tráfego de perímetro e rede interna mediante captura de pacotes com Suricata e Zeek na distribuição Security Onion \cite{acosta2025}, imposição de políticas de rede nas camadas de enlace, transporte e aplicação via Cilium \cite{kalafatidis2025} e coleta de registros de bloqueio de \textit{firewalls} de aplicação \textit{web} e OPNsense \cite{sasmito2025,setiawan2025}.
 
-Por sua vez, a telemetria de malha de serviços e de provedores de nuvem apoia-se nos três pilares da observabilidade distribuída: registros de eventos, métricas de séries temporais e rastreamento de transações. As arquiteturas avaliadas utilizam \textit{proxies sidecar} Envoy gerenciados pelo Istio Service Mesh em conjunto com os coletores OpenTelemetry, Prometheus e Jaeger para correlacionar chamadas HTTP e gRPC, desvios de latência e grafos de topologia entre microsserviços \cite{aftab2026,devarajulu2025,hao2025,albuquerque2024}. Nos planos de controle em nuvem e orquestração, realiza-se a ingestão contínua de trilhas de auditoria administrativa por meio do AWS CloudTrail, Azure Activity Logs, GCP Audit Logs, OpenStack Keystone e Kubernetes Audit Logs \cite{torkura2021,kumar2026,joshisabhaya2026,shao2026a}.
+Na camada de malha de serviços e provedores de nuvem, a telemetria apoia-se nos três pilares da observabilidade distribuída: registros de eventos, métricas de séries temporais e rastreamento de transações. As arquiteturas avaliadas utilizam \textit{proxies sidecar} Envoy gerenciados pelo Istio Service Mesh em conjunto com os coletores OpenTelemetry, Prometheus e Jaeger para correlacionar chamadas HTTP e gRPC, desvios de latência e grafos de topologia entre microsserviços \cite{aftab2026,devarajulu2025,hao2025,albuquerque2024}. Nos planos de controle em nuvem e orquestração, realiza-se a ingestão contínua de trilhas de auditoria administrativa por meio do AWS CloudTrail, Azure Activity Logs, GCP Audit Logs, OpenStack Keystone e Kubernetes Audit Logs \cite{torkura2021,kumar2026,joshisabhaya2026,shao2026a}.
+\FloatBarrier
 
 \subsection{Como é realizada a coleta, centralização, decodificação e preservação dos logs de auditoria nos estudos?}
 \label{subsec:rsl_qs04}
 
-A análise do campo 08 revela que os \textit{pipelines} de engenharia de dados para registros de auditoria de segurança são estruturados em quatro estágios operacionais sequenciais, sintetizados na Tabela~\ref{tab:rsl_qs04}.
+Os \textit{pipelines} de engenharia de dados para registros de auditoria de segurança identificados na literatura estruturam-se em quatro estágios operacionais sequenciais, sintetizados na Tabela~\ref{tab:rsl_qs04}.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Estágios operacionais dos \textit{pipelines} de gestão de \textit{logs} de auditoria (QS04).}
     \label{tab:rsl_qs04}
@@ -362,21 +389,22 @@ No segundo estágio, dedicado à ingestão, enfileiramento e controle de vazão,
 No terceiro estágio, ocorrem a decodificação, a normalização sintática e o enriquecimento semântico dos eventos. Os registros brutos provenientes de fontes heterogêneas nos formatos Syslog, JSON, CEF e GELF atravessam motores de análise léxica e decodificadores no Logstash, Graylog Pipelines e Wazuh Decoders para padronizar carimbos de tempo segundo a norma ISO-8601, extrair endereços de rede e enriquecer cada registro com metadados de identidade do \textit{pod}, nó ou contêiner de origem \cite{sushma2025,jin2025,albuquerque2024}. Avançando sobre a indexação textual clássica, \citeonline{devarajulu2025} convertem registros estruturados em vetores multidimensionais armazenados na base vetorial FAISS, viabilizando a recuperação aumentada por geração com Grandes Modelos de Linguagem para produzir explicações auditáveis sobre anomalias detectadas.
 
 No quarto estágio, voltado à preservação forense, imutabilidade e privacidade de dados, os registros processados são retidos em índices configurados em modo de escrita exclusiva \textit{append-only} no Elasticsearch e OpenSearch, assinados digitalmente ou submetidos à ancoragem periódica de resumos criptográficos na rede \textit{blockchain} permissionada Hyperledger Fabric para assegurar o não repúdio probatório \cite{shao2026b,devarajulu2025,aftab2026}. Adicionalmente, para conciliar a retenção forense com leis de proteção de dados pessoais e reduzir custos de armazenamento, os estudos de \citeonline{portillo2019} e \citeonline{velasquez2025} implementam filtros de minimização e criptografia seletiva baseados nos algoritmos AES, Blowfish e SHA exclusivamente sobre atributos sensíveis como endereços de correio eletrônico, identificadores civis e endereços IP, alcançando reduções de até 65\% no volume de dados transmitidos ao SIEM.
+\FloatBarrier
 
 \subsection{Quais ferramentas específicas de código aberto ou proprietárias são empregadas nas soluções implementadas?}
 \label{subsec:rsl_qs05}
 
-O levantamento do campo 09 evidencia amplo predomínio de ferramentas de código aberto nas arquiteturas implementadas, escolha fundamentada pelos autores na auditabilidade do código-fonte, na inexistência de custos de licenciamento atrelados ao volume diário de ingestão e na facilidade de integração programática em esteiras DevSecOps. A Tabela~\ref{tab:rsl_qs05} consolida as ferramentas tecnológicas mapeadas na amostra.
+Verifica-se amplo predomínio de ferramentas de código aberto nas arquiteturas implementadas na amostra, escolha fundamentada pelos autores na auditabilidade do código-fonte, na inexistência de custos de licenciamento atrelados ao volume diário de ingestão e na facilidade de integração programática em esteiras DevSecOps. A Tabela~\ref{tab:rsl_qs05} consolida as ferramentas tecnológicas identificadas nos estudos primários.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Ferramentas de código aberto e proprietárias empregadas nos estudos primários (QS05).}
     \label{tab:rsl_qs05}
     \footnotesize
     \begin{tabular}{p{3.8cm}p{6.2cm}p{4.0cm}}
         \hline
-        \textbf{Categoria Ferramental} & \textbf{Ferramentas Mapeadas na Planilha de Extração} & \textbf{Estudos Primários} \\ \hline
-        Plataformas SIEM, HIDS e XDR Abertas & \textbf{Wazuh} (Server/Manager, Indexer, Dashboard e Agent: 3 estudos; 10,3\%), \textbf{Elastic Stack / ELK e OpenSearch} (9 estudos; 31,0\%) e \textbf{Graylog} com MongoDB (1 estudo; 3,4\%) & S04, S06, S07, S09, S10, S13, S15, S16, S18, S20, S21, S24 \\ \hline
+        \textbf{Categoria Ferramental} & \textbf{Ferramentas Mapeadas nos Estudos} & \textbf{Estudos Primários} \\ \hline
+        Plataformas SIEM e HIDS de Código Aberto & \textbf{Wazuh} (Server/Manager, Indexer, Dashboard e Agent: 3 estudos; 10,3\%), \textbf{Elastic Stack / ELK e OpenSearch} (9 estudos; 31,0\%) e \textbf{Graylog} com MongoDB (1 estudo; 3,4\%) & S04, S06, S07, S09, S10, S13, S15, S16, S18, S20, S21, S24 \\ \hline
         Plataformas SIEM e NAC Proprietárias/Comerciais & Splunk Enterprise, Microsoft Azure Sentinel, IBM QRadar, ManageEngine EventLog Analyzer, Cisco ISE e Cisco DUO & S14, S15, S16, S19, S24, S26 \\ \hline
         Sensores de \textit{Kernel}, Rede e Perímetro & CNCF Falco, Tetragon, Cilium, Security Onion (Suricata e Zeek), OPNsense e \textit{eBPF-for-DFIR} & S04, S07, S10, S11, S18, S20, S21, S27, S28 \\ \hline
         Motores de Políticas e Identidade \textit{Zero Trust} & Open Policy Agent (OPA / Gatekeeper em linguagem Rego), SPIRE (SPIFFE), Checkov e Kubernetes NetworkPolicy & S07, S15, S27, S28, S29 \\ \hline
@@ -385,25 +413,26 @@ O levantamento do campo 09 evidencia amplo predomínio de ferramentas de código
     \fonte{Elaborado pelo autor.}
 \end{table}
 
-No segmento de plataformas SIEM, HIDS e XDR, o ecossistema aberto Wazuh, composto pelos módulos Server, Indexer, Dashboard e Agent, destaca-se como a principal solução unificada de código aberto nos estudos de alta relevância S10, S13 e S20, além de ser referenciado nas discussões de auditoria governamental. Sua escolha decorre da convergência nativa entre coleta de registros de auditoria, monitoramento de integridade de arquivos, avaliação automatizada de configuração frente aos catálogos CIS Benchmarks e execução de resposta ativa \cite{acosta2025,bungei2026,setiawan2025}. Complementarmente, a pilha formada por Elasticsearch, Logstash e Kibana, juntamente com sua derivação OpenSearch, constitui o motor de indexação e visualização mais recorrente da literatura, integrando os pipelines de 9 estudos (S04, S06, S07, S09, S15, S16, S18, S21 e S24) \cite{jin2025,shao2026a,zhang2025,kalafatidis2025}, ao passo que o Graylog orquestrado em contêineres Docker com banco documental MongoDB é validado como alternativa ágil de centralização em S09 \cite{sushma2025}. No espectro de softwares proprietários e comerciais, registram-se o emprego do Splunk Enterprise em ambiente hospitalar \cite{coutinho2023}, do Microsoft Azure Sentinel em arquiteturas multi-nuvem \cite{kumar2026,aftab2026}, de bases de registros do IBM QRadar \cite{velasquez2025}, do ManageEngine EventLog Analyzer \cite{portillo2019} e dos controladores Cisco ISE e Cisco DUO \cite{upadhyaya2025}.
+No segmento de plataformas SIEM e HIDS de código aberto, o SIEM Wazuh, composto pelos módulos Server, Indexer, Dashboard e Agent, destaca-se como a principal solução unificada nos estudos de \citeonline{acosta2025}, \citeonline{bungei2026} e \citeonline{setiawan2025}, além de ser referenciado nas discussões de auditoria governamental. Sua escolha decorre da convergência nativa entre coleta de registros de auditoria, monitoramento de integridade de arquivos, avaliação automatizada de configuração frente aos catálogos CIS Benchmarks e execução de resposta ativa \cite{acosta2025,bungei2026,setiawan2025}. Complementarmente, a pilha formada por Elasticsearch, Logstash e Kibana, juntamente com sua derivação OpenSearch, constitui o motor de indexação e visualização mais recorrente da literatura, integrando os \textit{pipelines} de 9 estudos \cite{jin2025,devarajulu2025,shao2026a,sushma2025,aftab2026,kumar2026,zhang2025,kalafatidis2025,velasquez2025}, ao passo que o Graylog orquestrado em contêineres Docker com banco documental MongoDB é validado como alternativa ágil de centralização por \citeonline{sushma2025}. No espectro de softwares proprietários e comerciais, registram-se o emprego do Splunk Enterprise em ambiente hospitalar \cite{coutinho2023}, do Microsoft Azure Sentinel em arquiteturas multi-nuvem \cite{kumar2026,aftab2026}, de bases de registros do IBM QRadar \cite{velasquez2025}, do ManageEngine EventLog Analyzer \cite{portillo2019} e dos controladores Cisco ISE e Cisco DUO \cite{upadhyaya2025}.
 
 No âmbito dos sensores de núcleo de sistema operacional, interceptação de rede e motores de políticas como código, o Falco, o Tetragon e o Cilium são empregados para extrair telemetria profunda de chamadas de sistema e impor restrições de conectividade diretamente no \textit{kernel} Linux em \textit{clusters} Kubernetes \cite{shao2026a,shao2026b,zhang2025,kalafatidis2025}. Na camada de perímetro de rede, combinam-se a distribuição Security Onion equipada com os motores Suricata e Zeek para análise de tráfego \cite{acosta2025} e o \textit{firewall} aberto OPNsense integrado aos alertas do Wazuh para bloqueio dinâmico de ataques de força bruta \cite{setiawan2025}. Para governança declarativa e arquitetura de confiança zero, os estudos adotam o Open Policy Agent com políticas escritas na linguagem Rego, o verificador estático Checkov para modelos Terraform e Helm e o plano de identidade criptográfica SPIRE \cite{shao2026a,shao2026b,aftab2026,xu2025}.
 
 Por fim, na camada de resposta a incidentes e inteligência analítica, as plataformas abertas TheHive e iTop são acopladas aos SIEMs para automatizar a abertura de chamados e a gestão do fluxo de trabalho de equipes de resposta \cite{coutinho2023,acosta2025}. Em paralelo, observa-se a incorporação extensiva de bibliotecas de aprendizado de máquina, como \textit{scikit-learn} com algoritmos Random Forest, Isolation Forest e AdaBoost, redes neurais profundas baseadas em Autoencoders e memórias de longo e curto prazo LSTM, bem como Grandes Modelos de Linguagem, incluindo GPT-4 e Llama-3.3-70B, para classificar anomalias comportamentais e reduzir taxas de falsos positivos \cite{darwesh2024,devarajulu2025,kalafatidis2025,joshisegireddy2026}.
+\FloatBarrier
 
 \subsection{Quais normas e frameworks de cibersegurança são utilizados como referência de conformidade nos estudos?}
 \label{subsec:rsl_qs06}
 
-A auditoria do campo 10 demonstra que 5 dos 29 estudos primários, correspondentes a 17,2\% nos identificadores S01, S02, S09, S17 e S29, não reportam a adoção ou o mapeamento formal de qualquer \textit{framework} normativo de conformidade cibernética em suas soluções, limitando-se a menções genéricas ou ao padrão sintático de data e hora ISO-8601 em S17. Nos 24 estudos restantes, equivalentes a 82,8\% da amostra, os requisitos de monitoramento ancoram-se em quatro famílias principais de padrões internacionais e matrizes de ameaças, cuja distribuição quantitativa é detalhada na Tabela~\ref{tab:rsl_qs06}. Em termos de frequência absoluta na amostra total de 29 artigos, as publicações do NIST lideram com 14 estudos (48,3\%), seguidas pelo regulamento europeu GDPR em 8 estudos (27,6\%), pelo catálogo CIS Controls e CIS Benchmarks em 6 estudos (20,7\%), pela família ISO/IEC 27000 em 6 estudos (20,7\%) e pela matriz MITRE ATT\&CK em 5 estudos (17,2\%).
+O mapeamento normativo dos estudos primários indica que 5 dos 29 trabalhos, correspondentes a 17,2\% da amostra \cite{gajra2025,darwesh2024,sushma2025,albuquerque2024,hao2025}, não reportam a adoção ou o mapeamento formal de qualquer \textit{framework} normativo de conformidade cibernética em suas soluções, limitando-se a menções genéricas ou ao padrão sintático de data e hora ISO-8601 em \citeonline{albuquerque2024}. Nos 24 estudos restantes, equivalentes a 82,8\% da amostra, os requisitos de monitoramento ancoram-se em quatro famílias principais de padrões internacionais e matrizes de ameaças, cuja distribuição quantitativa é detalhada na Tabela~\ref{tab:rsl_qs06}. Em termos de frequência absoluta na amostra de 29 artigos, as publicações do NIST lideram com 14 estudos, ou 48,3\%, seguidas pelo regulamento europeu GDPR com 8 estudos, ou 27,6\%, pelos catálogos CIS Controls e CIS Benchmarks com 6 estudos, ou 20,7\%, pela família ISO/IEC 27000 com 6 estudos, ou 20,7\%, e pela matriz MITRE ATT\&CK com 5 estudos, ou 17,2\%.
 
-\begin{table}[htb]
+\begin{table}[!htbp]
     \centering
     \caption{Normas, \textit{frameworks} de conformidade e matrizes de ameaças referenciados na amostra (QS06).}
     \label{tab:rsl_qs06}
     \footnotesize
     \begin{tabular}{p{4.4cm}p{5.6cm}p{2.0cm}p{2.0cm}}
         \hline
-        \textbf{Norma / \textit{Framework} de Referência} & \textbf{Estudos Primários na Planilha} & \textbf{Frequência} & \textbf{Percentual ($n=29$)} \\ \hline
+        \textbf{Norma / \textit{Framework} de Referência} & \textbf{Estudos Primários} & \textbf{Frequência} & \textbf{Percentual ($n=29$)} \\ \hline
         Publicações do NIST (SP 800-53, 800-61, 800-207, 800-128, 800-190, AI RMF) & S03, S04, S05, S06, S07, S08, S10, S12, S14, S15, S19, S22, S24, S27 & 14 & 48,3\% \\ \hline
         Regulamento Geral sobre a Proteção de Dados (GDPR) & S03, S06, S12, S15, S16, S23, S24, S26 & 8 & 27,6\% \\ \hline
         CIS Controls e CIS Benchmarks (Linux, Kubernetes, AWS, GCP) & S03, S05, S07, S12, S13, S28 & 6 & 20,7\% \\ \hline
@@ -421,296 +450,244 @@ No âmbito dos Sistemas de Gestão da Segurança da Informação e governança d
 
 Nas regulamentações setoriais e de proteção de dados pessoais, o regulamento europeu GDPR, a lei norte-americana de dados de saúde HIPAA e o padrão da indústria de cartões de pagamento PCI-DSS impõem requisitos rigorosos de rastreabilidade de acesso, imutabilidade de registros de auditoria, explicabilidade algorítmica nos termos do Artigo 22 do GDPR e proteção de dados desde a concepção conforme o Artigo 25 do mesmo diploma \cite{portillo2019,velasquez2025,devarajulu2025,aftab2026,mahida2026}. Por fim, nas matrizes de conhecimento de adversários e modelagem de risco, a estrutura MITRE ATT\&CK, em suas matrizes corporativa e de contêineres, é utilizada em 5 estudos para correlacionar alertas de SIEM a táticas de escalada de privilégios, evasão de defesa e movimentação lateral \cite{sasmito2025,zhang2025,kalafatidis2025,joshisegireddy2026,kumar2026}, sendo complementada pelo catálogo OWASP Top 10 para aplicações \textit{web} e Kubernetes \cite{setiawan2025,shao2026a} e pelo modelo quantitativo de risco FAIR \cite{sasmito2025}.
 
-Cumpre destacar que nenhum dos 29 estudos primários referencia o PPSI 2.0, a NC nº 21/IN01/DSIC/GSI-PR ou a Lei Geral de Proteção de Dados Pessoais brasileira. Essa ausência deve-se à circunscrição jurisdicional desses normativos ao Estado brasileiro. Todavia, como o segmento de segurança da informação do PPSI 2.0 fundamenta-se diretamente nos \textit{CIS Controls} \cite{ppsi2026}, as evidências técnicas extraídas dos estudos que avaliam controles CIS, NIST SP 800-53 e ISO/IEC 27002 são diretamente transferíveis para o contexto das infraestruturas da Administração Pública Federal.
+Observa-se que nenhum dos 29 estudos primários referencia o PPSI 2.0, a NC nº 21/IN01/DSIC/GSI-PR ou a Lei Geral de Proteção de Dados Pessoais brasileira. Essa ausência deve-se à circunscrição jurisdicional desses normativos ao Estado brasileiro. Todavia, como o segmento de segurança da informação do PPSI 2.0 fundamenta-se diretamente nos \textit{CIS Controls} \cite{ppsi2026}, as evidências técnicas extraídas dos estudos que avaliam controles CIS, NIST SP 800-53 e ISO/IEC 27002 são diretamente transferíveis para o contexto das infraestruturas da Administração Pública Federal.
+\FloatBarrier
 
 \subsection{De que maneira o CIS Control 8 (Gestão de Logs de Auditoria) ou controles equivalentes são abordados, implementados ou avaliados?}
 \label{subsec:rsl_qs07}
 
-A extração do Campo 11 revelou que nenhum dos 29 estudos primários reporta a avaliação da aderência às doze salvaguardas do \textit{CIS Control 8 v8} de forma individualizada. No entanto, as capacidades técnicas exigidas por esse controle são operacionalizadas na literatura por meio de quatro pilares práticos, sintetizados na Tabela~\ref{tab:rsl_qs07}. Cumpre ressaltar que a correspondência com as medidas do \textit{CIS Control 8 v8} constitui um mapeamento analítico estabelecido neste trabalho a partir das evidências extraídas, e não uma classificação nominal declarada pelos autores dos estudos primários.
+Nenhum dos 29 estudos primários avaliou individualmente as doze medidas do \textit{CIS Control 8}, tendo os trabalhos abordado controles equivalentes de gestão de registros e auditoria previstos em catálogos correlatos, como NIST SP 800-53, ISO/IEC 27002 e \textit{CIS Benchmarks}. A análise das soluções implementadas nos artigos primários revela quatro pilares técnicos recorrentes de operacionalização da auditoria em tempo de execução. A Tabela~\ref{tab:rsl_qs07} apresenta esses quatro pilares reportados na literatura em conjunto com uma síntese interpretativa elaborada neste trabalho, que relaciona cada capacidade técnica às salvaguardas correspondentes do \textit{CIS Control 8}.
 
-\begin{table}[htb]
-\centering
-\caption{Mapeamento analítico entre capacidades técnicas da literatura e salvaguardas do CIS Control 8 (QS07)}
-\label{tab:rsl_qs07}
-\footnotesize
-\begin{tabular}{p{3.6cm}p{2.3cm}p{5.8cm}p{2.5cm}}
-\toprule
-\textbf{Pilar Técnico Operacional} & \textbf{Medidas CIS Control 8 Equivalentes} & \textbf{Mecanismos Implementados na Literatura} & \textbf{Estudos Representativos} \\
-\midrule
-Centralização Multi-Fonte e Padronização Temporal & 8.2, 8.4 e 8.9 & Consolidação de logs de autenticação, processos e rede em SIEM centralizado e sincronização temporal sob a norma ISO-8601. & S09, S10, S13, S17, S19, S20, S24, S27 \\
-\addlinespace
-Auditoria de Linha de Comando, Kernel e Aplicações & 8.5, 8.8 e 8.12 & Captura de execuções via \textit{PowerShell/Operational}, \textit{auditd}, \textit{syscalls} eBPF/Falco e chamadas à API do Kubernetes. & S01, S04, S07, S09, S11, S18, S21, S29 \\
-\addlinespace
-Proteção da Integridade, Imutabilidade e Retenção & 8.3 e 8.10 & Transmissão imediata via TLS autenticado, controle de acesso RBAC, armazenamento \textit{append-only} e auditoria via módulo SCA. & S06, S09, S13, S15, S22, S26 \\
-\addlinespace
-Revisão Automatizada, Correlação e Resposta Ativa & 8.11 & Motores de correlação SIEM, grafos de identidade e bloqueio automatizado via \textit{firewalls} ou \textit{NetworkPolicies}. & S07, S10, S15, S20, S21, S27 \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Mapeamento analítico entre capacidades técnicas da literatura e salvaguardas do CIS Control 8 (QS07).}
+    \label{tab:rsl_qs07}
+    \footnotesize
+    \begin{tabular}{p{3.6cm}p{2.3cm}p{5.6cm}p{2.5cm}}
+        \hline
+        \textbf{Pilar Técnico Reportado} & \textbf{Medidas CIS Control 8 Equivalentes} & \textbf{Mecanismos Implementados na Literatura} & \textbf{Estudos Representativos} \\ \hline
+        Centralização Multi-Fonte e Padronização Temporal & 8.2, 8.4 e 8.9 & Consolidação de registros de autenticação, processos e rede em SIEM centralizado e sincronização temporal sob a norma ISO-8601. & S09, S10, S13, S17, S19, S20, S24, S27 \\ \hline
+        Auditoria de Linha de Comando, Kernel e Aplicações & 8.5, 8.8 e 8.12 & Captura de execuções via \textit{PowerShell/Operational}, \textit{auditd}, \textit{syscalls} eBPF/Falco e chamadas à API do Kubernetes. & S01, S04, S07, S09, S11, S18, S21, S29 \\ \hline
+        Proteção da Integridade, Imutabilidade e Retenção & 8.3 e 8.10 & Transmissão imediata via TLS autenticado, controle de acesso RBAC, armazenamento \textit{append-only} e auditoria via módulo SCA. & S06, S09, S13, S15, S22, S26 \\ \hline
+        Revisão Automatizada, Correlação e Resposta Ativa & 8.11 & Motores de correlação SIEM, grafos de identidade e bloqueio automatizado via \textit{firewalls} ou \textit{NetworkPolicies}. & S07, S10, S15, S20, S21, S27 \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-O primeiro pilar compreende a centralização multi-fonte e a padronização temporal, equivalentes às Medidas 8.2, 8.4 e 8.9 do \textit{CIS Control 8}. Os estudos implementam a consolidação obrigatória de eventos de autenticação, falhas de login como o \textit{Event ID 4625} no Windows e registros SSH no Linux, criação de processos e tráfego de rede em repositórios SIEM centralizados como Wazuh, Graylog, Splunk e ELK, eliminando silos locais de armazenamento \cite{sushma2025,setiawan2025,acosta2025,coutinho2023}. A sincronização e a padronização de carimbos de tempo sob a norma ISO-8601 são tratadas como pré-requisito para permitir a reconstrução causal de incidentes entre microsserviços distribuídos \cite{albuquerque2024,shao2026b}.
+O primeiro pilar reportado nos estudos compreende a centralização multi-fonte e a padronização temporal, capacidades que na síntese interpretativa deste trabalho correspondem às Medidas 8.2, 8.4 e 8.9 do \textit{CIS Control 8}. Os artigos implementam a consolidação de eventos de autenticação, falhas de acesso como o \textit{Event ID 4625} no Windows e registros SSH no Linux, criação de processos e tráfego de rede em repositórios SIEM centralizados como Wazuh, Graylog, Splunk e ELK, eliminando silos locais de armazenamento \cite{sushma2025,setiawan2025,acosta2025,coutinho2023}. A sincronização e a padronização de carimbos de tempo sob a norma ISO-8601 são tratadas pelos autores como requisito básico para reconstruir a sequência causal de incidentes entre microsserviços distribuídos \cite{albuquerque2024,shao2026b}.
 
-O segundo pilar abrange a auditoria detalhada de linha de comando, kernel e aplicações, correspondente às Medidas 8.5, 8.8 e 8.12. Para superar a cegueira de registros superficiais, as arquiteturas capturam execuções completas de linha de comando por meio de canais \textit{PowerShell/Operational}, do subsistema \textit{auditd} e de chamadas de sistema interceptadas por eBPF e Falco, além de registrar eventos de camada de aplicação e plano de controle, tais como chamadas ao \texttt{kube-apiserver} do Kubernetes e transações de banco de dados \cite{sushma2025,jin2025,zhang2025,hao2025}.
+O segundo pilar abrange a auditoria detalhada de linha de comando, núcleo do sistema e aplicações, associada analiticamente às Medidas 8.5, 8.8 e 8.12. Para superar a limitação de registros superficiais, as arquiteturas capturam execuções de linha de comando por meio de canais \textit{PowerShell/Operational}, do subsistema \textit{auditd} e de chamadas de sistema interceptadas por eBPF e Falco, além de registrar eventos de camada de aplicação e plano de controle, incluindo chamadas ao \texttt{kube-apiserver} do Kubernetes e transações de banco de dados \cite{sushma2025,jin2025,zhang2025,hao2025}.
 
-O terceiro pilar refere-se à proteção da integridade, imutabilidade e retenção segura, associada às Medidas 8.3 e 8.10. Sob o prisma normativo, \citeonline{giulio2017} destacam que a proteção contra adulteração de ferramentas e registros de auditoria, prevista no controle \texttt{IAM-01} da matriz CSA CCM e na família \texttt{AU} do NIST SP 800-53, é crítica para impedir que invasores apaguem seus rastros. Tecnicamente, os trabalhos implementam essa salvaguarda transmitindo os registros imediatamente para fora do nó comprometido por canais TLS autenticados \cite{sushma2025}, aplicando controle de acesso baseado em papéis, armazenando os eventos em bancos \textit{append-only} \cite{aftab2026,devarajulu2025} e utilizando o módulo SCA do Wazuh para auditar políticas de endurecimento baseadas em \textit{CIS Benchmarks} \cite{bungei2026}.
+O terceiro pilar refere-se à proteção da integridade, imutabilidade e retenção segura, relacionada na síntese às Medidas 8.3 e 8.10. Sob o prisma normativo, \citeonline{giulio2017} destacam que a proteção contra adulteração de ferramentas e registros de auditoria, prevista no controle \texttt{IAM-01} da matriz CSA CCM e na família \texttt{AU} do NIST SP 800-53, é decisiva para impedir que invasores apaguem seus rastros. Tecnicamente, os trabalhos implementam essa salvaguarda transmitindo os registros para fora do nó monitorado por canais TLS autenticados \cite{sushma2025}, aplicando controle de acesso baseado em papéis, armazenando os eventos em repositórios \textit{append-only} \cite{aftab2026,devarajulu2025} e utilizando o módulo SCA do SIEM Wazuh para auditar políticas de endurecimento baseadas em \textit{CIS Benchmarks} \cite{bungei2026}.
 
-Por fim, o quarto pilar contempla a revisão automatizada, a correlação e a resposta ativa, alinhadas à Medida 8.11. Em substituição à revisão manual exaustiva de registros, a literatura acopla motores de correlação de regras, grafos de identidade e modelos de inteligência artificial sobre os índices do SIEM para triagem contínua, disparando bloqueios automatizados em \textit{firewalls} perimetrais ou políticas de isolamento de rede como \textit{Kubernetes NetworkPolicies} em milissegundos ou segundos após a detecção da anomalia \cite{setiawan2025,shao2026a,kalafatidis2025,aftab2026}.
+Por fim, o quarto pilar contempla a revisão automatizada, a correlação e a resposta ativa, vinculadas analiticamente à Medida 8.11. Em substituição à inspeção manual exaustiva de registros, a literatura acopla motores de correlação de regras, grafos de identidade e modelos de aprendizado de máquina sobre os índices do SIEM para triagem contínua, acionando bloqueios automatizados em \textit{firewalls} perimetrais ou políticas de isolamento como \textit{Kubernetes NetworkPolicies} após a detecção de anomalias \cite{setiawan2025,shao2026a,kalafatidis2025,aftab2026}.
+\FloatBarrier
 
 \subsection{Quais métricas, escalas graduais ou modelos de avaliação de maturidade são aplicados para quantificar o grau de conformidade ou segurança alcançado?}
 \label{subsec:rsl_qs08}
 
-A extração do Campo 12 revelou uma acentuada assimetria na literatura científica: 20 dos 29 estudos primários, equivalentes a 69,0\% da amostra, não adotam qualquer escala formal de maturidade ou índice de conformidade normativa, restringindo-se a métricas de desempenho algorítmico e computacional. Apenas 9 estudos, correspondentes a 31,0\% do corpus, reportam métricas voltadas à prontidão de auditoria, cobertura normativa, implementação de recomendações ou índices de confiança, e um único trabalho, representando 3,4\% da amostra, aplica uma escala ordinal formal de capacidade de processo \cite{coutinho2023}. A Tabela~\ref{tab:rsl_qs08} sintetiza as famílias de métricas identificadas nos estudos.
+A distribuição dos indicadores de avaliação evidencia acentuada assimetria na literatura científica: 20 dos 29 estudos primários, equivalentes a 69,0\% da amostra, não adotam qualquer escala gradual ou modelo formal de maturidade normativa, restringindo-se a métricas de desempenho algorítmico e computacional. Apenas 9 estudos, correspondentes a 31,0\% da amostra, reportam métricas voltadas à prontidão de auditoria, cobertura de controles normativos, implementação de recomendações ou índices de confiança, e um único trabalho, representando 3,4\% do total, aplica uma escala ordinal formal de capacidade de processo \cite{coutinho2023}. A Tabela~\ref{tab:rsl_qs08} sintetiza as categorias de métricas identificadas nos estudos primários.
 
-\begin{table}[htb]
-\centering
-\caption{Categorias de métricas de maturidade, conformidade e desempenho nos estudos primários (QS08)}
-\label{tab:rsl_qs08}
-\footnotesize
-\begin{tabular}{p{3.8cm}p{5.8cm}p{2.8cm}cc}
-\toprule
-\textbf{Categoria de Métrica} & \textbf{Indicadores e Escalas Reportadas} & \textbf{Estudos com Registro Explícito} & \textbf{Qtd.} & \textbf{\%} \\
-\midrule
-Escala Ordinal Formal de Maturidade & Escala ISO/IEC 15504 SPICE em 4 níveis graduais: \textit{Not Achieved}, \textit{Partially Achieved}, \textit{Largely Achieved} e \textit{Fully Achieved}. & S19 & 1 & 3,4\% \\
-\addlinespace
-Índices de Conformidade, Cobertura e Confiança & Taxa de aprovação SCA/\textit{CIS Benchmarks}, cobertura ISO 27002 e NIST, prontidão de auditoria, taxa de implementação governamental e \textit{Trust Score}. & S06, S07, S13, S22, S23, S24, S25, S27, S28 & 9 & 31,0\% \\
-\addlinespace
-Métricas Operacionais de Detecção, ML e Sobrecarga & MTTD, MTTR, Taxa de Falsos Positivos, Precisão, \textit{Recall}, \textit{F1-Score}, AUC-ROC, consumo de CPU/RAM, latência e vazão em EPS. & S01 a S18, S20, S21, S23, S24, S26 a S29 & 26 & 89,7\% \\
-\addlinespace
-Ausência de Escala Formal de Maturidade & Estudos que registram explicitamente ``não informado'' ou ``não reportado'' para escalas formais de maturidade corporativa ou normativa. & S01 a S05, S07 a S12, S14 a S18, S20, S21, S26, S29 & 20 & 69,0\% \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026). Nota: As categorias não são mutuamente exclusivas, pois estudos com índices de conformidade também aferem métricas de desempenho.}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Categorias de métricas de maturidade, conformidade e desempenho nos estudos primários (QS08).}
+    \label{tab:rsl_qs08}
+    \footnotesize
+    \begin{tabular}{p{3.5cm}p{5.5cm}p{2.7cm}p{0.9cm}p{1.2cm}}
+        \hline
+        \textbf{Categoria de Métrica} & \textbf{Indicadores e Escalas Reportadas} & \textbf{Estudos Primários} & \textbf{Qtd.} & \textbf{\%} \\ \hline
+        Escala Ordinal Formal de Maturidade & Escala ISO/IEC 15504 SPICE em 4 níveis graduais: \textit{Not Achieved}, \textit{Partially Achieved}, \textit{Largely Achieved} e \textit{Fully Achieved}. & S19 & 1 & 3,4\% \\ \hline
+        Índices de Conformidade, Cobertura e Confiança & Taxa de aprovação SCA/\textit{CIS Benchmarks}, cobertura de controles da ISO/IEC 27002 e do NIST SP 800-53, prontidão de auditoria, taxa de implementação de recomendações de auditoria em órgãos públicos e \textit{Trust Score}. & S06, S07, S13, S22, S23, S24, S25, S27, S28 & 9 & 31,0\% \\ \hline
+        Métricas Operacionais de Detecção, ML e Sobrecarga & MTTD, MTTR, Taxa de Falsos Positivos, Precisão, Revocação, \textit{F1-Score}, área sob a curva ROC, consumo de CPU/RAM, latência e vazão em EPS. & S01 a S18, S20, S21, S23, S24, S26 a S29 & 26 & 89,7\% \\ \hline
+        Ausência de Escala Formal de Maturidade & Estudos que não aplicam escalas graduais ou modelos formais de maturidade normativa. & S01 a S05, S07 a S12, S14 a S18, S20, S21, S26, S29 & 20 & 69,0\% \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-No grupo de escalas de maturidade e índices de conformidade normativa, apenas \citeonline{coutinho2023} aplicaram uma escala formal de capacidade de processo fundamentada na norma ISO/IEC 15504 SPICE, composta por quatro níveis graduais definidos como \textit{Not Achieved} de 0 a 15\%, \textit{Partially Achieved} de 15 a 50\%, \textit{Largely Achieved} de 50 a 85\% e \textit{Fully Achieved} de 85 a 100\%, avaliada por painel de especialistas ao longo de três iterações. Entre os trabalhos baseados em pontuações percentuais de endurecimento e cobertura de controles, \citeonline{bungei2026} utilizam o percentual direto de aprovação nas checagens automatizadas do módulo SCA do Wazuh contra o \textit{CIS Linux Benchmark}, registrando 45\% de conformidade no experimento, ao passo que \citeonline{shao2026a} calculam uma taxa de conformidade contra \textit{CIS Benchmarks} associada a um escore de segurança graduado de 0 a 100. De forma complementar, \citeonline{velasquez2025} medem a cobertura percentual de controles atendidos pelo SIEM frente à norma ISO/IEC 27002, atingindo 16\% do padrão com 15 controles cobertos, e ao NIST SP 800-53 Rev. 5; \citeonline{devarajulu2025} aferem a taxa de prontidão para auditoria de conformidade, elevada de 28\% para 89\%; \citeonline{giulio2017} contabilizam o percentual de controles omitidos entre padrões frente aos 133 controles da matriz CSA CCM; e \citeonline{mahida2026} propõe uma equação de pontuação de conformidade expressa por $CS = 1 - (V_c / R_t)$, relacionando as violações detectadas $V_c$ ao total de regras exigidas $R_t$. Em contexto de administração pública, \citeonline{enaw2018} quantificam a maturidade pela taxa percentual de recomendações de auditoria efetivamente implementadas pelos ministérios no acompanhamento, identificando apenas 13\% de implementação no eixo técnico, enquanto \citeonline{shao2026b} e \citeonline{xu2025} empregam índices contínuos de confiança e integridade de nós em tempo de execução.
+No grupo de escalas de maturidade e índices de conformidade normativa, apenas \citeonline{coutinho2023} aplicaram uma escala formal de capacidade de processo fundamentada na norma ISO/IEC 15504 SPICE, composta por quatro níveis graduais definidos como \textit{Not Achieved} de 0 a 15\%, \textit{Partially Achieved} de 15 a 50\%, \textit{Largely Achieved} de 50 a 85\% e \textit{Fully Achieved} de 85 a 100\%, avaliada por painel de especialistas ao longo de três iterações. Entre os trabalhos baseados em pontuações percentuais de endurecimento e cobertura de controles, \citeonline{bungei2026} utilizam o percentual direto de aprovação nas checagens automatizadas do módulo SCA do SIEM Wazuh contra o \textit{CIS Linux Benchmark}, registrando 45\% de conformidade no experimento, ao passo que \citeonline{shao2026a} calculam uma taxa de conformidade contra \textit{CIS Benchmarks} associada a um escore de segurança graduado de 0 a 100. De forma complementar, \citeonline{velasquez2025} medem a cobertura percentual de controles atendidos pelo SIEM frente à norma ISO/IEC 27002, atingindo 16\% do padrão com 15 controles cobertos, e ao NIST SP 800-53 Rev. 5; \citeonline{devarajulu2025} aferem a taxa de prontidão para auditoria de conformidade, elevada de 28\% para 89\%; \citeonline{giulio2017} contabilizam o percentual de controles omitidos entre padrões frente aos 133 controles da matriz CSA CCM; e \citeonline{mahida2026} propõem uma equação de pontuação de conformidade expressa por $CS = 1 - (V_c / R_t)$, relacionando as violações detectadas $V_c$ ao total de regras exigidas $R_t$. Em contexto de administração pública, \citeonline{enaw2018} quantificam a maturidade pela taxa percentual de implementação de recomendações de auditoria em órgãos públicos, identificando apenas 13\% de atendimento no eixo técnico, enquanto \citeonline{shao2026b} e \citeonline{xu2025} empregam índices contínuos de confiança e integridade de nós em tempo de execução.
 
-No tocante às métricas operacionais de detecção e resposta de centros de operações de segurança, os estudos mensuram o Tempo Médio de Detecção, o Tempo Médio de Resposta ou Resolução e a Taxa de Falsos Positivos para validar a eficácia prática dos fluxos de monitoramento. Destacam-se reduções de tempo médio de resposta de dias para a faixa de 1 a 2 horas com a integração entre Wazuh e Security Onion \cite{acosta2025}, bloqueio automatizado de ataques de força bruta entre 2,0 s e 3,0 s \cite{setiawan2025} e queda na taxa de falsos positivos para o intervalo de 2,04\% a 4,7\% mediante filtragem contextual \cite{joshisabhaya2026,shao2026a}. Trabalhos apoiados em aprendizado de máquina complementam essa avaliação com indicadores estatísticos de classificação, abrangendo Precisão, \textit{Recall}, \textit{F1-Score} e área sob a curva ROC \cite{darwesh2024,joshisegireddy2026,aftab2026}.
+No tocante às métricas operacionais de detecção e resposta de centros de operações de segurança, os estudos mensuram o Tempo Médio de Detecção, o Tempo Médio de Resposta e a Taxa de Falsos Positivos para validar a eficácia prática dos fluxos de monitoramento. Destacam-se reduções de tempo médio de resposta de dias para a faixa de 1 a 2 horas com a integração entre SIEM Wazuh e Security Onion \cite{acosta2025}, bloqueio automatizado de ataques de força bruta entre 2,0 s e 3,0 s \cite{setiawan2025} e queda na taxa de falsos positivos para o intervalo de 2,04\% a 4,7\% mediante filtragem contextual \cite{joshisabhaya2026,shao2026a}. Trabalhos apoiados em aprendizado de máquina complementam essa avaliação com indicadores estatísticos de classificação, abrangendo Precisão, Revocação, \textit{F1-Score} e área sob a curva ROC \cite{darwesh2024,joshisegireddy2026,aftab2026}.
 
-Por fim, as métricas de sobrecarga computacional avaliam o custo de execução dos agentes de telemetria sobre a infraestrutura hospedeira. Os experimentos mensuram o percentual adicional de uso de CPU, mantido entre 2,3\% e 6,0\% em arquiteturas baseadas em eBPF, o consumo de memória RAM, que varia de 1,5 MB no agente eBPF em linguagem C até 1 GB em contêineres Graylog, a latência adicionada às requisições em milissegundos e a vazão de processamento em eventos por segundo \cite{jin2025,joshisegireddy2026,shao2026a,shao2026b,sushma2025}.
+Por fim, as métricas de sobrecarga computacional avaliam o custo de execução dos coletores de telemetria sobre a infraestrutura hospedeira. Os experimentos mensuram o percentual adicional de uso de CPU, mantido entre 2,3\% e 6,0\% em arquiteturas baseadas em eBPF, o consumo de memória RAM, que varia de 1,5 MB no coletor eBPF em linguagem C até 1 GB em contêineres Graylog, a latência adicionada às requisições em milissegundos e a vazão de processamento em eventos por segundo \cite{jin2025,joshisegireddy2026,shao2026a,shao2026b,sushma2025}.
+\FloatBarrier
 
 \subsection{O estudo realiza diagnóstico do estado de conformidade antes da intervenção (\textit{baseline}), e como esse estado inicial é estabelecido e documentado?}
 \label{subsec:rsl_qs09}
 
-A análise do Campo 13 revelou o achado empírico mais crítico desta revisão sistemática: \textbf{82,8\% dos estudos primários, correspondentes a 24 dos 29 artigos, não realizam diagnóstico formal prévio (\textit{baseline})} de postura, maturidade ou conformidade de segurança antes de implantar a intervenção tecnológica proposta. Apenas 5 estudos, equivalentes a 17,2\% da amostra, documentam algum tipo de estado inicial antes da intervenção. Cumpre registrar que dois estudos, S11 e S24, não traziam o marcador binário inicial preenchido na planilha, mas a justificativa analítica registrada no Campo 13 atestou a inexistência de avaliação prévia formal documentada, consolidando sua contabilização entre os 24 estudos sem diagnóstico prévio. A Tabela~\ref{tab:rsl_qs09} apresenta a distribuição completa da amostra quanto à realização de \textit{baseline}.
+O exame dos procedimentos de avaliação prévia evidencia o achado empírico mais crítico desta revisão estruturada da literatura: \textbf{82,8\% dos estudos primários, correspondentes a 24 dos 29 artigos, não realizam diagnóstico formal prévio (\textit{baseline})} de postura, maturidade ou conformidade de segurança antes de implantar a intervenção tecnológica proposta. Apenas 5 estudos, equivalentes a 17,2\% da amostra, documentam algum tipo de estado inicial antes da intervenção \cite{torkura2021,acosta2025,aftab2026,enaw2018,xu2025}. Mesmo em trabalhos voltados à conformidade de plataformas SIEM e telemetria de tempo de execução, como os de \citeonline{joshisegireddy2026} e \citeonline{velasquez2025}, a análise detalhada do método experimental confirma a inexistência de avaliação prévia formal documentada do ambiente antes da implantação técnica, consolidando sua inclusão entre os 24 estudos sem diagnóstico inicial. A Tabela~\ref{tab:rsl_qs09} apresenta a distribuição completa da amostra quanto à realização de diagnóstico prévio.
 
-\begin{table}[htb]
-\centering
-\caption{Distribuição dos estudos primários quanto à realização de diagnóstico prévio de conformidade (QS09)}
-\label{tab:rsl_qs09}
-\footnotesize
-\begin{tabular}{p{4.0cm}p{6.0cm}p{2.4cm}cc}
-\toprule
-\textbf{Classificação no Campo 13} & \textbf{Natureza do Estado Inicial ou Abordagem Adotada} & \textbf{Estudos Identificados} & \textbf{Qtd.} & \textbf{\%} \\
-\midrule
-Ausência de Diagnóstico Prévio de Conformidade & Implantação direta da ferramenta em bancada ou uso do termo \textit{baseline} apenas como grupo de controle computacional ou algorítmico. & S01 a S04, S06 a S09, S11 a S14, S16 a S24, S26, S27, S29 & 24 & 82,8\% \\
-\addlinespace
-Diagnóstico via Auditoria Governamental e Políticas & Levantamento prévio de Políticas de Segurança da Informação institucionais (S10) e consolidação de 42 missões de auditoria estatal (S25). & S10, S25 & 2 & 6,9\% \\
-\addlinespace
-Diagnóstico via Histórico de Incidentes e Configuração & Monitoramento prévio de 6 meses com 187 incidentes (S15), descoberta de estado esperado em nuvem (S05) e bateria prévia sem defesas (S28). & S05, S15, S28 & 3 & 10,3\% \\
-\midrule
-\textbf{Total} & \textbf{Estudos primários avaliados na extração} & \textbf{S01 a S29} & \textbf{29} & \textbf{100,0\%} \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Distribuição dos estudos primários quanto à realização de diagnóstico prévio de conformidade (QS09).}
+    \label{tab:rsl_qs09}
+    \footnotesize
+    \begin{tabular}{p{3.8cm}p{5.4cm}p{2.3cm}p{1.0cm}p{1.3cm}}
+        \hline
+        \textbf{Categoria de Diagnóstico Prévio} & \textbf{Natureza do Estado Inicial ou Abordagem Adotada} & \textbf{Estudos Primários} & \textbf{Qtd.} & \textbf{\%} \\ \hline
+        Ausência de Diagnóstico Prévio de Conformidade & Implantação direta da ferramenta em ambiente experimental ou uso do termo \textit{baseline} apenas como grupo de controle algorítmico. & S01 a S04, S06 a S09, S11 a S14, S16 a S24, S26, S27, S29 & 24 & 82,8\% \\ \hline
+        Diagnóstico via Auditoria Governamental e Políticas & Levantamento prévio de Políticas de Segurança da Informação institucionais e consolidação de 42 missões de auditoria estatal. & S10, S25 & 2 & 6,9\% \\ \hline
+        Diagnóstico via Histórico de Incidentes e Configuração & Monitoramento prévio de 6 meses com 187 incidentes, descoberta de estado esperado em nuvem e bateria prévia sem defesas. & S05, S15, S28 & 3 & 10,3\% \\ \hline
+        \textbf{Total} & \textbf{Total da amostra de estudos primários} & \textbf{S01 a S29} & \textbf{29} & \textbf{100,0\%} \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-No grupo majoritário caracterizado pela ausência de diagnóstico prévio de conformidade, composto por 24 estudos, os autores instanciam suas arquiteturas diretamente em bancadas de teste e empregam o termo ``\textit{baseline}'' exclusivamente para designar um grupo de controle experimental ou computacional. Essa referência limita-se a parâmetros técnicos como o consumo de CPU do sistema em repouso \cite{jin2025}, um conjunto de registros brutos sem anonimização \cite{portillo2019}, o perfil normal de chamadas de sistema para treinamento de modelos não supervisionados \cite{zhang2025,darwesh2024} ou a comparação de tempo de resposta contra ferramentas isoladas e processos manuais conduzidos por engenheiros de confiabilidade \cite{gajra2025,devarajulu2025,shao2026a,shao2026b,hao2025}. Mesmo trabalhos que aplicam varreduras de conformidade baseadas em \textit{CIS Benchmarks} utilizam o mecanismo apenas como funcionalidade de verificação pós-implantação, sem documentar o estado normativo prévio da organização antes da introdução do SIEM \cite{bungei2026,setiawan2025}.
+No grupo majoritário caracterizado pela ausência de diagnóstico prévio de conformidade, composto por 24 estudos, os autores instanciam suas arquiteturas diretamente em ambientes laboratoriais e empregam o termo \textit{baseline} apenas para designar um grupo de controle experimental ou computacional. Essa referência limita-se a parâmetros técnicos como o consumo de CPU do sistema em repouso \cite{jin2025}, um conjunto de registros brutos sem anonimização \cite{portillo2019}, o perfil normal de chamadas de sistema para treinamento de modelos não supervisionados \cite{zhang2025,darwesh2024} ou a comparação de tempo de resposta contra ferramentas isoladas e processos manuais conduzidos por engenheiros de confiabilidade \cite{gajra2025,devarajulu2025,shao2026a,shao2026b,hao2025}. Mesmo trabalhos que aplicam varreduras de conformidade baseadas em \textit{CIS Benchmarks} utilizam o mecanismo apenas como funcionalidade de verificação pós-implantação, sem documentar o estado normativo prévio da infraestrutura antes da introdução do SIEM \cite{bungei2026,setiawan2025}.
 
-No grupo restrito de 5 estudos que documentam diagnóstico inicial ou linha de base, identificam-se duas vertentes. A primeira vertente abrange auditorias governamentais e levantamento de políticas nos estudos S10 e S25: no contexto público, \citeonline{enaw2018} estabeleceram um diagnóstico inicial abrangente no estudo S25 analisando relatórios de 42 missões de auditoria estatal realizadas entre 2013 e 2016 em Camarões, mapeando 62\% de vulnerabilidades técnicas, 24\% organizacionais e 14\% físicas antes de avaliar a evolução em 20 ministérios; de modo similar, \citeonline{acosta2025} conduziram no estudo S10 uma fase formal de planejamento avaliando o estado das Políticas de Segurança da Informação do Comando Conjunto das Forças Armadas do Peru para identificar lacunas antes de implantar o arcabouço \textit{SentinelJC}. A segunda vertente compreende o histórico operacional de incidentes e o estado de configuração nos estudos S05, S15 e S28: \citeonline{aftab2026} monitoraram três organizações no estudo S15 durante um período prévio de 6 meses antes da intervenção, registrando uma linha de base de 187 incidentes de segurança para fundamentar a comparação pós-implantação; \citeonline{torkura2021} definiram no estudo S05 uma etapa obrigatória de inicialização de estado esperado por meio da descoberta automatizada de recursos em nuvem alinhada às políticas de conformidade antes de iniciar a auditoria contínua de desvios de configuração; e \citeonline{xu2025} executaram no estudo S28 uma bateria prévia de 1.000 comandos sem defesas ativas para aferir os índices iniciais de integridade e confiança da plataforma.
+No grupo restrito de 5 estudos que documentam diagnóstico inicial ou linha de base, identificam-se duas vertentes. A primeira vertente abrange auditorias governamentais e levantamento de políticas institucionais: no contexto público, \citeonline{enaw2018} estabeleceram um diagnóstico inicial abrangente analisando relatórios de 42 missões de auditoria estatal realizadas entre 2013 e 2016 em Camarões, mapeando 62\% de vulnerabilidades técnicas, 24\% organizacionais e 14\% físicas antes de avaliar a evolução em 20 ministérios; de modo similar, \citeonline{acosta2025} conduziram uma fase formal de planejamento avaliando o estado das Políticas de Segurança da Informação do Comando Conjunto das Forças Armadas do Peru para identificar lacunas antes de implantar o arcabouço \textit{SentinelJC}. A segunda vertente compreende o histórico operacional de incidentes e o estado de configuração: \citeonline{aftab2026} monitoraram três organizações durante um período prévio de 6 meses antes da intervenção, registrando uma linha de base de 187 incidentes de segurança para fundamentar a comparação pós-implantação; \citeonline{torkura2021} definiram uma etapa obrigatória de inicialização de estado esperado por meio da descoberta automatizada de recursos em nuvem alinhada às políticas de conformidade antes de iniciar a auditoria contínua de desvios de configuração; e \citeonline{xu2025} executaram uma bateria prévia de 1.000 comandos sem defesas ativas para aferir os índices iniciais de integridade e confiança da plataforma.
 
-Observa-se que, entre os 5 estudos com diagnóstico inicial, apenas S10 e S25 foram conduzidos em instituições públicas reais e nenhum deles expressa o estado inicial como grau de aderência às medidas do \textit{CIS Control 8} em escala graduada, uma vez que os estados iniciais reportados restringem-se a políticas institucionais no estudo S10, vulnerabilidades identificadas em auditoria no estudo S25, incidentes históricos no estudo S15, estado de configuração em nuvem no estudo S05 e métricas de plataforma sem defesas no estudo S28. Essa constatação empírica fundamenta diretamente a necessidade de estabelecer um protocolo prévio de linha de base (\textit{baseline}) no planejamento do estudo de caso desta monografia: avaliar com rigor uma intervenção de telemetria em infraestrutura pública exige, como premissa metodológica indispensável, a mensuração estruturada do estado inicial de conformidade normativa antes da alteração do ambiente.
+Observa-se que, entre os 5 estudos com diagnóstico inicial, apenas os trabalhos de \citeonline{acosta2025} e \citeonline{enaw2018} foram conduzidos em instituições públicas reais e nenhum dos cinco expressa o estado inicial como grau de aderência às medidas do \textit{CIS Control 8} em escala graduada, uma vez que os estados iniciais reportados restringem-se a políticas institucionais \cite{acosta2025}, vulnerabilidades identificadas em auditoria \cite{enaw2018}, incidentes históricos \cite{aftab2026}, estado de configuração em nuvem \cite{torkura2021} e métricas de plataforma sem defesas \cite{xu2025}. Essa constatação empírica fundamenta diretamente a necessidade de estabelecer um protocolo prévio de linha de base no planejamento do estudo de caso desta monografia: avaliar com rigor uma intervenção de telemetria em infraestrutura pública exige, como premissa metodológica indispensável, a mensuração estruturada do estado inicial de conformidade normativa antes da alteração do ambiente.
+\FloatBarrier
 
 \subsection{Qual método de pesquisa empírica foi utilizado para validar a solução proposta?}
 \label{subsec:rsl_qs10}
 
-A distribuição dos métodos de validação empírica, extraída dos Campos 14 e 17 do formulário padronizado e consolidada na Tabela~\ref{tab:rsl_qs10}, evidencia uma forte concentração em validações laboratoriais controladas em detrimento de investigações em ambientes produtivos reais em operação.
+A classificação dos métodos de validação empírica segundo a taxonomia de \citeonline{wohlin2024} e os padrões empíricos da ACM SIGSOFT, consolidada na Tabela~\ref{tab:rsl_qs10}, evidencia forte concentração em experimentos controlados de laboratório em detrimento de investigações conduzidas em ambientes organizacionais reais em operação.
 
-\begin{table}[htb]
-\centering
-\caption{Métodos de pesquisa empírica empregados na validação dos estudos primários (QS10)}
-\label{tab:rsl_qs10}
-\footnotesize
-\begin{tabular}{p{4.2cm}p{5.8cm}p{2.4cm}cc}
-\toprule
-\textbf{Método Empírico de Validação} & \textbf{Caracterização Operacional do Ambiente} & \textbf{Estudos Identificados} & \textbf{Qtd.} & \textbf{\%} \\
-\midrule
-Experimento Controlado / \textit{Testbed} de Laboratório & Bancadas isoladas com injeção sintética de ataques, geradores de carga e conjuntos de dados públicos de intrusão. & S02 a S07, S09, S11, S13, S14, S16, S18, S20, S21, S24, S26 a S29 & 19 & 65,5\% \\
-\addlinespace
-Estudo de Caso Real em Organização & Validação empírica em infraestruturas organizacionais reais em operação nos setores público, militar e corporativo. & S08, S10, S15, S25 & 4 & 13,8\% \\
-\addlinespace
-Proposta Conceitual / Analítica Documental & Formalização de padrões arquiteturais de \textit{logging}, mapeamento documental entre normas e avaliação por especialistas. & S17, S19, S22 & 3 & 10,3\% \\
-\addlinespace
-\textit{Benchmark} / Simulação Analítica & Simulações matemáticas e comparações paramétricas entre ferramentas hipotéticas ou modelos teóricos. & S12, S23 & 2 & 6,9\% \\
-\addlinespace
-Prova de Conceito Isolada (PoC) & Validação funcional de protótipo local de auditoria Linux sem modelagem experimental de bancada. & S01 & 1 & 3,4\% \\
-\midrule
-\textbf{Total} & \textbf{Estudos primários avaliados na extração} & \textbf{S01 a S29} & \textbf{29} & \textbf{100,0\%} \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Métodos de pesquisa empírica empregados na validação dos estudos primários (QS10).}
+    \label{tab:rsl_qs10}
+    \footnotesize
+    \begin{tabular}{p{3.6cm}p{5.6cm}p{2.3cm}p{1.0cm}p{1.3cm}}
+        \hline
+        \textbf{Método Empírico} & \textbf{Caracterização Operacional da Validação} & \textbf{Estudos Primários} & \textbf{Qtd.} & \textbf{\%} \\ \hline
+        Experimento & Avaliações controladas em ambiente laboratorial com injeção de ataques, geração de carga e conjuntos de dados de intrusão. & S02 a S07, S09, S11, S13, S14, S16, S18 a S21, S24, S26 a S29 & 20 & 69,0\% \\ \hline
+        Estudo de Caso & Investigação empírica de fenômenos em seu contexto organizacional real nos setores público, militar e corporativo. & S08, S10, S15 & 3 & 10,3\% \\ \hline
+        Simulação & Modelagem matemática e execução de cenários simulados para comparação paramétrica de mecanismos de segurança. & S12, S23 & 2 & 6,9\% \\ \hline
+        Avaliação em Pequena Escala & Verificação funcional preliminar de protótipo de auditoria em ambiente local restrito. & S01 & 1 & 3,4\% \\ \hline
+        Estudo Sistemático da Literatura & Identificação e catalogação sistemática de padrões arquiteturais de registro de eventos em aplicações nativas em nuvem. & S17 & 1 & 3,4\% \\ \hline
+        Análise Arquival & Exame documental comparativo entre catálogos normativos de segurança e privacidade para provedores em nuvem. & S22 & 1 & 3,4\% \\ \hline
+        Levantamento (\textit{Survey}) & Coleta estruturada de dados junto a gestores e auditores de múltiplos órgãos públicos sobre práticas de auditoria. & S25 & 1 & 3,4\% \\ \hline
+        \textbf{Total} & \textbf{Total da amostra de estudos primários} & \textbf{S01 a S29} & \textbf{29} & \textbf{100,0\%} \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-O experimento controlado em bancada de laboratório (\textit{testbed}) constitui o método dominante na literatura, abrangendo 19 estudos ou 65,5\% da amostra: S02, S03, S04, S05, S06, S07, S09, S11, S13, S14, S16, S18, S20, S21, S24, S26, S27, S28 e S29. Os autores justificam essa escolha pelo controle de variáveis de rede, pela reprodutibilidade de cenários e pela impossibilidade ética ou operacional de injetar ataques destrutivos, tais como \textit{ransomware}, negação de serviço, fuga de contêineres ou ataques de força bruta via Hydra e Kali Linux, em infraestruturas de produção \cite{setiawan2025,zhang2025,kalafatidis2025,shao2026a,shao2026b}. Para mitigar a artificialidade das bancadas, esses estudos recorrem a geradores de carga sintética como Apache JMeter e Locust, emuladores de engenharia de caos como \textit{Chaos Mesh} e conjuntos de dados públicos consolidados, incluindo CICIDS2017, UNSW-NB15, NASA-HTTP e registros de rastreamento do IBM QRadar \cite{jin2025,velasquez2025,portillo2019}.
+O experimento constitui o método dominante na literatura, abrangendo 20 estudos ou 69,0\% da amostra \cite{darwesh2024,joshisabhaya2026,jin2025,torkura2021,devarajulu2025,shao2026a,sushma2025,joshisegireddy2026,bungei2026,upadhyaya2025,kumar2026,zhang2025,coutinho2023,setiawan2025,kalafatidis2025,velasquez2025,portillo2019,shao2026b,xu2025,hao2025}. Os autores justificam essa escolha pelo controle de variáveis de rede, pela reprodutibilidade de cenários e pela impossibilidade ética ou operacional de injetar ataques destrutivos, tais como \textit{ransomware}, negação de serviço, fuga de contêineres ou ataques de força bruta via Hydra e Kali Linux, em infraestruturas produtivas \cite{setiawan2025,zhang2025,kalafatidis2025,shao2026a,shao2026b}. Inclui-se nessa categoria a avaliação conduzida por \citeonline{coutinho2023}, que executaram três ciclos iterativos de medição sobre sistemas operacionais de saúde para testar sua metodologia integrada de cibersegurança. Para reduzir a artificialidade laboratorial, os trabalhos experimentais recorrem a geradores de carga como Apache JMeter e Locust, ferramentas de engenharia de caos como \textit{Chaos Mesh} e conjuntos de dados públicos consolidados, incluindo CICIDS2017, UNSW-NB15, NASA-HTTP e registros do IBM QRadar \cite{jin2025,velasquez2025,portillo2019}.
 
-Apenas 4 trabalhos, correspondentes a 13,8\% da amostra, validaram suas propostas por meio de estudos de caso em ambientes organizacionais reais em operação. Nesse grupo, \citeonline{sasmito2025} analisaram no estudo S08 seis meses de registros reais de WAF e IPS, totalizando mais de 12 milhões de eventos de ataque na infraestrutura de um órgão governamental na Indonésia; \citeonline{acosta2025} avaliaram no estudo S10 a operação do arcabouço \textit{SentinelJC} durante 7 dias na rede real das Forças Armadas do Peru, processando 13,88 milhões de registros; \citeonline{aftab2026} conduziram no estudo S15 um estudo longitudinal de 12 meses em três empresas de grande porte dos setores de comércio eletrônico, finanças e saúde; e \citeonline{enaw2018} investigaram no estudo S25 auditorias presenciais em 20 ministérios públicos de Camarões.
+As investigações conduzidas diretamente junto a organizações reais dividem-se entre 3 estudos de caso, correspondentes a 10,3\% da amostra, e 1 levantamento, equivalente a 3,4\%. Entre os estudos de caso, \citeonline{sasmito2025} analisaram seis meses de registros reais de WAF e IPS, totalizando mais de 12 milhões de eventos de ataque na infraestrutura de um órgão governamental na Indonésia; \citeonline{acosta2025} avaliaram a operação do arcabouço \textit{SentinelJC} durante 7 dias na rede das Forças Armadas do Peru, processando 13,88 milhões de registros; e \citeonline{aftab2026} conduziram uma investigação longitudinal de 12 meses em três empresas de grande porte dos setores de comércio eletrônico, finanças e saúde. De forma complementar, \citeonline{enaw2018} aplicaram um levantamento estruturado a gestores de tecnologia e segurança de 20 ministérios públicos de Camarões, cruzando as respostas com relatórios históricos de auditoria estatal.
 
-As propostas conceituais e analíticas documentais respondem por 3 estudos ou 10,3\% da amostra, abrangendo a formalização de padrões arquiteturais de \textit{logging} no estudo S17 \cite{albuquerque2024}, o mapeamento matricial comparativo entre normas de conformidade de nuvem no estudo S22 \cite{giulio2017} e a avaliação iterativa de metodologia hospitalar por painel de especialistas sem medição de desempenho de software em produção no estudo S19 \cite{coutinho2023}. Por fim, os estudos S12 e S23, equivalentes a 6,9\% do corpus, apoiam-se em simulações matemáticas e comparações paramétricas entre ferramentas hipotéticas ou modelos teóricos da literatura \cite{ali2024,mahida2026}, enquanto o estudo S01, representando 3,4\%, valida um protótipo funcional local de auditoria Linux mediante prova de conceito isolada \cite{gajra2025}.
+Os demais métodos empíricos distribuem-se em 2 estudos baseados em simulação, equivalentes a 6,9\% da amostra \cite{ali2024,mahida2026}, voltados à modelagem matemática e à comparação paramétrica de mecanismos de conformidade em nuvem; 1 estudo sistemático da literatura, correspondente a 3,4\%, dedicado por \citeonline{albuquerque2024} à catalogação de padrões de projeto de registros para aplicações nativas em nuvem; 1 análise arquival, também com 3,4\%, na qual \citeonline{giulio2017} examinaram comparativamente a documentação normativa do programa FedRAMP frente a padrões internacionais; e 1 avaliação em pequena escala, representando 3,4\%, empregada por \citeonline{gajra2025} para verificar funcionalmente um protótipo local de auditoria Linux.
+
+Sob o rigor metodológico estrito de \citeonline{wohlin2024} e dos \textit{ACM SIGSOFT Empirical Standards}, cabe registrar uma ressalva analítica importante: a categoria Experimento agrupa na amostra estudos que conduziram avaliações controladas em bancada laboratorial mediante manipulação de variáveis técnicas e injeção de cenários de ataque, ainda que nem todos formalizem testes estatísticos de hipótese ou alocação aleatória de tratamentos. Da mesma forma, abordagens preliminares como a Avaliação em Pequena Escala realizada por \citeonline{gajra2025} oferecem menor força de evidência empírica e alcance de generalização reduzido quando comparadas a experimentos rigorosamente controlados ou a estudos de caso longitudinais conduzidos em infraestruturas reais.
+\FloatBarrier
 
 \subsection{Quais são as principais limitações e desafios operacionais relatados na implementação de telemetria de segurança em \textit{runtime}?}
 \label{subsec:rsl_qs11}
 
-A consolidação do Campo 15 permitiu mapear quatro grandes categorias de gargalos operacionais enfrentados na implementação de arquiteturas de observabilidade e SIEM, conforme estruturado na Tabela~\ref{tab:rsl_qs11}.
+A síntese das dificuldades reportadas nos estudos primários permite agrupar os gargalos operacionais da implementação de arquiteturas de observabilidade e plataformas de SIEM em quatro categorias principais, estruturadas na Tabela~\ref{tab:rsl_qs11}.
 
-\begin{table}[htb]
-\centering
-\caption{Principais limitações e desafios operacionais na telemetria de segurança em \textit{runtime} (QS11)}
-\label{tab:rsl_qs11}
-\footnotesize
-\begin{tabular}{p{3.8cm}p{6.8cm}p{3.6cm}}
-\toprule
-\textbf{Categoria de Desafio Operacional} & \textbf{Impactos Técnicos e Organizacionais Relatados} & \textbf{Estudos Representativos} \\
-\midrule
-Volumetria Massiva, Sobrecarga e Custo de Retenção & Exaustão de armazenamento em disco, degradação de I/O, alto uso de CPU em pseudonimização/regex e custos elevados de licenciamento SIEM. & S06, S15, S17, S24, S26, S27 \\
-\addlinespace
-Fadiga de Alertas (\textit{Alert Fatigue}) e Falsos Positivos & Sobrecarga cognitiva de analistas de SOC por alertas redundantes ou picos benignos confundidos com ataques DoS em regras estáticas. & S02, S03, S07, S10, S11, S16, S27 \\
-\addlinespace
-Volatilidade de Ambientes Efêmeros e Limitações de Kernel & Perda forense na destruição de contêineres, restrições de \textit{hook points} eBPF em Windows Server, atraso de APIs em nuvem e \textit{throttling}. & S04, S05, S11, S18, S21, S28, S29 \\
-\addlinespace
-Barreiras Organizacionais e Déficit de Capacitação & Ausência de políticas formais de segurança, restrições orçamentárias e escassez de especialistas para operar plataformas SIEM no setor público. & S10, S13, S19, S25 \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Principais limitações e desafios operacionais na telemetria de segurança em \textit{runtime} (QS11).}
+    \label{tab:rsl_qs11}
+    \footnotesize
+    \begin{tabular}{p{3.8cm}p{6.8cm}p{3.6cm}}
+        \hline
+        \textbf{Categoria de Desafio Operacional} & \textbf{Impactos Técnicos e Organizacionais Relatados} & \textbf{Estudos Representativos} \\ \hline
+        Volumetria Massiva, Sobrecarga e Custo de Retenção & Exaustão de armazenamento em disco, degradação de I/O, alto uso de CPU em pseudonimização/regex e custos elevados de licenciamento SIEM. & S06, S15, S17, S24, S26, S27 \\ \hline
+        Fadiga de Alertas (\textit{Alert Fatigue}) e Falsos Positivos & Sobrecarga cognitiva de analistas de SOC por alertas redundantes ou picos benignos confundidos com ataques DoS em regras estáticas. & S02, S03, S07, S10, S11, S16, S27 \\ \hline
+        Volatilidade de Ambientes Efêmeros e Limitações de Kernel & Perda forense na destruição de contêineres, restrições de \textit{hook points} eBPF em Windows Server, atraso de APIs em nuvem e \textit{throttling}. & S04, S05, S11, S18, S21, S28, S29 \\ \hline
+        Barreiras Organizacionais e Déficit de Capacitação & Ausência de políticas formais de segurança, restrições orçamentárias e escassez de especialistas para operar plataformas SIEM no setor público. & S10, S13, S19, S25 \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
 O primeiro gargalo operacional reside na volumetria massiva de dados, na sobrecarga de recursos e no custo de retenção. Em arquiteturas de microsserviços em larga escala, a geração irrestrita de telemetria pode atingir centenas ou milhares de gigabytes diários, provocando exaustão de armazenamento em disco, degradação de operações de entrada e saída e custos proibitivos de ingestão em plataformas SIEM comerciais \cite{albuquerque2024,portillo2019}. Ademais, operações pesadas de criptografia ou expressões regulares aplicadas sobre a totalidade dos registros em tempo real elevam drasticamente o uso de CPU, estendendo rotinas de processamento para dezenas de horas \cite{velasquez2025,shao2026b}.
 
 O segundo desafio compreende a fadiga de alertas e a elevada taxa de falsos positivos. Regras de correlação estáticas e varreduras descontextualizadas geram volumes massivos de alertas redundantes ou benignos, a exemplo de picos legítimos de tráfego confundidos com ataques de negação de serviço ou vulnerabilidades estáticas não exploráveis no ambiente de execução, sobrecarregando cognitivamente os analistas de centros de operações de segurança e retardando a resposta a incidentes reais \cite{darwesh2024,joshisabhaya2026,shao2026a,shao2026b,acosta2025}.
 
-A terceira categoria abrange a volatilidade de ambientes efêmeros e as limitações de kernel e plataforma. A natureza transitória de \textit{pods} e contêineres dificulta a preservação forense quando os registros são mantidos localmente, pois a destruição do contêiner apaga as evidências antes da coleta \cite{jin2025,zhang2025}. Em ambientes específicos como Windows Server, ferramentas baseadas em eBPF ainda sofrem com quantidade reduzida de pontos de acoplamento (\textit{hook points}), documentação escassa e restrições de assinatura de \textit{drivers} em modo kernel \cite{jin2025}. Já em auditorias de nuvem via API, observa-se atraso nativo de entrega dos provedores, variando de 20 a 90 minutos no AWS CloudTrail e no Google Stackdriver, além de estrangulamento de requisições por limites de taxa \cite{torkura2021}.
+A terceira categoria abrange a volatilidade de ambientes efêmeros e as limitações de núcleo e plataforma. A natureza transitória de \textit{pods} e contêineres dificulta a preservação forense quando os registros são mantidos localmente, pois a destruição do contêiner apaga as evidências antes da coleta \cite{jin2025,zhang2025}. Em ambientes específicos como Windows Server, ferramentas baseadas em eBPF ainda sofrem com quantidade reduzida de pontos de acoplamento, documentação escassa e restrições de assinatura de \textit{drivers} em modo núcleo \cite{jin2025}. Já em auditorias de nuvem via API, observa-se atraso nativo de entrega dos provedores, variando de 20 a 90 minutos no AWS CloudTrail e no Google Stackdriver, além de estrangulamento de requisições por limites de taxa \cite{torkura2021}.
 
-Por fim, destacam-se as barreiras organizacionais e o déficit de capacitação técnica no setor público. Estudos aplicados em instituições governamentais e militares demonstram que a eficácia das ferramentas de monitoramento é severamente limitada pela ausência de políticas formais de segurança, pelo baixo orçamento destinado à cibersegurança e pela carência de profissionais capacitados para operar plataformas SIEM e interpretar trilhas de auditoria \cite{enaw2018,acosta2025,bungei2026}.
+Por fim, destacam-se as barreiras organizacionais e o déficit de capacitação técnica no setor público. Estudos aplicados em instituições governamentais e militares demonstram que a eficácia das ferramentas de monitoramento é severamente limitada pela ausência de políticas formais de segurança, pelo baixo orçamento destinado à cibersegurança e pela carência de profissionais capacitados para operar plataformas SIEM e interpretar trilhas de auditoria \cite{enaw2018,acosta2025,bungei2026}. Esse panorama internacional converge diretamente com o diagnóstico firmado pelo Tribunal de Contas da União no Acórdão nº 2.387/2024 -- TCU -- Plenário \cite{tcu2387_2024}, evidenciando que a omissão de diagnósticos e a carência de equipes especializadas verificadas nos órgãos do SISP no Brasil refletem um gargalo estrutural recorrente na administração pública.
+\FloatBarrier
 
 \subsection{Quais lacunas de pesquisa e direções futuras são apontadas pelos autores no campo de conformidade regulatória e monitoramento contínuo?}
 \label{subsec:rsl_qs12}
 
-A síntese do Campo 16 evidencia que as limitações dos estudos atuais abrem direções claras de investigação científica, resumidas na Tabela~\ref{tab:rsl_qs12}, dentro das quais este Trabalho de Conclusão de Curso se posiciona diretamente.
+As limitações reportadas nos estudos primários abrem direções claras de investigação científica, resumidas na Tabela~\ref{tab:rsl_qs12}, dentro das quais esta monografia se posiciona diretamente.
 
-\begin{table}[htb]
-\centering
-\caption{Lacunas de pesquisa e direções futuras apontadas pelos estudos primários (QS12)}
-\label{tab:rsl_qs12}
-\footnotesize
-\begin{tabular}{p{3.8cm}p{6.8cm}p{3.6cm}}
-\toprule
-\textbf{Eixo de Investigação Futura} & \textbf{Direcionamento Metodológico e Tecnológico Recomendado} & \textbf{Estudos Representativos} \\
-\midrule
-Validação Empírica em Produção e Setor Público & Implantação e avaliação de arquiteturas de telemetria em clusters Kubernetes governamentais e corporativos reais sob tráfego concorrente. & S01, S03, S07, S09, S10, S25, S27 \\
-\addlinespace
-Automação do Mapeamento de Conformidade Contínua & Superação de checklists manuais periódicos por tradução automatizada de eventos SIEM em métricas quantitativas de aderência a CIS, NIST e ISO. & S05, S06, S13, S22, S23, S24, S25 \\
-\addlinespace
-Ampliação de Fontes de Telemetria e Resposta SOAR & Integração de eventos de IAM, cofres de segredos, bancos de dados e esteiras GitOps/CI/CD com resposta autônoma validada contra interrupções. & S10, S20, S21, S28, S29 \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Lacunas de pesquisa e direções futuras apontadas pelos estudos primários (QS12).}
+    \label{tab:rsl_qs12}
+    \footnotesize
+    \begin{tabular}{p{3.8cm}p{6.8cm}p{3.6cm}}
+        \hline
+        \textbf{Eixo de Investigação Futura} & \textbf{Direcionamento Metodológico e Tecnológico Recomendado} & \textbf{Estudos Representativos} \\ \hline
+        Validação Empírica em Produção e Setor Público & Implantação e avaliação de arquiteturas de telemetria em \textit{clusters} Kubernetes governamentais e corporativos reais sob tráfego concorrente. & S01, S03, S07, S09, S10, S25, S27 \\ \hline
+        Automação do Mapeamento de Conformidade Contínua & Superação de listas de verificação manuais periódicas por tradução automatizada de eventos SIEM em métricas quantitativas de aderência a CIS, NIST e ISO. & S05, S06, S13, S22, S23, S24, S25 \\ \hline
+        Ampliação de Fontes de Telemetria e Resposta SOAR & Integração de eventos de IAM, cofres de segredos, bancos de dados e esteiras GitOps/CI/CD com resposta autônoma validada contra interrupções. & S10, S20, S21, S28, S29 \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-A primeira direção prioritária consiste na validação empírica em infraestruturas de produção e no setor público. Como a maioria absoluta dos trabalhos restringiu-se a bancadas sintéticas ou provedores únicos em conta gratuita, os próprios autores apontam como trabalho futuro essencial a implantação e a validação das arquiteturas em clusters Kubernetes corporativos e governamentais reais, sujeitos a tráfego concorrente heterogêneo e políticas estritas de governança \cite{gajra2025,joshisabhaya2026,sushma2025,shao2026a,shao2026b}.
+A primeira direção prioritária consiste na validação empírica em infraestruturas de produção e no setor público. Como a maioria dos trabalhos restringiu-se a ambientes laboratoriais sintéticos ou provedores únicos em conta gratuita, os próprios autores apontam como trabalho futuro essencial a implantação e a validação das arquiteturas em \textit{clusters} Kubernetes corporativos e governamentais reais, sujeitos a tráfego concorrente heterogêneo e políticas estritas de governança \cite{gajra2025,joshisabhaya2026,sushma2025,shao2026a,shao2026b}.
 
 A segunda vertente demanda a automação do mapeamento de conformidade e a auditoria contínua em tempo de execução. A literatura aponta a necessidade de superar auditorias manuais estáticas baseadas em listas de verificação periódicas rumo a arcabouços que traduzam automaticamente os eventos de telemetria e registros de auditoria coletados pelo SIEM em métricas quantitativas de aderência a normas como \textit{CIS Controls}, NIST SP 800-53, ISO/IEC 27001 e regulações governamentais locais \cite{torkura2021,velasquez2025,giulio2017,enaw2018}.
 
 A terceira frente propõe a ampliação da cobertura de fontes de telemetria e a resposta autônoma orquestrada. Os autores recomendam expandir a coleta de registros para além de métricas básicas de hospedeiro, integrando eventos de gerenciamento de identidade, cofres de segredos, bancos de dados e fluxos de entrega contínua GitOps e CI/CD, acoplados a mecanismos de orquestração e resposta automatizada com validação prévia de impacto para evitar interrupções acidentais de serviços críticos \cite{setiawan2025,acosta2025,kalafatidis2025,hao2025}.
+\FloatBarrier
 
 \section{Síntese dos Achados e Lacunas Identificadas}
 \label{sec:rsl_sintese}
 
-A análise transversal das doze questões secundárias de pesquisa evidencia quatro achados empíricos centrais, consolidados na Tabela~\ref{tab:rsl_sintese_lacunas}, que delimitam com exatidão a lacuna científica e tecnológica tratada nesta monografia.
+A análise transversal das doze questões secundárias de pesquisa evidencia quatro achados empíricos centrais, consolidados na Tabela~\ref{tab:rsl_sintese_lacunas}, que delimitam a lacuna científica e tecnológica tratada nesta monografia.
 
-\begin{table}[htb]
-\centering
-\caption{Síntese dos achados empíricos da RSL e posicionamento deste trabalho}
-\label{tab:rsl_sintese_lacunas}
-\footnotesize
-\begin{tabular}{p{3.4cm}p{5.2cm}p{5.6cm}}
-\toprule
-\textbf{Eixo da Lacuna Identificada} & \textbf{Evidência Quantitativa na Literatura (n = 29)} & \textbf{Contribuição e Posicionamento deste TCC} \\
-\midrule
-Ausência de diagnóstico prévio (\textit{baseline}) & 24 estudos (82,8\%) não realizam \textit{baseline} prévio; nenhum dos 5 restantes mede aderência ao \textit{CIS Control 8} em escala graduada (Seção~\ref{subsec:rsl_qs09}). & Realização de diagnóstico estruturado de \textit{baseline} antes da intervenção na infraestrutura estudada. \\
-\addlinespace
-Predominância de validações em bancadas sintéticas & 25 estudos (86,2\%) restringem-se a \textit{testbeds} (19), propostas conceituais (3), simulações (2) ou PoC isolada (1) (Seção~\ref{subsec:rsl_qs10}). & Avaliação empírica sobre infraestrutura Kubernetes de homologação e produção em laboratório da Administração Pública Federal. \\
-\addlinespace
-Escassez de estudos em órgãos públicos reais & Apenas 3 estudos (10,3\%: S08, S10, S25) ocorrem no setor público; somente S10 avalia telemetria em \textit{runtime} com \textit{baseline}, mas sem adotar \textit{CIS Controls}. & Investigação voltada a plataformas digitais da Administração Pública Federal sob o modelo de nuvem governamental. \\
-\addlinespace
-Carência de métricas graduais no marco regulatório nacional & 20 estudos (69,0\%) não usam escalas de maturidade; apenas 1 (3,4\%: S19) aplica escala ordinal formal e nenhum avalia o PPSI 2.0 ou a NC 21 (Seções~\ref{subsec:rsl_qs06} e~\ref{subsec:rsl_qs08}). & Aplicação dos indicadores oficiais Nível de Implementação da Medida (NIM) e Nível de Adoção do Controle (NAC) antes e após a intervenção com Kubernetes e SIEM Wazuh. \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Síntese dos achados empíricos da revisão estruturada da literatura e posicionamento deste trabalho.}
+    \label{tab:rsl_sintese_lacunas}
+    \footnotesize
+    \begin{tabular}{p{3.4cm}p{5.2cm}p{5.6cm}}
+        \hline
+        \textbf{Eixo da Lacuna Identificada} & \textbf{Evidência Quantitativa na Literatura ($n = 29$)} & \textbf{Contribuição e Posicionamento deste TCC} \\ \hline
+        Ausência de diagnóstico prévio (\textit{baseline}) & 24 estudos (82,8\%) não realizam \textit{baseline} prévio; nenhum dos 5 restantes mede aderência ao \textit{CIS Control 8} em escala graduada (Seção~\ref{subsec:rsl_qs09}). & Realização de diagnóstico estruturado de linha de base antes da intervenção na infraestrutura estudada. \\ \hline
+        Predominância de validações laboratoriais e analíticas & 25 estudos (86,2\%) concentram-se em experimentos laboratoriais (20), simulações (2), avaliação em pequena escala (1), estudo sistemático da literatura (1) e análise arquival (1) (Seção~\ref{subsec:rsl_qs10}). & Avaliação empírica sobre infraestrutura Kubernetes de homologação e produção em laboratório da Administração Pública Federal. \\ \hline
+        Escassez de estudos em órgãos públicos reais & Apenas 3 estudos (10,3\%: S08, S10, S25) ocorrem no setor público; somente S10 avalia telemetria em \textit{runtime} com \textit{baseline}, mas sem adotar \textit{CIS Controls}. & Investigação voltada a plataformas digitais da Administração Pública Federal sob o modelo de nuvem governamental. \\ \hline
+        Carência de métricas graduais no marco regulatório nacional & 20 estudos (69,0\%) não usam escalas de maturidade; apenas 1 (3,4\%: S19) aplica escala ordinal formal e nenhum avalia o PPSI 2.0 ou a NC 21 (Seções~\ref{subsec:rsl_qs06} e~\ref{subsec:rsl_qs08}). & Aplicação dos indicadores oficiais Nível de Implementação da Medida (NIM) e Nível de Adoção do Controle (NAC) antes e após a intervenção com Kubernetes e SIEM Wazuh. \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-O primeiro achado central reside na ausência generalizada de diagnóstico prévio de conformidade. Vinte e quatro dos 29 estudos primários, equivalentes a 82,8\% da amostra, não realizam qualquer avaliação inicial de postura ou conformidade antes da implantação tecnológica. Os cinco trabalhos que documentam estado inicial, identificados como S05, S10, S15, S25 e S28, empregam linhas de base heterogêneas, e nenhum deles expressa o diagnóstico prévio como grau de aderência às salvaguardas do \textit{CIS Control 8} em escala graduada, conforme demonstrado na Seção~\ref{subsec:rsl_qs09}.
+O primeiro achado central reside na ausência generalizada de diagnóstico prévio de conformidade. Vinte e quatro dos 29 estudos primários, equivalentes a 82,8\% da amostra, não realizam qualquer avaliação inicial de postura ou conformidade antes da implantação tecnológica. Os cinco trabalhos que documentam estado inicial \cite{torkura2021,acosta2025,aftab2026,enaw2018,xu2025} empregam linhas de base heterogêneas, e nenhum deles expressa o diagnóstico prévio como grau de aderência às salvaguardas do \textit{CIS Control 8} em escala graduada, conforme demonstrado na Seção~\ref{subsec:rsl_qs09}.
 
-O segundo achado refere-se à predominância de bancadas fechadas e sintéticas. Dezenove estudos, correspondentes a 65,5\% da amostra, foram validados exclusivamente em experimentos controlados de laboratório. Quando somados aos 3 estudos conceituais, às 2 simulações analíticas e à prova de conceito isolada, verifica-se que 25 dos 29 estudos primários, ou 86,2\% do corpus analisado, não envolveram um ambiente organizacional real em operação, conforme detalhado na Seção~\ref{subsec:rsl_qs10}.
+O segundo achado refere-se à predominância de validações laboratoriais e analíticas fora de ambientes organizacionais em operação. Vinte estudos, correspondentes a 69,0\% da amostra, foram validados por meio de experimentos controlados de laboratório. Quando somados às 2 simulações, correspondentes a 6,9\%, à avaliação em pequena escala com 3,4\%, ao estudo sistemático da literatura com 3,4\% e à análise arquival com 3,4\%, verifica-se que 25 dos 29 estudos primários, ou 86,2\% do corpus analisado, não foram conduzidos em uma organização real em operação, conforme detalhado na Seção~\ref{subsec:rsl_qs10}.
 
-O terceiro achado evidencia a escassez de investigações em infraestruturas públicas reais. Apenas 4 estudos, equivalentes a 13,8\% do total, foram conduzidos em ambientes organizacionais reais, dos quais 3 ocorreram em instituições públicas ou de defesa, representados pelos estudos S08, S10 e S25, que perfazem 10,3\% da amostra. Entre esses três trabalhos, somente S10 e S25 documentam diagnóstico inicial; contudo, o estudo S25 trata de auditoria presencial periódica de sistemas de informação, e não de telemetria contínua em tempo de execução. Dessa forma, o estudo S10 \cite{acosta2025} configura o único trabalho da literatura que combina monitoramento em \textit{runtime}, instituição pública real e diagnóstico prévio, mas sem adotar o catálogo \textit{CIS Controls} ou escalas graduais de maturidade como referência de conformidade.
+O terceiro achado evidencia a escassez de investigações em infraestruturas públicas reais. Apenas 4 estudos, equivalentes a 13,8\% do total, foram conduzidos em ambientes organizacionais reais \cite{sasmito2025,acosta2025,aftab2026,enaw2018}, dos quais 3 ocorreram em instituições públicas ou de defesa \cite{sasmito2025,acosta2025,enaw2018}, perfazendo 10,3\% da amostra. Entre esses três trabalhos governamentais, somente \citeonline{acosta2025} e \citeonline{enaw2018} documentam diagnóstico inicial; contudo, o levantamento de \citeonline{enaw2018} trata de auditoria presencial periódica de sistemas de informação, e não de telemetria contínua em tempo de execução. Dessa forma, o estudo de \citeonline{acosta2025} configura o único trabalho da literatura que combina monitoramento em tempo de execução, instituição pública real e diagnóstico prévio, mas sem adotar o catálogo \textit{CIS Controls} ou escalas graduais de maturidade como referência de conformidade.
 
-O quarto achado diz respeito à ausência de normativos nacionais na literatura indexada e ao fundamento comum no catálogo \textit{CIS Controls}. Nenhum dos 29 estudos primários referencia o PPSI 2.0, a NC 21 do GSI-PR ou outro instrumento normativo brasileiro de segurança da informação, resultado esperado em razão da circunscrição jurisdicional dessas normas ao Estado brasileiro. Todavia, como o segmento de segurança da informação do PPSI 2.0 é fundamentado diretamente nos \textit{CIS Controls} \cite{ppsi2026}, referenciados por 6 dos 29 estudos primários ou 20,7\% da amostra nos artigos S03, S05, S07, S12, S13 e S28, as evidências arquiteturais desses trabalhos tornam-se diretamente transferíveis ao contexto nacional, permanecendo inexplorada a mensuração empírica de aderência ao \textit{CIS Control 8} em infraestrutura pública.
+O quarto achado diz respeito à ausência de normativos nacionais na literatura indexada e ao fundamento comum no catálogo \textit{CIS Controls}. Nenhum dos 29 estudos primários referencia o PPSI 2.0, a NC 21 do GSI-PR ou outro instrumento normativo brasileiro de segurança da informação, resultado esperado em razão da circunscrição jurisdicional dessas normas ao Estado brasileiro. Todavia, como o segmento de segurança da informação do PPSI 2.0 é fundamentado diretamente nos \textit{CIS Controls} \cite{ppsi2026}, referenciados por 6 dos 29 estudos primários, ou 20,7\% da amostra \cite{joshisabhaya2026,torkura2021,shao2026a,ali2024,bungei2026,xu2025}, as evidências arquiteturais desses trabalhos tornam-se diretamente transferíveis ao contexto nacional, permanecendo inexplorada a mensuração empírica de aderência ao \textit{CIS Control 8} em infraestrutura pública.
 
-Esses quatro achados sustentam diretamente o encadeamento metodológico desta monografia. A ausência de diagnóstico prévio em 82,8\% da literatura e a carência de escalas graduais de maturidade alinhadas ao arcabouço regulatório nacional fundamentam a Questão Principal de Pesquisa derivada pelo modelo GQM (Seção~\ref{subsec:intro_gqm}), voltada a sistematizar como avaliar o grau de conformidade da infraestrutura de monitoramento em tempo de execução por meio dos indicadores oficiais Nível de Implementação da Medida (NIM) e Nível de Adoção do Controle (NAC), comparando o estado inicial (\textit{baseline}) ao cenário pós-intervenção. Complementarmente, a predominância de validações em bancadas sintéticas (86,2\%) e a escassez de investigações em ambientes públicos reais orientam a Questão de Pesquisa do Estudo de Caso, dedicada a verificar como uma infraestrutura Kubernetes combinada com uma plataforma de SIEM oferece mecanismos técnicos concretos para atender ao Controle 8 do PPSI 2.0 e aos requisitos forenses da NC nº 21/GSI-PR, cujo planejamento é detalhado no capítulo seguinte.
+Esses quatro achados sustentam diretamente o encadeamento metodológico desta monografia. A ausência de diagnóstico prévio em 82,8\% da literatura e a carência de escalas graduais de maturidade alinhadas ao arcabouço regulatório nacional fundamentam a Questão Principal de Pesquisa derivada pelo modelo GQM na Seção~\ref{subsec:intro_gqm}, voltada a sistematizar como avaliar o grau de conformidade da infraestrutura de monitoramento em tempo de execução por meio dos indicadores oficiais Nível de Implementação da Medida (NIM) e Nível de Adoção do Controle (NAC), comparando o estado inicial ao cenário pós-intervenção. Complementarmente, a predominância de validações fora de organizações reais, observada em 86,2\% da amostra, e a escassez de investigações em ambientes públicos orientam a Questão de Pesquisa do Estudo de Caso, dedicada a verificar como uma infraestrutura Kubernetes combinada com uma plataforma de SIEM oferece mecanismos técnicos concretos para atender ao Controle 8 do PPSI 2.0 e aos requisitos forenses da NC nº 21/GSI-PR, cujo planejamento é detalhado no capítulo seguinte.
+\FloatBarrier
 
 \section{Ameaças à Validade}
 \label{sec:rsl_ameacas}
 
-A condução de uma revisão sistemática da literatura está sujeita a riscos metodológicos que podem influenciar a completude da amostra selecionada, a fidedignidade da extração de dados e a generalização das conclusões. Em estrita observância às diretrizes de relato de \citeonline{kitchenham2007} e à taxonomia clássica de validade empírica em Engenharia de Software, as ameaças a este estudo foram categorizadas nas quatro dimensões fundamentais de validade de constructo, validade interna, validade externa e validade de conclusão, sintetizadas na Tabela~\ref{tab:rsl_ameacas}.
+A condução desta revisão estruturada da literatura está sujeita a riscos metodológicos que podem influenciar a completude da amostra selecionada, a fidedignidade da extração de dados e a generalização das conclusões. Em observância às diretrizes de protocolo e relato de revisão sistemática de \citeonline{kitchenham2007} e à taxonomia clássica de validade empírica em Engenharia de Software, as ameaças a este estudo foram categorizadas nas quatro dimensões fundamentais de validade de constructo, validade interna, validade externa e validade de conclusão, sintetizadas na Tabela~\ref{tab:rsl_ameacas}.
 
-\begin{table}[htb]
-\centering
-\caption{Categorização das ameaças à validade da RSL e estratégias de mitigação adotadas}
-\label{tab:rsl_ameacas}
-\footnotesize
-\begin{tabular}{p{3.2cm}p{5.3cm}p{5.7cm}}
-\toprule
-\textbf{Categoria de Validade} & \textbf{Riscos e Desafios Reais Identificados} & \textbf{Ações de Mitigação Implementadas} \\
-\midrule
-Validade de Constructo (\textit{Construct Validity}) & Risco de cobertura terminológica incompleta na \textit{string} de busca ou restrição de indexação em base única. & Refinamento iterativo em quatro versões da \textit{string} a partir do protocolo PIO (Tabela~\ref{tab:rsl_versoes_string}) e uso da base Scopus, que indexa IEEE Xplore, ACM, Elsevier e Springer. \\
-\addlinespace
-Validade Interna (\textit{Internal Validity}) & Viés de seleção por pesquisador único na triagem de 357 registros e indisponibilidade de acesso institucional a 6 textos completos. & Critérios objetivos \texttt{CI01}--\texttt{CI03} e \texttt{CE01}--\texttt{CE06} com curto-circuito no software \textit{Evidentia}, validação com orientador e segregação transparente dos 6 artigos não recuperados via Portal CAPES no fluxo PRISMA. \\
-\addlinespace
-Validade Externa (\textit{External Validity}) & Viés de publicação favorável a bancadas sintéticas (86,2\%) e restrição de relatórios governamentais brasileiros à literatura cinza. & Transferibilidade técnica via \textit{CIS Controls} e triangulação direta com os marcos legais nacionais vigentes: PPSI 2.0 \cite{ppsi2026}, IN SGD/MGI nº 4/2026 \cite{in4_2026} e NC 21 do GSI-PR \cite{nc21_2014}. \\
-\addlinespace
-Validade de Conclusão (\textit{Conclusion Validity}) & Risco de subjetividade interpretativa na extração qualitativa e inconsistência na contabilização das questões secundárias. & Formulário padronizado de 17 campos (Tabela~\ref{tab:rsl_formulario}), extração literal auditável em planilha, verificação cruzada (\textit{test-retest}) das contagens e rastreabilidade integral por identificadores \texttt{S01}--\texttt{S29}. \\
-\bottomrule
-\end{tabular}
-\vspace{0.1cm}
-\begin{flushleft}
-\footnotesize{Fonte: Elaborado pelo autor (2026).}
-\end{flushleft}
+\begin{table}[!htbp]
+    \centering
+    \caption{Categorização das ameaças à validade da revisão estruturada da literatura e estratégias de mitigação adotadas.}
+    \label{tab:rsl_ameacas}
+    \footnotesize
+    \begin{tabular}{p{3.2cm}p{5.3cm}p{5.7cm}}
+        \hline
+        \textbf{Categoria de Validade} & \textbf{Riscos e Desafios Reais Identificados} & \textbf{Ações de Mitigação Implementadas} \\ \hline
+        Validade de Constructo & Risco de cobertura terminológica incompleta na \textit{string} de busca ou restrição de indexação em base única. & Calibração iterativa da \textit{string} a partir do protocolo PIO (Tabela~\ref{tab:rsl_versoes_string}) e uso da base Scopus, que indexa IEEE Xplore, ACM, Elsevier e Springer. \\ \hline
+        Validade Interna & Viés de seleção por pesquisador único na triagem de 357 registros e indisponibilidade de acesso institucional a 6 textos completos. & Critérios objetivos \texttt{CI01}--\texttt{CI03} e \texttt{CE01}--\texttt{CE06} com curto-circuito no software \textit{Evidentia}, validação com orientador e segregação transparente dos 6 artigos não recuperados via Portal CAPES no fluxo PRISMA. \\ \hline
+        Validade Externa & Viés de publicação favorável a ambientes laboratoriais (86,2\%) e restrição de relatórios governamentais brasileiros à literatura cinza. & Transferibilidade técnica via \textit{CIS Controls} e triangulação direta com os marcos legais nacionais vigentes: PPSI 2.0 \cite{ppsi2026}, IN SGD/MGI nº 4/2026 \cite{in4_2026} e NC 21 do GSI-PR \cite{nc21_2014}. \\ \hline
+        Validade de Conclusão & Risco de subjetividade interpretativa na extração qualitativa e inconsistência na contabilização das questões secundárias. & Formulário padronizado de 16 campos (Tabela~\ref{tab:rsl_formulario}), extração literal auditável, verificação cruzada das contagens e rastreabilidade integral entre os dados extraídos e as tabelas de síntese. \\ \hline
+    \end{tabular}
+    \fonte{Elaborado pelo autor.}
 \end{table}
 
-A validade de constructo refere-se à extensão em que o protocolo de busca e as variáveis operacionais definidas refletem fielmente o fenômeno teórico investigado, prevenindo o viés de cobertura terminológica ou de fonte. Para mitigar o risco de omissão de estudos relevantes por vocabulário restrito, a expressão booleana de busca foi calibrada iterativamente ao longo de quatro versões documentadas na Tabela~\ref{tab:rsl_versoes_string}, derivadas dos componentes População, Intervenção e Resultado do modelo PIO apresentado na Tabela~\ref{tab:rsl_protocolo_pio}. Esse refinamento incorporou sinônimos abrangentes tanto para arquiteturas distribuídas modernas, incluindo microsserviços, contêineres e Kubernetes, quanto para mecanismos de telemetria e marcos regulatórios, tais como SIEM, HIDS, Wazuh, \textit{CIS Controls} e NIST. Embora a busca automatizada tenha sido executada de forma concentrada na base Scopus sem etapa adicional de \textit{snowballing}, essa limitação foi mitigada pela amplitude de indexação da referida base, que congrega diretamente os acervos primários da IEEE Xplore, ACM Digital Library, Elsevier ScienceDirect e SpringerLink.
+A validade de constructo refere-se à extensão em que o protocolo de busca e as variáveis operacionais definidas refletem fielmente o fenômeno teórico investigado, prevenindo o viés de cobertura terminológica ou de fonte. Para mitigar o risco de omissão de estudos relevantes por vocabulário restrito, a expressão booleana de busca foi calibrada iterativamente ao longo das etapas documentadas na Tabela~\ref{tab:rsl_versoes_string}, derivadas dos componentes População, Intervenção e Resultado do modelo PIO apresentado na Tabela~\ref{tab:rsl_protocolo_pio}. Esse refinamento incorporou sinônimos abrangentes tanto para arquiteturas distribuídas modernas, incluindo microsserviços, contêineres e Kubernetes, quanto para mecanismos de telemetria e marcos regulatórios, tais como SIEM, HIDS, Wazuh, \textit{CIS Controls} e NIST. Embora a busca automatizada tenha sido executada de forma concentrada na base Scopus sem etapa adicional de \textit{snowballing}, essa limitação foi mitigada pela amplitude de indexação da referida base, que congrega diretamente os acervos primários da IEEE Xplore, ACM Digital Library, Elsevier ScienceDirect e SpringerLink.
 
-A validade interna diz respeito à integridade metodológica do processo de seleção e aquisição dos estudos primários, controlando fatores de confusão e vieses sistemáticos na condução da revisão. Dois desafios reais de execução exigiram tratamento rigoroso nesta dimensão. O primeiro desafio decorreu da condução da triagem dos 357 registros por um único pesquisador principal, o que poderia introduzir subjetividade no julgamento de relevância; esse risco foi mitigado pela formulação prévia de critérios objetivos de inclusão, \texttt{CI01} a \texttt{CI03}, e de exclusão hierárquica por curto-circuito, \texttt{CE01} a \texttt{CE06}, revisados junto à orientação acadêmica e registrados de modo auditável na ferramenta \textit{Evidentia} para cada um dos 322 estudos descartados na primeira fase. O segundo desafio consistiu na impossibilidade de recuperação do texto integral de 6 artigos habilitados na triagem inicial em razão de restrições de assinatura e bloqueios de \textit{proxy} institucional nas coleções acessadas via Portal de Periódicos da CAPES. Em conformidade com o protocolo PRISMA 2020 e com as boas práticas de \citeonline{kitchenham2007}, esses 6 registros foram formalmente contabilizados na categoria de relatórios não recuperados (\textit{reports not retrieved}) na Figura~\ref{fig:rsl_prisma}, evitando qualquer extrapolação ou extração especulativa baseada apenas em resumos.
+A validade interna diz respeito à integridade metodológica do processo de seleção e aquisição dos estudos primários, controlando fatores de confusão e vieses sistemáticos na condução da revisão. Dois desafios reais de execução exigiram tratamento rigoroso nesta dimensão. O primeiro desafio decorreu da condução da triagem dos 357 registros por um único pesquisador principal, o que poderia introduzir subjetividade no julgamento de relevância; esse risco foi mitigado pela formulação prévia de critérios objetivos de inclusão, \texttt{CI01} a \texttt{CI03}, e de exclusão hierárquica por curto-circuito, \texttt{CE01} a \texttt{CE06}, revisados junto à orientação acadêmica e registrados de modo auditável na ferramenta \textit{Evidentia} para cada um dos 322 estudos descartados na primeira fase. O segundo desafio consistiu na impossibilidade de recuperação do texto integral de 6 artigos habilitados na triagem inicial em razão de restrições de assinatura e bloqueios de \textit{proxy} institucional nas coleções acessadas via Portal de Periódicos da CAPES. Em conformidade com o protocolo PRISMA 2020 e com as boas práticas de \citeonline{kitchenham2007}, esses 6 registros foram formalmente contabilizados na categoria de publicações não recuperadas na Figura~\ref{fig:rsl_prisma}, evitando qualquer extrapolação ou extração especulativa baseada apenas em resumos.
 
-A validade externa concerne ao grau em que os achados empíricos desta revisão sistemática podem ser generalizados e transferidos para o contexto operacional das infraestruturas de desenvolvimento e homologação da Administração Pública Federal brasileira. Identificam-se nessa dimensão o viés de publicação acadêmica, que tende a relatar majoritariamente experimentos bem-sucedidos em bancadas sintéticas de laboratório, correspondentes a 86,2\% da amostra, e a ausência de referências diretas a normativos brasileiros nos 29 estudos primários, visto que auditorias de segurança governamentais frequentemente permanecem restritas à literatura cinza, como acórdãos do Tribunal de Contas da União e relatórios internos de conformidade. Essa ameaça é mitigada pelo fato de o segmento de segurança da informação do PPSI 2.0 fundamentar-se estruturalmente no catálogo internacional \textit{CIS Controls} \cite{ppsi2026}, permitindo transferir as evidências técnicas extraídas dos estudos sobre \textit{CIS Benchmarks}, NIST SP 800-53 e ISO/IEC 27002 e complementá-las diretamente com a legislação nacional vigente, composta pela Portaria SGD/MGI nº 9.511/2025 \cite{ppsi2026}, pela Instrução Normativa SGD/MGI nº 4/2026 \cite{in4_2026} e pela Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}.
+A validade externa concerne ao grau em que os achados empíricos desta revisão estruturada da literatura podem ser generalizados e transferidos para o contexto operacional das infraestruturas de homologação e produção da Administração Pública Federal brasileira. Identificam-se nessa dimensão o viés de publicação acadêmica, que tende a relatar majoritariamente avaliações conduzidas fora de organizações reais em operação, correspondentes a 86,2\% da amostra, e a ausência de referências diretas a normativos brasileiros nos 29 estudos primários, visto que auditorias de segurança governamentais frequentemente permanecem restritas à literatura cinza, como acórdãos do Tribunal de Contas da União e relatórios internos de conformidade. Essa ameaça é mitigada pelo fato de o segmento de segurança da informação do PPSI 2.0 fundamentar-se estruturalmente no catálogo internacional \textit{CIS Controls} \cite{ppsi2026}, permitindo transferir as evidências técnicas extraídas dos estudos sobre \textit{CIS Benchmarks}, NIST SP 800-53 e ISO/IEC 27002 e complementá-las diretamente com a legislação nacional vigente, composta pela Portaria SGD/MGI nº 9.511/2025 \cite{ppsi2026}, pela Instrução Normativa SGD/MGI nº 4/2026 \cite{in4_2026} e pela Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}.
 
-Por fim, a validade de conclusão refere-se à confiabilidade e à reprodutibilidade da extração de dados, da classificação analítica e da síntese quantitativa que sustentam as respostas às doze questões secundárias de pesquisa. Conforme alertam \citeonline{kitchenham2007}, quando a extração de dados é realizada por um pesquisador individual sem comissão secundária independente, torna-se indispensável adotar mecanismos de padronização e verificação cruzada do tipo teste-reteste (\textit{test-retest}) para evitar inconsistências interpretativas. Para assegurar a validade de conclusão, instituiu-se um formulário estruturado de 17 campos diretamente vinculado às questões secundárias \texttt{QS01} a \texttt{QS12}, detalhado na Tabela~\ref{tab:rsl_formulario}, exigindo o registro literal das métricas reportadas pelos autores e a justificativa explícita sobre a realização ou ausência de diagnóstico prévio no Campo 13. Adicionalmente, todas as contagens absolutas, proporções percentuais e alocações nos Grupos de Relevância A, B e C foram submetidas a auditoria cruzada contra a planilha consolidada dos 29 estudos primários (\texttt{S01} a \texttt{S29}), garantindo rastreabilidade empírica integral entre os dados brutos extraídos, as tabelas de síntese e as conclusões apresentadas neste capítulo.
+Por fim, a validade de conclusão refere-se à confiabilidade e à reprodutibilidade da extração de dados, da classificação analítica e da síntese quantitativa que sustentam as respostas às doze questões secundárias de pesquisa. Conforme alertam \citeonline{kitchenham2007}, quando a extração de dados é realizada por um pesquisador individual sem comissão secundária independente, torna-se indispensável adotar mecanismos de padronização e verificação cruzada do tipo teste-reteste para evitar inconsistências interpretativas. Para assegurar a validade de conclusão, instituiu-se um formulário estruturado de 16 campos diretamente vinculado às questões secundárias \texttt{QS01} a \texttt{QS12}, detalhado na Tabela~\ref{tab:rsl_formulario}, exigindo o registro literal das métricas reportadas pelos autores e a justificativa metodológica explícita sobre a realização ou ausência de diagnóstico prévio e sobre o método de validação empírica. Adicionalmente, todas as contagens absolutas e proporções percentuais foram submetidas a auditoria cruzada contra a matriz consolidada dos 29 estudos primários, garantindo rastreabilidade empírica integral entre os dados brutos extraídos, as tabelas de síntese e as conclusões apresentadas neste capítulo.
+\FloatBarrier
