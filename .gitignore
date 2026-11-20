@@ -30,3 +30,6 @@ OFICIAL/correcoesminhas.txt
 *.pacotes.fls
 *.fdb_latexmk
 *.fls
+*.ilg
+*.ind
+*.synctex.gz
