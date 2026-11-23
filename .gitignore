@@ -21,3 +21,15 @@
 *.idx
 *.bak
 OFICIAL/correcoesminhas.txt
+
+
+#macos
+.DS_Store
+
+#latexmk
+*.pacotes.fls
+*.fdb_latexmk
+*.fls
+*.ilg
+*.ind
+*.synctex.gz
