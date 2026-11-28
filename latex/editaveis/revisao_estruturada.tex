@@ -1,12 +1,12 @@
 \chapter{Revisão Estruturada da Literatura}
 \label{cap:revisao_sistematica}
 
-Este capítulo documenta o planejamento, a condução e a síntese dos estudos primários que compõem a base científica desta monografia, elaborados em conformidade com as diretrizes de \citeonline{kitchenham2007} para revisões sistemáticas na Engenharia de Software. Para a identificação dos estudos primários, adotou-se a base de dados Scopus como motor central de busca automatizada, visto que seu acervo indexa de maneira integrada as publicações das principais bibliotecas digitais de Ciência da Computação e Segurança Cibernética.
+Este capítulo documenta o planejamento e a condução da revisão estruturada dos estudos primários que compõem a base científica desta monografia, elaborados em conformidade com as diretrizes de \citeonline{kitchenham2007} para revisões estruturadas na Engenharia de Software. Para a identificação dos estudos primários, adotou-se a base de dados Scopus como motor central de busca automatizada, visto que seu acervo indexa de maneira integrada as publicações das principais bibliotecas digitais de Ciência da Computação e Segurança Cibernética.
 
 \section{Protocolo da Revisão}
 \label{sec:rsl_protocolo}
 
-O protocolo desta revisão estruturada da literatura foi estabelecido segundo o modelo formal de revisão sistemática proposto por \citeonline{kitchenham2007}, cujo propósito consiste em mitigar o viés de seleção do pesquisador e assegurar que outros investigadores, partindo dos mesmos parâmetros de busca e critérios de julgamento, alcancem resultados equivalentes, garantindo a auditabilidade e a replicabilidade do estudo secundário.
+O protocolo desta revisão estruturada da literatura baseia-se no modelo formal de revisão sistemática de \citeonline{kitchenham2007} para reduzir o viés de seleção e favorecer a auditabilidade e a replicabilidade do estudo.
 
 
 \subsection{PICO e String de Busca}
@@ -54,28 +54,28 @@ A \textit{string} foi construída com o operador lógico \texttt{OR} entre os si
 \subsection{Questões Secundárias de Pesquisa}
 \label{subsec:rsl_questoes_secundarias}
 
-As doze questões secundárias, codificadas de QS01 a QS12 e dispostas na Tabela~\ref{tab:rsl_questoes_secundarias}, foram organizadas em cinco eixos analíticos: os três primeiros derivam diretamente das facetas de população, intervenção e resultados da estrutura PICO adaptada, enquanto os dois últimos abordam transversalmente o rigor metodológico de validação empírica e as lacunas da literatura.
+As doze questões secundárias derivam da Questão Principal de Pesquisa da Seção~\ref{subsec:intro_gqm} a partir das facetas do protocolo PIO e abrangem validação empírica, desafios operacionais e lacunas da literatura, conforme a Tabela~\ref{tab:rsl_questoes_secundarias}.
 
 \begin{table}[!htbp]
     \centering
-    \caption{Questões secundárias de pesquisa organizadas por eixo temático.}
+    \caption{Questões secundárias de pesquisa.}
     \label{tab:rsl_questoes_secundarias}
     \small
-    \begin{tabular}{p{1.2cm}p{4.2cm}p{9.0cm}}
+    \begin{tabular}{p{1.2cm}p{13.2cm}}
         \hline
-        \textbf{ID} & \textbf{Eixo Temático} & \textbf{Questão Secundária de Pesquisa} \\ \hline
-        QS01 & Eixo 1: Contexto e Ambiente (População) & Quais tipos de arquiteturas de software e ambientes de infraestrutura são investigados nas soluções de monitoramento de segurança em \textit{runtime}? \\ \hline
-        QS02 & Eixo 1: Contexto e Ambiente (População) & Quais domínios de aplicação ou setores são abordados nos estudos primários? \\ \hline
-        QS03 & Eixo 2: Telemetria e Ferramentas (Intervenção) & Quais tecnologias e plataformas de telemetria de segurança em \textit{runtime} são propostas ou avaliadas? \\ \hline
-        QS04 & Eixo 2: Telemetria e Ferramentas (Intervenção) & Como é realizada a coleta, centralização, decodificação e preservação dos \textit{logs} de auditoria nos estudos? \\ \hline
-        QS05 & Eixo 2: Telemetria e Ferramentas (Intervenção) & Quais ferramentas específicas, de código aberto ou proprietárias, são empregadas nas soluções implementadas? \\ \hline
-        QS06 & Eixo 3: Conformidade e Maturidade (Resultados) & Quais normas e \textit{frameworks} de cibersegurança são utilizados como referência de conformidade nos estudos? \\ \hline
-        QS07 & Eixo 3: Conformidade e Maturidade (Resultados) & De que maneira o CIS Control 8 (Gestão de Logs de Auditoria) ou controles equivalentes são abordados, implementados ou avaliados? \\ \hline
-        QS08 & Eixo 3: Conformidade e Maturidade (Resultados) & Quais métricas, escalas graduais ou modelos de avaliação de maturidade são aplicados para quantificar o grau de conformidade ou segurança alcançado? \\ \hline
-        QS09 & Eixo 3: Conformidade e Maturidade (Resultados) & O estudo realiza diagnóstico do estado de conformidade antes da intervenção (\textit{baseline}) e como esse estado inicial é estabelecido e documentado? \\ \hline
-        QS10 & Eixo 4: Rigor Metodológico e Replicabilidade & Qual método de pesquisa empírica foi utilizado para validar a solução proposta? \\ \hline
-        QS11 & Eixo 5: Desafios e Lacunas & Quais são as principais limitações e desafios operacionais relatados na implementação de telemetria de segurança em \textit{runtime}? \\ \hline
-        QS12 & Eixo 5: Desafios e Lacunas & Quais lacunas de pesquisa e direções futuras são apontadas pelos autores no campo de conformidade regulatória e monitoramento contínuo? \\ \hline
+        \textbf{Nº} & \textbf{Questão Secundária de Pesquisa} \\ \hline
+        1 & Quais tipos de arquiteturas de software e ambientes de infraestrutura são investigados nas soluções de monitoramento de segurança em \textit{runtime}? \\ \hline
+        2 & Quais domínios de aplicação ou setores são abordados nos estudos primários? \\ \hline
+        3 & Quais tecnologias e plataformas de telemetria de segurança em \textit{runtime} são propostas ou avaliadas? \\ \hline
+        4 & Como é realizada a coleta, centralização, decodificação e preservação dos \textit{logs} de auditoria nos estudos? \\ \hline
+        5 & Quais ferramentas específicas, de código aberto ou proprietárias, são empregadas nas soluções implementadas? \\ \hline
+        6 & Quais normas e \textit{frameworks} de cibersegurança são utilizados como referência de conformidade nos estudos? \\ \hline
+        7 & De que maneira o CIS Control 8 ou controles equivalentes são abordados, implementados ou avaliados? \\ \hline
+        8 & Quais métricas, escalas graduais ou modelos de avaliação de maturidade são aplicados para quantificar o grau de conformidade ou segurança alcançado? \\ \hline
+        9 & O estudo realiza diagnóstico do estado de conformidade antes da intervenção e como esse estado inicial é estabelecido e documentado? \\ \hline
+        10 & Qual método de pesquisa empírica foi utilizado para validar a solução proposta? \\ \hline
+        11 & Quais são as principais limitações e desafios operacionais relatados na implementação de telemetria de segurança em \textit{runtime}? \\ \hline
+        12 & Quais lacunas de pesquisa e direções futuras são apontadas pelos autores no campo de conformidade regulatória e monitoramento contínuo? \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
@@ -84,39 +84,39 @@ As doze questões secundárias, codificadas de QS01 a QS12 e dispostas na Tabela
 \subsection{Critérios de Inclusão e Exclusão}
 \label{subsec:rsl_criterios}
 
-Foram estabelecidos critérios de inclusão, apresentados na Tabela~\ref{tab:rsl_criterios_inclusao}, e critérios de exclusão, dispostos na Tabela~\ref{tab:rsl_criterios_exclusao}, para selecionar apenas os estudos primários que fornecem evidências diretas às questões secundárias de pesquisa \cite{kitchenham2007}.
+Foram estabelecidos critérios de inclusão e de exclusão para selecionar os estudos primários que fornecem evidências diretas às questões secundárias de pesquisa \cite{kitchenham2007}, dispostos nas Tabelas~\ref{tab:rsl_criterios_inclusao} e~\ref{tab:rsl_criterios_exclusao}.
 
 \begin{table}[!htbp]
     \centering
-    \caption{Critérios de inclusão (CI) da revisão estruturada da literatura.}
+    \caption{Critérios de inclusão da revisão estruturada da literatura.}
     \label{tab:rsl_criterios_inclusao}
     \small
-    \begin{tabular}{p{1.5cm}p{12.9cm}}
+    \begin{tabular}{p{1.2cm}p{13.2cm}}
         \hline
-        \textbf{Código} & \textbf{Critério de Inclusão} \\ \hline
-        CI01 & O estudo propõe, implementa ou avalia soluções de monitoramento de segurança em tempo de execução (\textit{runtime}), gestão centralizada de \textit{logs} de auditoria, SIEM, HIDS ou XDR. \\ \hline
-        CI02 & O contexto de aplicação envolve sistemas de software distribuídos, infraestruturas em nuvem, arquiteturas de microsserviços ou contêineres. \\ \hline
-        CI03 & O estudo avalia conformidade regulatória, maturidade de segurança, postura cibernética ou alinhamento a \textit{frameworks} normativos de segurança da informação, como CIS Controls, NIST SP 800-53 ou ISO/IEC 27001. \\ \hline
+        \textbf{Nº} & \textbf{Critério de Inclusão} \\ \hline
+        1 & O estudo propõe, implementa ou avalia soluções de monitoramento de segurança em tempo de execução, gestão centralizada de \textit{logs} de auditoria ou plataformas de detecção e resposta correlatas. \\ \hline
+        2 & O contexto de aplicação envolve sistemas de software distribuídos, infraestruturas em nuvem, microsserviços ou contêineres. \\ \hline
+        3 & O estudo avalia conformidade regulatória, maturidade de segurança, postura cibernética ou alinhamento a normas e \textit{frameworks} de segurança da informação. \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
 
-O critério preliminar CI04, que exigia validação empírica, foi arquivado por orientação acadêmica conforme \citeonline{kitchenham2007}, passando a validação a ser analisada na questão QS10, na Seção~\ref{subsec:rsl_qs10}.
+Um critério preliminar que exigia validação empírica foi arquivado por orientação acadêmica conforme \citeonline{kitchenham2007}, de modo a não descartar contribuições relevantes sem validação prévia e tratar o método de validação empírica na Seção~\ref{subsec:rsl_qs10}.
 
 \begin{table}[!htbp]
     \centering
-    \caption{Critérios de exclusão (CE) da revisão estruturada da literatura.}
+    \caption{Critérios de exclusão da revisão estruturada da literatura.}
     \label{tab:rsl_criterios_exclusao}
     \small
-    \begin{tabular}{p{1.5cm}p{12.9cm}}
+    \begin{tabular}{p{1.2cm}p{13.2cm}}
         \hline
-        \textbf{Código} & \textbf{Critério de Exclusão} \\ \hline
-        CE01 & Publicações em idiomas diferentes de inglês ou português. \\ \hline
-        CE02 & Publicações duplicadas, mantendo-se apenas a versão mais completa. \\ \hline
-        CE03 & Resumos expandidos, \textit{keynotes}, tutoriais, estudos secundários (livros, \textit{reviews}, \textit{surveys}) ou trabalhos sem revisão por pares. \\ \hline
-        CE04 & Estudos focados exclusivamente em análise estática de código-fonte, sem contemplar monitoramento em tempo de execução. \\ \hline
-        CE05 & Estudos de \textit{logging} voltados estritamente a desempenho ou depuração funcional, sem viés de cibersegurança ou conformidade. \\ \hline
-        CE06 & Estudos cujo domínio principal seja hardware físico, IoT, redes de telecomunicações ou direito, sem artefatos técnicos de engenharia de software. \\ \hline
+        \textbf{Nº} & \textbf{Critério de Exclusão} \\ \hline
+        1 & Publicações em idiomas diferentes de inglês ou português. \\ \hline
+        2 & Publicações duplicadas, mantendo-se apenas a versão mais completa. \\ \hline
+        3 & Resumos expandidos, \textit{keynotes}, tutoriais, estudos secundários ou trabalhos sem revisão por pares. \\ \hline
+        4 & Estudos restritos à análise estática de código-fonte, sem contemplar monitoramento em tempo de execução. \\ \hline
+        5 & Estudos de \textit{logging} voltados exclusivamente a desempenho ou depuração funcional, sem foco em segurança ou conformidade. \\ \hline
+        6 & Estudos cujo foco principal seja hardware físico, dispositivos conectados, redes de telecomunicações ou aspectos jurídicos sem artefatos técnicos de engenharia de software. \\ \hline
     \end{tabular}
     \fonte{Elaborado pelo autor.}
 \end{table}
@@ -125,36 +125,22 @@ O critério preliminar CI04, que exigia validação empírica, foi arquivado por
 \subsection{Recorte Temporal e Idiomático}
 \label{subsec:rsl_recorte}
 
-O protocolo definiu recorte temporal de 2015 a 2026 e recorte idiomático em inglês e português, conforme sintetizado na Tabela~\ref{tab:rsl_recorte_temporal_idiomatico}. O marco inicial de 2015 reflete a consolidação das arquiteturas nativas em nuvem, dos microsserviços e da orquestração de contêineres, quando os desafios de observabilidade e auditoria de cargas efêmeras assumiram o formato investigado neste trabalho. A seleção de inglês e português abrange a literatura científica internacional e eventuais estudos voltados ao cenário regulatório brasileiro.
+O protocolo delimitou o recorte temporal de 2015 a 2026 e o recorte idiomático aos idiomas inglês e português. O marco inicial de 2015 reflete a consolidação das arquiteturas nativas em nuvem, dos microsserviços e da orquestração de contêineres, momento em que os desafios de observabilidade e auditoria de cargas efêmeras assumiram o formato investigado nesta pesquisa. Já a restrição aos idiomas inglês e português assegura a cobertura das principais bases internacionais de Computação e de eventuais estudos nacionais voltados ao contexto regulatório brasileiro.
 
-\begin{table}[!htbp]
-    \centering
-    \caption{Parâmetros de recorte temporal e idiomático da revisão estruturada da literatura.}
-    \label{tab:rsl_recorte_temporal_idiomatico}
-    \small
-    \begin{tabular}{p{3.6cm}p{3.0cm}p{7.4cm}}
-        \hline
-        \textbf{Parâmetro} & \textbf{Delimitação} & \textbf{Justificativa Metodológica e Impacto na Busca} \\ \hline
-        Recorte temporal & 2015 a 2026 & Consolidação das arquiteturas nativas em nuvem, microsserviços e orquestração de contêineres; consolidou 358 registros no agregado do Rayyan (357 importados no \textit{Evidentia} e 1 sem atribuição individual). \\ \hline
-        Recorte idiomático & Inglês e português & Cobertura das principais bibliotecas digitais internacionais de Computação e de pesquisas correlatas no âmbito nacional (critério CE01). \\ \hline
-    \end{tabular}
-    \fonte{Elaborado pelo autor.}
-\end{table}
-\FloatBarrier
 
 \subsection{Procedimento de Triagem e Extração}
 \label{subsec:rsl_procedimento}
 
-A triagem e o gerenciamento bibliográfico foram conduzidos na plataforma \textit{Evidentia} com registro auditável das decisões segundo o PRISMA \cite{kitchenham2007}. Na primeira etapa, a leitura de título, resumo e palavras-chave aplicou os critérios de exclusão de CE01 a CE06. Na segunda etapa, os textos completos recuperados pelo Portal de Periódicos da CAPES foram avaliados na íntegra e extraídos nos 17 campos da Tabela~\ref{tab:rsl_formulario}.
+A triagem e o gerenciamento bibliográfico foram conduzidos na plataforma \textit{Evidentia} com registro auditável das decisões segundo o PRISMA \cite{kitchenham2007}. Na primeira etapa de seleção, realizou-se a leitura de título, resumo e palavras-chave aplicando os critérios de inclusão e exclusão. Na segunda etapa, os textos completos recuperados pelo Portal de Periódicos da CAPES foram avaliados na íntegra para confirmar a elegibilidade e extrair os dados nos 17 campos da Tabela~\ref{tab:rsl_formulario}.
 
-\begin{longtable}{p{1.5cm}p{8.5cm}p{3.6cm}}
-    \caption{Formulário de extração de dados (17 campos).}\label{tab:rsl_formulario}\\
+\begin{longtable}{p{1.5cm}p{8.0cm}p{4.1cm}}
+    \caption{Formulário de extração de dados.}\label{tab:rsl_formulario}\\
     \hline
-    \textbf{Campo} & \textbf{Descrição} & \textbf{Questão / Função} \\ \hline
+    \textbf{Campo} & \textbf{Descrição} & \textbf{Função / Dimensão} \\ \hline
     \endfirsthead
     \caption[]{Formulário de extração de dados (continuação).}\\
     \hline
-    \textbf{Campo} & \textbf{Descrição} & \textbf{Questão / Função} \\ \hline
+    \textbf{Campo} & \textbf{Descrição} & \textbf{Função / Dimensão} \\ \hline
     \endhead
     \hline \multicolumn{3}{r}{\footnotesize Continua na próxima página} \\
     \endfoot
@@ -164,19 +150,19 @@ A triagem e o gerenciamento bibliográfico foram conduzidos na plataforma \texti
     02 & Autores & Metadados \\ \hline
     03 & Ano e veículo de publicação & Metadados \\ \hline
     04 & Relevância temática para o escopo da pesquisa & Organização interna da leitura \\ \hline
-    05 & Ambiente de infraestrutura & QS01 \\ \hline
-    06 & Domínio de aplicação & QS02 \\ \hline
-    07 & Tecnologias de telemetria em \textit{runtime} & QS03 \\ \hline
-    08 & \textit{Pipeline} de gestão de \textit{logs} & QS04 \\ \hline
-    09 & Ferramental empregado & QS05 \\ \hline
-    10 & \textit{Frameworks} normativos de referência & QS06 \\ \hline
-    11 & Abordagem da gestão de \textit{logs} e auditoria & QS07 \\ \hline
-    12 & Métricas e escalas de maturidade & QS08 \\ \hline
-    13 & Diagnóstico inicial (\textit{baseline}) & QS09 \\ \hline
-    14 & Método de validação empírica & QS10 / Qualidade \\ \hline
-    15 & Desafios e gargalos operacionais & QS11 \\ \hline
-    16 & Lacunas e trabalhos futuros & QS12 \\ \hline
-    17 & Justificativa do método de validação & QS10 / Qualidade \\ \hline
+    05 & Ambiente de infraestrutura & Arquitetura e infraestrutura \\ \hline
+    06 & Domínio de aplicação & Domínio de aplicação \\ \hline
+    07 & Tecnologias de telemetria em \textit{runtime} & Telemetria em \textit{runtime} \\ \hline
+    08 & \textit{Pipeline} de gestão de \textit{logs} & Gestão de \textit{logs} de auditoria \\ \hline
+    09 & Ferramental empregado & Ferramentas empregadas \\ \hline
+    10 & \textit{Frameworks} normativos de referência & Normas e \textit{frameworks} \\ \hline
+    11 & Abordagem da gestão de \textit{logs} e auditoria & Gestão de \textit{logs} e auditoria \\ \hline
+    12 & Métricas e escalas de maturidade & Métricas e maturidade \\ \hline
+    13 & Diagnóstico inicial (\textit{baseline}) & Diagnóstico prévio \\ \hline
+    14 & Método de validação empírica & Validação empírica e qualidade \\ \hline
+    15 & Desafios e gargalos operacionais & Limitações e desafios \\ \hline
+    16 & Lacunas e trabalhos futuros & Lacunas e direções futuras \\ \hline
+    17 & Justificativa do método de validação & Validação empírica e qualidade \\ \hline
 \end{longtable}
 \fonte{Elaborado pelo autor.}
 \FloatBarrier
@@ -189,7 +175,7 @@ A triagem e o gerenciamento bibliográfico foram conduzidos na plataforma \texti
 
 A busca na base Scopus para o período de 2015 a 2026 reuniu registros indexados de IEEE Xplore, ACM Digital Library, Elsevier ScienceDirect e SpringerLink, consolidando 357 itens importados no \textit{Evidentia} para triagem conforme o protocolo PRISMA 2020, conforme a Figura~\ref{fig:rsl_prisma}. Na leitura de título, resumo e palavras-chave, 322 registros foram descartados pelos critérios de exclusão, com maior incidência de trabalhos fora do escopo de engenharia de software e de publicações secundárias ou sem revisão por pares. Dos 35 artigos selecionados para leitura integral, 6 não tiveram o texto completo acessível no portal da CAPES, restando 29 estudos primários incluídos na amostra.
 
-Além dos estudos primários, foram incorporados 5 documentos oficiais brasileiros para apoiar a análise regulatória: o guia do PPSI 2.0 instituído pela Portaria SGD/MGI nº 9.511/2025 \cite{portaria9511_2025,ppsi2026}, a Instrução Normativa SGD/MGI nº 4/2026 \cite{in4_2026}, a Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}, a Instrução Normativa GSI/PR nº 5/2021 \cite{ingsi5_2021} e o Acórdão nº 2.387/2024 do TCU \cite{tcu2387_2024}. As análises quantitativas e percentuais deste capítulo consideram exclusivamente os 29 estudos científicos primários.
+Além dos estudos primários, foram incorporados cinco documentos oficiais brasileiros para apoiar a análise regulatória: o guia do PPSI 2.0 instituído pela Portaria SGD/MGI nº 9.511/2025 \cite{portaria9511_2025,ppsi2026}, a Instrução Normativa SGD/MGI nº 4/2026 \cite{in4_2026}, a Norma Complementar nº 21/IN01/DSIC/GSI-PR \cite{nc21_2014}, a Instrução Normativa GSI/PR nº 5/2021 \cite{ingsi5_2021} e o Acórdão nº 2.387/2024 do TCU \cite{tcu2387_2024}. As análises quantitativas e percentuais deste capítulo consideram exclusivamente os 29 estudos científicos primários.
 
 \begin{figure}[!htbp]
     \centering
@@ -200,10 +186,8 @@ Além dos estudos primários, foram incorporados 5 documentos oficiais brasileir
 \end{figure}
 \FloatBarrier
 
-\subsection{Caracterização da Amostra}
+\subsection{Artigos Selecionados}
 \label{subsec:rsl_amostra}
-
-A amostra de 29 estudos primários reúne 7 artigos em periódicos \cite{darwesh2024,joshisabhaya2026,jin2025,torkura2021,sasmito2025,coutinho2023,velasquez2025} e 22 trabalhos em anais de conferências e simpósios, publicados entre 2017 e 2026. Há forte concentração recente, com 21 estudos publicados em 2025 e 2026. A Tabela~\ref{tab:rsl_amostra} apresenta os estudos selecionados, o veículo de publicação e o método de validação empírica segundo \citeonline{kitchenham2007} e \citeonline{wohlin2024}.
 
 {\small\setlength{\tabcolsep}{4pt}
 \begin{longtable}{p{8.9cm}p{2.2cm}p{2.9cm}}
@@ -266,7 +250,7 @@ De maneira complementar, propostas voltadas à governança de postura atuam sobr
 
 \begin{table}[!htbp]
     \centering
-    \caption{Distribuição dos ambientes de infraestrutura investigados nos estudos primários (QS01).}
+    \caption{Distribuição dos ambientes de infraestrutura investigados nos estudos primários.}
     \label{tab:rsl_qs01}
     \footnotesize
     \begin{tabular}{p{9.8cm}p{2.2cm}p{2.0cm}}
@@ -289,7 +273,7 @@ A maior parte das pesquisas adota um recorte transversal voltado à tecnologia d
 
 \begin{table}[!htbp]
     \centering
-    \caption{Domínios de aplicação e setores econômicos abordados nos estudos primários (QS02).}
+    \caption{Domínios de aplicação e setores econômicos abordados nos estudos primários.}
     \label{tab:rsl_qs02}
     \footnotesize
     \begin{tabular}{p{9.8cm}p{2.2cm}p{2.0cm}}
@@ -311,7 +295,7 @@ Para obter visibilidade em tempo de execução sem comprometer a escalabilidade 
 
 \begin{table}[!htbp]
     \centering
-    \caption{Categorias de tecnologias de telemetria em \textit{runtime} identificadas na amostra (QS03).}
+    \caption{Categorias de tecnologias de telemetria em \textit{runtime} identificadas na amostra.}
     \label{tab:rsl_qs03}
     \footnotesize
     \begin{tabular}{p{4.8cm}p{9.2cm}}
@@ -340,7 +324,7 @@ Na preservação forense, os eventos consolidados são mantidos em índices conf
 
 \begin{table}[!htbp]
     \centering
-    \caption{Estágios operacionais dos \textit{pipelines} de gestão de \textit{logs} de auditoria (QS04).}
+    \caption{Estágios operacionais dos \textit{pipelines} de gestão de \textit{logs} de auditoria.}
     \label{tab:rsl_qs04}
     \footnotesize
     \begin{tabular}{p{3.2cm}p{3.9cm}p{6.9cm}}
@@ -362,7 +346,7 @@ Verifica-se clara predominância de ferramentas de código aberto nas soluções
 
 \begin{table}[!htbp]
     \centering
-    \caption{Ferramentas de código aberto e proprietárias empregadas nos estudos primários (QS05).}
+    \caption{Ferramentas de código aberto e proprietárias empregadas nos estudos primários.}
     \label{tab:rsl_qs05}
     \footnotesize
     \begin{tabular}{p{4.4cm}p{9.6cm}}
@@ -387,7 +371,7 @@ Nenhum dos 29 estudos referencia normativos brasileiros, como o Programa de Priv
 
 \begin{table}[!htbp]
     \centering
-    \caption{Normas, \textit{frameworks} de conformidade e matrizes de ameaças referenciados na amostra (QS06).}
+    \caption{Normas, \textit{frameworks} de conformidade e matrizes de ameaças referenciados na amostra.}
     \label{tab:rsl_qs06}
     \footnotesize
     \begin{tabular}{p{9.6cm}p{2.0cm}p{2.4cm}}
@@ -412,7 +396,7 @@ Nenhum dos 29 estudos primários avaliou individualmente as doze medidas do \tex
 
 \begin{table}[!htbp]
     \centering
-    \caption{Abordagens de gestão de \textit{logs} de auditoria e níveis de maturidade nos estudos primários (QS07).}
+    \caption{Abordagens de gestão de \textit{logs} de auditoria e níveis de maturidade nos estudos primários.}
     \label{tab:rsl_qs07}
     \footnotesize
     \begin{tabular}{p{3.4cm}p{2.9cm}p{7.7cm}}
@@ -435,7 +419,7 @@ A quantificação de segurança e conformidade na amostra apresenta forte concen
 
 \begin{table}[!htbp]
     \centering
-    \caption{Métricas, modelos de avaliação e formas de quantificação nos estudos primários (QS08).}
+    \caption{Métricas, modelos de avaliação e formas de quantificação nos estudos primários.}
     \label{tab:rsl_qs08}
     \footnotesize
     \begin{tabular}{p{3.5cm}p{3.1cm}p{7.4cm}}
@@ -457,7 +441,7 @@ O \textit{baseline} corresponde ao diagnóstico inicial realizado no ambiente ou
 
 \begin{table}[!htbp]
     \centering
-    \caption{Abordagens de diagnóstico prévio (\textit{baseline}) identificadas nos estudos primários (QS09).}
+    \caption{Abordagens de diagnóstico prévio (\textit{baseline}) identificadas nos estudos primários.}
     \label{tab:rsl_qs09}
     \footnotesize
     \begin{tabular}{p{3.3cm}p{1.5cm}p{3.1cm}p{5.9cm}}
@@ -481,7 +465,7 @@ A classificação dos 29 estudos segundo a taxonomia de \citeonline{wohlin2024} 
 
 \begin{table}[!htbp]
     \centering
-    \caption{Métodos de pesquisa empírica utilizados na validação dos estudos primários (QS10).}
+    \caption{Métodos de pesquisa empírica utilizados na validação dos estudos primários.}
     \label{tab:rsl_qs10}
     \footnotesize
     \begin{tabular}{p{10.5cm}p{3.5cm}}
@@ -507,7 +491,7 @@ A telemetria de segurança em \textit{runtime} fornece visibilidade contínua so
 
 \begin{table}[!htbp]
     \centering
-    \caption{Limitações operacionais, impactos e mitigações na telemetria em \textit{runtime} (QS11).}
+    \caption{Limitações operacionais, impactos e mitigações na telemetria em \textit{runtime}.}
     \label{tab:rsl_qs11}
     \footnotesize
     \begin{tabular}{p{3.4cm}p{4.8cm}p{5.8cm}}
@@ -529,7 +513,7 @@ Os autores dos 29 estudos apontam lacunas convergentes que orientam a evolução
 
 \begin{table}[!htbp]
     \centering
-    \caption{Lacunas de pesquisa e direções futuras apontadas nos estudos primários (QS12).}
+    \caption{Lacunas de pesquisa e direções futuras apontadas nos estudos primários.}
     \label{tab:rsl_qs12}
     \footnotesize
     \begin{tabular}{p{3.3cm}p{4.7cm}p{6.0cm}}
@@ -547,7 +531,7 @@ Os autores dos 29 estudos apontam lacunas convergentes que orientam a evolução
 \section{Ameaças à Validade}
 \label{sec:rsl_ameacas}
 
-Quanto às validades de constructo e interna, o uso de base única e a triagem por pesquisador individual introduzem riscos de cobertura incompleta e viés de seleção. Tais riscos foram mitigados pela calibração da \textit{string} segundo o modelo PIO na Scopus, pelo registro auditável dos critérios CI01 a CI03 e CE01 a CE06 no \textit{Evidentia} sob revisão da orientação e pela contabilização transparente dos 6 artigos não recuperados no fluxo PRISMA, preservando a amostra nos 29 estudos primários \cite{kitchenham2007}.
+Quanto às validades de constructo e interna, o uso de base única e a triagem por pesquisador individual introduzem riscos de cobertura incompleta e viés de seleção. Tais riscos foram mitigados pela calibração da \textit{string} segundo o modelo PIO na Scopus, pelo registro auditável dos critérios de inclusão e exclusão no \textit{Evidentia} sob revisão da orientação e pela contabilização transparente dos 6 artigos não recuperados no fluxo PRISMA, preservando a amostra nos 29 estudos primários \cite{kitchenham2007}.
 
 No plano das validades externa e de conclusão, destacam-se o predomínio de avaliações laboratoriais, a ausência de normativos brasileiros nos estudos primários e o risco de subjetividade na extração dos dados. A transferibilidade ao setor público federal apoia-se no vínculo do PPSI 2.0 aos \textit{CIS Controls} combinado aos marcos nacionais vigentes, como a Instrução Normativa SGD/MGI nº 4/2026 e a Norma Complementar nº 21 do GSI-PR \cite{ppsi2026,in4_2026,nc21_2014}, enquanto a consistência da síntese foi assegurada pelo formulário de 17 campos e pela auditoria cruzada das contagens.
 \FloatBarrier
